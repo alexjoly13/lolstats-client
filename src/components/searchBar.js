@@ -18,27 +18,29 @@ class SearchBar extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    const summSearch = this.state.summonerName;
 
-    postSummonerName(this.props.value).then(response => {
-      console.log("Add Tasklist", response.data);
+    postSummonerName(summSearch).then(response => {
+      console.log("Summoner name search : ", response.data);
+      this.setState({ summonerName: "" });
     });
   }
 
   render() {
+    console.log(this.state.summonerName);
+
     return (
       <Form onSubmit={event => this.handleSubmit(event)}>
-        <Form.Group>
-          <Form.Control
-            className="summ-bar"
-            size="lg"
-            type="text"
-            placeholder="Summoner Name"
-            id="Searchbar"
-            name="summonerName"
-            value={this.state.summonerName}
-            onChange={event => this.genericOnChange(event)}
-          />
-        </Form.Group>
+        <Form.Control
+          className="summ-bar"
+          size="lg"
+          type="text"
+          placeholder="Summoner Name"
+          id="Searchbar"
+          name="summonerName"
+          value={this.state.summonerName}
+          onChange={event => this.genericOnChange(event)}
+        />
       </Form>
     );
   }

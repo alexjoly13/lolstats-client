@@ -18,7 +18,7 @@ function errorHandler(err) {
 }
 
 export function postSummonerName(SummonerName) {
-  return backendApi.post("/", SummonerName).catch(errorHandler);
+  return backendApi.post("/summoner", SummonerName).catch(errorHandler);
 }
 
 export function getChampionsList(championList) {
