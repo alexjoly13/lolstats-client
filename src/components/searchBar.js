@@ -27,8 +27,6 @@ class SearchBar extends Component {
   }
 
   render() {
-    console.log(this.state.summonerName);
-
     return (
       <Form onSubmit={event => this.handleSubmit(event)}>
         <Form.Control

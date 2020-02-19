@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { getChampionsList } from "../api";
+import "./champions.css";
 
 class ChampionsList extends Component {
   constructor(props) {
@@ -26,20 +27,24 @@ class ChampionsList extends Component {
     const values = Object.values(championsArray);
     console.log(values);
     return (
-      <div>
-        <ul>
+      <div className="container my-5">
+        <div className="row">
           {values.map((oneChampion, index) => {
             return (
-              <div key={index}>
-                <li key={oneChampion.key}>{oneChampion.name}</li>
+              <div className="col-2" key={index}>
                 <img
+                  className="champ-icon"
                   key={oneChampion.title}
                   src={this.oneImg(oneChampion.version, oneChampion.key)}
+                  alt={oneChampion.title}
                 />
+                <p className="text-align-center" key={oneChampion.key}>
+                  {oneChampion.name}
+                </p>
               </div>
             );
           })}
-        </ul>
+        </div>
       </div>
     );
   }

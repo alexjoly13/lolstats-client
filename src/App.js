@@ -2,22 +2,23 @@ import React from "react";
 import { Switch, Route, NavLink } from "react-router-dom";
 import "./App.css";
 import NavigationBar from "./components/navigationBar";
-import Footer from "./components/footer";
 import SearchContainer from "./components/searchContainer";
 import ChampionsList from "./components/champions";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
+    <section className="App">
+      <div>
         <NavigationBar />
         <Switch>
           <Route exact path="/" component={SearchContainer} />
           <Route path="/champions" component={ChampionsList} />
         </Switch>
-        <Footer />
-      </header>
-    </div>
+      </div>
+      <footer>
+        <p>GL & HF</p>
+      </footer>
+    </section>
   );
 }
 

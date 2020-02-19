@@ -20,10 +20,12 @@ class NavigationBar extends Component {
           <Nav className="mr-auto">
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/champions">Champions</Nav.Link>
+            <Nav.Link href="/guides">Guides</Nav.Link>
+            <Nav.Link href="/statistics">Stats</Nav.Link>
           </Nav>
           <Form inline>
             <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-            <Button variant="outline-success">Search</Button>
+            <Button variant="outline-info">Search</Button>
           </Form>
         </Navbar.Collapse>
       </Navbar>
