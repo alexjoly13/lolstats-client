@@ -7,10 +7,6 @@ import Button from "react-bootstrap/Button";
 import "./navigationBar.css";
 
 class NavigationBar extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <Navbar bg="light" expand="lg">

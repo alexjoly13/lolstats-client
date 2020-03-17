@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route, NavLink } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import "./App.css";
 import NavigationBar from "./components/navigationBar";
 import SearchContainer from "./components/searchContainer";
