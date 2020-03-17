@@ -1,3 +1,20 @@
 .summoner-icon {
-  width: 2%;
+  width: 120%;
+}
+
+.games-list {
+  width: 80%;
+  height: 100%;
+}
+
+div.game-resume,
+div.game-resume > * {
+  max-height: 150px;
+}
+
+.player-champion {
+}
+
+.inGame-champs-img {
+  width: 13%;
 }
