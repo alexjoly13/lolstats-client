@@ -13,7 +13,7 @@ class SearchBar extends Component {
     this.state = {
       summonerName: "",
       summonerInfos: {},
-      isLoading: false,
+      isLoading: true,
       isSubmitSuccessful: false
     };
   }

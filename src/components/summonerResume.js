@@ -74,15 +74,13 @@ class SummonerResume extends Component {
               <div className="game-resume my-4">
                 <div className="container">
                   <div className="row">
-                    <div className="col-1 d-flex">
-                      <span className="align-self-center">
-                        Duration : {this.gameDuration(oneGame.gameDuration)}
-                      </span>
-                      <div className="col-1">
-                        <span className="align-self-center">
-                          {this.gameCreatedAt(oneGame.gameCreation)}
-                        </span>
-                      </div>
+                    <div className="col-2 d-flex game-timing-infos">
+                      <p className="align-self-center">
+                        {this.gameDuration(oneGame.gameDuration)}
+                      </p>
+                      <p className="align-self-center">
+                        {this.gameCreatedAt(oneGame.gameCreation)}
+                      </p>
                     </div>
                     <div className="col-5">
                       <div className="container">

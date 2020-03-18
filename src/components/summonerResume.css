@@ -12,6 +12,10 @@ div.game-resume > * {
   max-height: 150px;
 }
 
+.game-timing-infos {
+  font-size: 12px;
+}
+
 /* .player-champion {
 } */
 
