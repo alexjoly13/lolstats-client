@@ -4,6 +4,7 @@ import "./App.css";
 import NavigationBar from "./components/navigationBar";
 import SearchContainer from "./components/searchContainer";
 import ChampionsList from "./components/champions";
+import Footer from "./components/footer";
 
 function App() {
   return (
@@ -15,9 +16,7 @@ function App() {
           <Route path="/champions" component={ChampionsList} />
         </Switch>
       </div>
-      <footer>
-        <p>GL & HF</p>
-      </footer>
+      <Footer />
     </section>
   );
 }

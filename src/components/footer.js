@@ -8,7 +8,7 @@ class Footer extends Component {
 
   render() {
     return (
-      <footer>
+      <footer className="site-footer">
         <p>GL & HF</p>
       </footer>
     );

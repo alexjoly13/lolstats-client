@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import moment from "moment";
 import "./summonerResume.css";
 
 class SummonerResume extends Component {
@@ -21,14 +22,25 @@ class SummonerResume extends Component {
   gameDuration(time) {
     let minutes = Math.floor(time / 60);
     let seconds = time - minutes * 60;
-    return minutes + ":" + seconds;
+
+    if (time < 241) {
+      return minutes + ":" + seconds + " Remake";
+    } else {
+      return minutes + ":" + seconds;
+    }
+  }
+
+  gameCreatedAt(date) {
+    let x = date.toString().slice(0, -3);
+    let y = parseInt(x);
+    let z = moment.unix(y).format("YYYYMMDD HH:mm:ss");
+    return moment(z, "YYYYMMDD HH:mm:ss").fromNow();
   }
 
   render() {
     const player = this.state.summDetails;
     const games = this.state.summMatches[0];
     console.log("previous games", games);
-    console.log(new Date(1584399351007));
     return (
       <section>
         <section className="summoner-resume m-5">
@@ -66,6 +78,11 @@ class SummonerResume extends Component {
                       <span className="align-self-center">
                         Duration : {this.gameDuration(oneGame.gameDuration)}
                       </span>
+                      <div className="col-1">
+                        <span className="align-self-center">
+                          {this.gameCreatedAt(oneGame.gameCreation)}
+                        </span>
+                      </div>
                     </div>
                     <div className="col-5">
                       <div className="container">

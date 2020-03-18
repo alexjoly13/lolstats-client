@@ -1,9 +1,10 @@
-import React, { Component, useState } from "react";
+import React, { Component } from "react";
 import Form from "react-bootstrap/Form";
 import { Redirect, Switch, Route } from "react-router-dom";
 import { Roller } from "react-awesome-spinners";
 import { postSummonerName } from "../api";
 import SummonerResume from "./summonerResume";
+import LoadingMessage from "./loadingMessage";
 import "./searchBar.css";
 
 class SearchBar extends Component {
@@ -44,7 +45,7 @@ class SearchBar extends Component {
     if (this.state.isSubmitSuccessful) {
       return <SummonerResume summsInfo={this.state.summonerInfos} />;
     } else if (this.state.isLoading) {
-      return <Roller />;
+      return <LoadingMessage />;
     } else {
       return (
         <div>
@@ -63,34 +64,6 @@ class SearchBar extends Component {
         </div>
       );
     }
-
-    // return this.state.isSubmitSuccessful ? (
-    //   <div>
-    //     {/* <Redirect
-    //       to={{
-    //         pathname: "/summoner/" + this.state.summonerInfos.name,
-    //         state: this.state.summonerInfos
-    //       }}
-    //     /> */}
-    //     <SummonerResume summsInfo={this.state.summonerInfos} />
-    //   </div>
-    // ) : (
-    //   <div>
-    //     <Form onSubmit={event => this.handleSubmit(event)}>
-    //       <Form.Control
-    //         className="summ-bar"
-    //         size="lg"
-    //         type="text"
-    //         placeholder="Summoner Name"
-    //         id="Searchbar"
-    //         name="summonerName"
-    //         value={this.state.summonerName}
-    //         onChange={event => this.genericOnChange(event)}
-    //       />
-    //     </Form>
-    //     <Roller />
-    //   </div>
-    // );
   }
 }
 
