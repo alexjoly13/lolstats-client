@@ -8,8 +8,8 @@ import Footer from "./components/footer";
 
 function App() {
   return (
-    <section className="App">
-      <div className="body">
+    <section id="App">
+      <div className="content">
         <NavigationBar />
         <Switch>
           <Route exact path="/" component={SearchContainer} />
