@@ -10,7 +10,8 @@ class SummonerResume extends Component {
     this.state = {
       summonerName: this.props.summsInfo[0].name,
       summDetails: [this.props.summsInfo[0]],
-      summMatches: [this.props.summsInfo[1]]
+      summMatches: [this.props.summsInfo[1]],
+      showcasedSummoner: [this.props.summsInfo[2]]
     };
   }
 
@@ -40,45 +41,13 @@ class SummonerResume extends Component {
     return moment(z, "YYYYMMDD HH:mm:ss").fromNow();
   }
 
-  enhanceSummoner(gamesList, searchedSummoner) {
-    const a = [];
-    const b = [];
-    let showcasedSummId;
-    let showcasedSummoner;
-    gamesList.map(oneGame => {
-      a.push(oneGame.participantIdentities);
-      b.push(oneGame.participants);
-    });
-    a.map(oneParticipant => {
-      oneParticipant.map(blah => {
-        if (blah.player.summonerName === searchedSummoner) {
-          showcasedSummId = blah.participantId;
-        } else {
-          return;
-        }
-      });
-    });
-
-    b.map(onePlayer => {
-      onePlayer.map(touche => {
-        if (touche.participantId === showcasedSummId) {
-          showcasedSummoner = touche;
-        } else {
-          return;
-        }
-      });
-    });
-
-    return showcasedSummoner;
-  }
-
   typeOfQueue(queueId) {}
 
   render() {
     const summName = this.state.summonerName;
     const player = this.state.summDetails;
     const games = this.state.summMatches[0];
-    console.log("TEST :", this.enhanceSummoner(games, summName));
+    const searchedSummDetails = this.state.showcasedSummoner;
     console.log("previous games", games);
     return (
       <section>
@@ -119,6 +88,14 @@ class SummonerResume extends Component {
                           {this.gameDuration(oneGame.gameDuration)}
                         </p>
                       </div>
+                      {/* {searchedSummDetails.map(oneDetail => {
+                        return (
+                          <div className="row justify-content-center">
+                            <img src={this.champImg()} />
+                          </div>
+                        );
+                      })} */}
+
                       <div className="row justify-content-center">
                         <p className="">
                           {this.gameCreatedAt(oneGame.gameCreation)}

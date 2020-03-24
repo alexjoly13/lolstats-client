@@ -2,6 +2,11 @@
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 2.5rem;
-  background-color: aqua;
+  /* height: 2.5rem; */
+  background-color: #51a3b8;
+}
+
+.copyrights {
+  font-size: 10px;
+  font-weight: italic;
 }
