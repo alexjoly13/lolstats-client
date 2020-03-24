@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import Form from "react-bootstrap/Form";
-import { Redirect, Switch, Route } from "react-router-dom";
-import { Roller } from "react-awesome-spinners";
 import { postSummonerName } from "../api";
 import SummonerResume from "./summonerResume";
 import LoadingMessage from "./loadingMessage";
@@ -48,19 +46,23 @@ class SearchBar extends Component {
       return <LoadingMessage />;
     } else {
       return (
-        <div>
-          <Form onSubmit={event => this.handleSubmit(event)}>
-            <Form.Control
+        <div className="mt-5">
+          <div>
+            <Form
+              onSubmit={event => this.handleSubmit(event)}
               className="summ-bar"
-              size="lg"
-              type="text"
-              placeholder="Summoner Name"
-              id="Searchbar"
-              name="summonerName"
-              value={this.state.summonerName}
-              onChange={event => this.genericOnChange(event)}
-            />
-          </Form>
+            >
+              <Form.Control
+                size="lg"
+                type="text"
+                placeholder="Summoner Name"
+                id="Searchbar"
+                name="summonerName"
+                value={this.state.summonerName}
+                onChange={event => this.genericOnChange(event)}
+              />
+            </Form>
+          </div>
         </div>
       );
     }

@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import moment from "moment";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronCircleDown } from "@fortawesome/free-solid-svg-icons";
 import "./summonerResume.css";
 
 class SummonerResume extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      summonerName: this.props.summsInfo[0].name,
       summDetails: [this.props.summsInfo[0]],
       summMatches: [this.props.summsInfo[1]]
     };
@@ -37,9 +40,45 @@ class SummonerResume extends Component {
     return moment(z, "YYYYMMDD HH:mm:ss").fromNow();
   }
 
+  enhanceSummoner(gamesList, searchedSummoner) {
+    const a = [];
+    const b = [];
+    let showcasedSummId;
+    let showcasedSummoner;
+    gamesList.map(oneGame => {
+      a.push(oneGame.participantIdentities);
+      b.push(oneGame.participants);
+    });
+    a.map(oneParticipant => {
+      oneParticipant.map(blah => {
+        if (blah.player.summonerName === searchedSummoner) {
+          showcasedSummId = blah.participantId;
+        } else {
+          return;
+        }
+      });
+    });
+
+    b.map(onePlayer => {
+      onePlayer.map(touche => {
+        if (touche.participantId === showcasedSummId) {
+          showcasedSummoner = touche;
+        } else {
+          return;
+        }
+      });
+    });
+
+    return showcasedSummoner;
+  }
+
+  typeOfQueue(queueId) {}
+
   render() {
+    const summName = this.state.summonerName;
     const player = this.state.summDetails;
     const games = this.state.summMatches[0];
+    console.log("TEST :", this.enhanceSummoner(games, summName));
     console.log("previous games", games);
     return (
       <section>
@@ -74,32 +113,45 @@ class SummonerResume extends Component {
               <div className="game-resume my-4">
                 <div className="container">
                   <div className="row">
-                    <div className="col-2 d-flex game-timing-infos">
-                      <p className="align-self-center">
-                        {this.gameDuration(oneGame.gameDuration)}
-                      </p>
-                      <p className="align-self-center">
-                        {this.gameCreatedAt(oneGame.gameCreation)}
-                      </p>
+                    <div className="col-2 game-timing-infos align-self-center">
+                      <div className="row justify-content-center">
+                        <p className="">
+                          {this.gameDuration(oneGame.gameDuration)}
+                        </p>
+                      </div>
+                      <div className="row justify-content-center">
+                        <p className="">
+                          {this.gameCreatedAt(oneGame.gameCreation)}
+                        </p>
+                      </div>
                     </div>
                     <div className="col-5">
                       <div className="container">
                         <div className="row">
                           {oneGame.participantIdentities.map((oneId, index) => {
                             return (
-                              <div className="player-champion col-6">
+                              <div className="player-champion d-flex align-items-center col-6 mb-1">
                                 <img
                                   className="inGame-champs-img"
                                   src={this.champImg(
                                     oneGame.participants[index].championId
                                   )}
                                 />
-                                <span>{oneId.player.summonerName}</span>
+                                <span className="ml-1">
+                                  {oneId.player.summonerName}
+                                </span>
                               </div>
                             );
                           })}
                         </div>
                       </div>
+                    </div>
+                    <div className="col-1">
+                      <FontAwesomeIcon
+                        icon={faChevronCircleDown}
+                        size="2x"
+                        color="#495057"
+                      />
                     </div>
                   </div>
                 </div>
