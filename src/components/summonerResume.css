@@ -2,8 +2,12 @@
   width: 120%;
 }
 
+.rank-logo {
+  width: 60%;
+}
+
 .games-list {
-  width: 80%;
+  width: 100%;
   height: 100%;
 }
 
@@ -21,4 +25,8 @@ div.game-resume > * {
 
 .inGame-champs-img {
   width: 13%;
+}
+
+.highligh-champ-img {
+  width: 40%;
 }

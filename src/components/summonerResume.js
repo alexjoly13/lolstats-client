@@ -2,16 +2,16 @@ import React, { Component } from "react";
 import moment from "moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronCircleDown } from "@fortawesome/free-solid-svg-icons";
+import { rankImgProvider } from "../helpers/summoner-helper";
 import "./summonerResume.css";
 
 class SummonerResume extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      summonerName: this.props.summsInfo[0].name,
-      summDetails: [this.props.summsInfo[0]],
-      summMatches: [this.props.summsInfo[1]],
-      showcasedSummoner: [this.props.summsInfo[2]]
+      summonerName: this.props.summsInfo.summoner.name,
+      summDetails: [this.props.summsInfo.summoner],
+      summMatches: [this.props.summsInfo.lastGames]
     };
   }
 
@@ -21,6 +21,10 @@ class SummonerResume extends Component {
 
   champImg(key) {
     return `https://cdn.communitydragon.org/10.2.1/champion/${key}/square`;
+  }
+
+  winrateCalculator(wins, loss) {
+    return Math.floor((wins / (wins + loss)) * 100) + "%";
   }
 
   gameDuration(time) {
@@ -44,11 +48,9 @@ class SummonerResume extends Component {
   typeOfQueue(queueId) {}
 
   render() {
-    const summName = this.state.summonerName;
     const player = this.state.summDetails;
     const games = this.state.summMatches[0];
-    const searchedSummDetails = this.state.showcasedSummoner;
-    console.log("previous games", games);
+
     return (
       <section>
         <section className="summoner-resume m-5">
@@ -69,6 +71,29 @@ class SummonerResume extends Component {
                       Level {oneSummoner.summonerLevel}
                     </span>
                   </div>
+                  <div className="col-2 align-self-center">
+                    <img
+                      src={rankImgProvider(oneSummoner.ranks.tier)}
+                      className="rank-logo"
+                    />
+                  </div>
+                  <div className="col-2">
+                    <p>
+                      {oneSummoner.ranks.tier} {oneSummoner.ranks.rank}
+                    </p>
+                    <p>{oneSummoner.ranks.leaguePoints} LP</p>
+                    <p>
+                      {oneSummoner.ranks.wins} Wins / {oneSummoner.ranks.losses}{" "}
+                      Losses
+                    </p>
+                    <p>
+                      {this.winrateCalculator(
+                        oneSummoner.ranks.wins,
+                        oneSummoner.ranks.losses
+                      )}{" "}
+                      Winrate
+                    </p>
+                  </div>
                 </div>
               );
             })}
@@ -88,18 +113,38 @@ class SummonerResume extends Component {
                           {this.gameDuration(oneGame.gameDuration)}
                         </p>
                       </div>
-                      {/* {searchedSummDetails.map(oneDetail => {
-                        return (
-                          <div className="row justify-content-center">
-                            <img src={this.champImg()} />
-                          </div>
-                        );
-                      })} */}
 
                       <div className="row justify-content-center">
                         <p className="">
                           {this.gameCreatedAt(oneGame.gameCreation)}
                         </p>
+                      </div>
+                    </div>
+                    <div className="col-2">
+                      <div className="container">
+                        <div className="row">
+                          <div className="highlight-summoner-champion">
+                            <img
+                              className="highligh-champ-img"
+                              src={this.champImg(
+                                oneGame.summonerGameDetails.championId
+                              )}
+                            />
+                          </div>
+                        </div>
+                        <div className="row">
+                          <div>
+                            <p>
+                              {oneGame.summonerGameDetails.stats.kills} /{" "}
+                              {oneGame.summonerGameDetails.stats.deaths} /{" "}
+                              {oneGame.summonerGameDetails.stats.assists}
+                            </p>
+                            <p>
+                              Level{" "}
+                              {oneGame.summonerGameDetails.stats.champLevel}
+                            </p>
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <div className="col-5">
