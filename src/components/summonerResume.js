@@ -49,11 +49,8 @@ class SummonerResume extends Component {
   summonerSpellShower(pickedSpell) {
     const spells = Object.values(summSpells[0].data);
     let address;
-    console.log(spells);
     spells.map(oneSpell => {
-      // console.log(oneSpell);
       if (parseInt(oneSpell.key) === pickedSpell) {
-        console.log("ADRESSE ICONE ", oneSpell.image.full);
         address =
           "http://ddragon.leagueoflegends.com/cdn/10.6.1/img/spell/" +
           oneSpell.image.full;
