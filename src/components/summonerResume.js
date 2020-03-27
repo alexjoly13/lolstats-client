@@ -3,6 +3,7 @@ import moment from "moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronCircleDown } from "@fortawesome/free-solid-svg-icons";
 import { rankImgProvider } from "../helpers/summoner-helper";
+import summSpells from "../helpers/summoner-spells.json";
 import "./summonerResume.css";
 
 class SummonerResume extends Component {
@@ -43,6 +44,22 @@ class SummonerResume extends Component {
     let y = parseInt(x);
     let z = moment.unix(y).format("YYYYMMDD HH:mm:ss");
     return moment(z, "YYYYMMDD HH:mm:ss").fromNow();
+  }
+
+  summonerSpellShower(pickedSpell) {
+    const spells = Object.values(summSpells[0].data);
+    let address;
+    console.log(spells);
+    spells.map(oneSpell => {
+      // console.log(oneSpell);
+      if (parseInt(oneSpell.key) === pickedSpell) {
+        console.log("ADRESSE ICONE ", oneSpell.image.full);
+        address =
+          "http://ddragon.leagueoflegends.com/cdn/10.6.1/img/spell/" +
+          oneSpell.image.full;
+      }
+    });
+    return address;
   }
 
   typeOfQueue(queueId) {}
@@ -143,6 +160,26 @@ class SummonerResume extends Component {
                               Level{" "}
                               {oneGame.summonerGameDetails.stats.champLevel}
                             </p>
+                            <div className="d-flex w-50">
+                              <div className="">
+                                <img
+                                  src={this.summonerSpellShower(
+                                    oneGame.summonerGameDetails.spell1Id
+                                  )}
+                                  className="summoner-spell-image"
+                                  alt="someBody"
+                                />
+                              </div>
+                              <div>
+                                <img
+                                  src={this.summonerSpellShower(
+                                    oneGame.summonerGameDetails.spell2Id
+                                  )}
+                                  className="summoner-spell-image"
+                                  alt="someBody"
+                                />
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
