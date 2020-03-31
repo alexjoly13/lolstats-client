@@ -62,24 +62,8 @@ class SummonerResume extends Component {
 
   typeOfQueue(queueId) {}
 
-  getPlayedChampsName(champId) {
-    const url =
-      "http://ddragon.leagueoflegends.com/cdn/10.6.1/data/en_US/champion.json";
-    axios
-      .get(url)
-      .then(response => {
-        let champName;
-        const champArray = Object.values(response.data.data);
-        champArray.forEach(oneChamp => {
-          if (parseInt(oneChamp.key) === champId) {
-            champName = oneChamp.name;
-          }
-        });
-        return champName;
-        console.log(champName);
-      })
-
-      .catch(err => console.log(err));
+  kdaCalculator(kills, assists, deaths) {
+    return Math.floor(((kills + assists) / deaths) * 100) / 100 + " :1 KDA";
   }
 
   render() {
@@ -209,6 +193,15 @@ class SummonerResume extends Component {
                             {oneGame.summonerGameDetails.stats.kills} /{" "}
                             {oneGame.summonerGameDetails.stats.deaths} /{" "}
                             {oneGame.summonerGameDetails.stats.assists}
+                          </p>
+                        </div>
+                        <div className="row">
+                          <p>
+                            {this.kdaCalculator(
+                              oneGame.summonerGameDetails.stats.kills,
+                              oneGame.summonerGameDetails.stats.assists,
+                              oneGame.summonerGameDetails.stats.deaths
+                            )}
                           </p>
                         </div>
                         <div className="row">
