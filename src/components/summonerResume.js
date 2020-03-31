@@ -156,17 +156,17 @@ class SummonerResume extends Component {
                         )}
                       </div>
                     </div>
-                    <div className="col-2 player-champion-infos">
+                    <div className="col-2 player-champion-infos align-self-center">
                       <div className="container">
                         <div className="row">
-                          <div className="highlight-summoner-champion">
+                          <div className="highlight-summoner-champion mb-2">
                             <img
                               className="highligh-champ-img"
                               src={this.champImg(
                                 oneGame.summonerGameDetails.championId
                               )}
                             />
-                            <span>
+                            <span className="played-champ-name ml-2 font-weight-bold">
                               {oneGame.summonerGameDetails.championPlayedName}
                             </span>
                           </div>
@@ -174,7 +174,7 @@ class SummonerResume extends Component {
                         <div className="row">
                           <div>
                             <div className="d-flex w-50">
-                              <div className="">
+                              <div className="mr-1">
                                 <img
                                   src={this.summonerSpellShower(
                                     oneGame.summonerGameDetails.spell1Id
@@ -197,17 +197,17 @@ class SummonerResume extends Component {
                         </div>
                       </div>
                     </div>
-                    <div className="col-2">
+                    <div className="player-ingame-stats col-2 align-self-center">
                       <div className="container">
                         <div className="row">
-                          <p>
+                          <p className="mb-1">
                             {oneGame.summonerGameDetails.stats.kills} /{" "}
                             {oneGame.summonerGameDetails.stats.deaths} /{" "}
                             {oneGame.summonerGameDetails.stats.assists}
                           </p>
                         </div>
                         <div className="row">
-                          <p>
+                          <p className="mb-1">
                             {this.kdaCalculator(
                               oneGame.summonerGameDetails.stats.kills,
                               oneGame.summonerGameDetails.stats.assists,
@@ -216,7 +216,7 @@ class SummonerResume extends Component {
                           </p>
                         </div>
                         <div className="row">
-                          <p>
+                          <p className="mb-1">
                             Level {oneGame.summonerGameDetails.stats.champLevel}
                           </p>
                         </div>
