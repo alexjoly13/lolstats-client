@@ -29,11 +29,30 @@ div.game-resume > * {
 }
 
 .game-timing-infos {
+  position: relative;
   font-size: 12px;
 }
 
+.result-indicator {
+  position: absolute;
+  width: 6px;
+  height: 72px;
+  top: 17px;
+  left: 0px;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.victory {
+  background-color: #2deb90;
+}
+
+.defeat {
+  background-color: red;
+}
+
 .victory-text {
-  color: green;
+  color: #2deb90;
 }
 
 .defeat-text {

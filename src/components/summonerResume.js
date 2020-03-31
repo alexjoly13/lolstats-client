@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import moment from "moment";
-import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronCircleDown } from "@fortawesome/free-solid-svg-icons";
 import { rankImgProvider } from "../helpers/summoner-helper";
@@ -66,6 +65,12 @@ class SummonerResume extends Component {
     return Math.floor(((kills + assists) / deaths) * 100) / 100 + " :1 KDA";
   }
 
+  killParticipationCalculator(kills, assists, totalTeamKills) {
+    return (
+      Math.floor((kills + assists) / totalTeamKills) + "% Kill Participation"
+    );
+  }
+
   render() {
     const player = this.state.summDetails;
     const games = this.state.summMatches[0];
@@ -126,6 +131,12 @@ class SummonerResume extends Component {
                 <div className="container game-card">
                   <div className="row">
                     <div className="col-1 game-timing-infos align-self-center">
+                      {oneGame.summonerGameDetails.stats.win ? (
+                        <div className="result-indicator victory"></div>
+                      ) : (
+                        <div className="result-indicator defeat"></div>
+                      )}
+                      <div className="result-indicator"></div>
                       <div className="row justify-content-center">
                         <p className="">
                           {this.gameDuration(oneGame.gameDuration)}
