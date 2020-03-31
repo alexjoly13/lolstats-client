@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import moment from "moment";
+import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronCircleDown } from "@fortawesome/free-solid-svg-icons";
 import { rankImgProvider } from "../helpers/summoner-helper";
@@ -61,10 +62,29 @@ class SummonerResume extends Component {
 
   typeOfQueue(queueId) {}
 
+  getPlayedChampsName(champId) {
+    const url =
+      "http://ddragon.leagueoflegends.com/cdn/10.6.1/data/en_US/champion.json";
+    axios
+      .get(url)
+      .then(response => {
+        let champName;
+        const champArray = Object.values(response.data.data);
+        champArray.forEach(oneChamp => {
+          if (parseInt(oneChamp.key) === champId) {
+            champName = oneChamp.name;
+          }
+        });
+        return champName;
+        console.log(champName);
+      })
+
+      .catch(err => console.log(err));
+  }
+
   render() {
     const player = this.state.summDetails;
     const games = this.state.summMatches[0];
-
     return (
       <section>
         <section className="summoner-resume m-5">
@@ -119,9 +139,9 @@ class SummonerResume extends Component {
           {games.map(oneGame => {
             return (
               <div className="game-resume my-4">
-                <div className="container">
+                <div className="container game-card">
                   <div className="row">
-                    <div className="col-2 game-timing-infos align-self-center">
+                    <div className="col-1 game-timing-infos align-self-center">
                       <div className="row justify-content-center">
                         <p className="">
                           {this.gameDuration(oneGame.gameDuration)}
@@ -133,8 +153,15 @@ class SummonerResume extends Component {
                           {this.gameCreatedAt(oneGame.gameCreation)}
                         </p>
                       </div>
+                      <div className="row justify-content-center">
+                        {oneGame.summonerGameDetails.stats.win ? (
+                          <p className="victory-text">VICTORY</p>
+                        ) : (
+                          <p className="defeat-text">DEFEAT</p>
+                        )}
+                      </div>
                     </div>
-                    <div className="col-2">
+                    <div className="col-2 player-champion-infos">
                       <div className="container">
                         <div className="row">
                           <div className="highlight-summoner-champion">
@@ -144,19 +171,13 @@ class SummonerResume extends Component {
                                 oneGame.summonerGameDetails.championId
                               )}
                             />
+                            <span>
+                              {oneGame.summonerGameDetails.championPlayedName}
+                            </span>
                           </div>
                         </div>
                         <div className="row">
                           <div>
-                            <p>
-                              {oneGame.summonerGameDetails.stats.kills} /{" "}
-                              {oneGame.summonerGameDetails.stats.deaths} /{" "}
-                              {oneGame.summonerGameDetails.stats.assists}
-                            </p>
-                            <p>
-                              Level{" "}
-                              {oneGame.summonerGameDetails.stats.champLevel}
-                            </p>
                             <div className="d-flex w-50">
                               <div className="">
                                 <img
@@ -178,6 +199,22 @@ class SummonerResume extends Component {
                               </div>
                             </div>
                           </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-2">
+                      <div className="container">
+                        <div className="row">
+                          <p>
+                            {oneGame.summonerGameDetails.stats.kills} /{" "}
+                            {oneGame.summonerGameDetails.stats.deaths} /{" "}
+                            {oneGame.summonerGameDetails.stats.assists}
+                          </p>
+                        </div>
+                        <div className="row">
+                          <p>
+                            Level {oneGame.summonerGameDetails.stats.champLevel}
+                          </p>
                         </div>
                       </div>
                     </div>

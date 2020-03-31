@@ -15,6 +15,14 @@
   height: 100%;
 }
 
+.game-card {
+  border: 2px solid black;
+}
+
+.player-champion-infos p {
+  margin: 0;
+}
+
 div.game-resume,
 div.game-resume > * {
   max-height: 150px;
@@ -22,6 +30,14 @@ div.game-resume > * {
 
 .game-timing-infos {
   font-size: 12px;
+}
+
+.victory-text {
+  color: green;
+}
+
+.defeat-text {
+  color: red;
 }
 
 /* .player-champion {
