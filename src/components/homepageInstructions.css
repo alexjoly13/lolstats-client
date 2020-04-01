@@ -1,0 +1,15 @@
+.instructions-bg {
+  background-color: #f8f9fa;
+}
+
+.kayn-logo {
+  width: 20%;
+  position: absolute;
+  top: -222px;
+  left: 900px;
+  z-index: 99;
+}
+
+.search-screenshot {
+  width: 100%;
+}

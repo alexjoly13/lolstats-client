@@ -61,6 +61,7 @@ div.game-resume > * {
 
 .player-ingame-stats p {
   margin: 0;
+  font-size: 12px;
 }
 
 .participants-identities:first-child {

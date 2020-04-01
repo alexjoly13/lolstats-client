@@ -51,7 +51,7 @@ class SearchBar extends Component {
       return <LoadingMessage />;
     } else {
       return (
-        <div className="mt-5">
+        <div className="homepage-container">
           <div className="d-flex justify-content-center">
             <Form
               onSubmit={event => this.handleSubmit(event)}
