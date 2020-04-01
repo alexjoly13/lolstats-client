@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./searchContainer.css";
 import SearchBar from "./searchBar";
-import UsageInstructions from "./homepageInstructions";
 
 class SearchContainer extends Component {
   constructor(props) {
@@ -21,7 +20,6 @@ class SearchContainer extends Component {
           searchString={this.state.searchString}
           handleSearch={event => this.updateSearch(event)}
         />
-        <UsageInstructions />
       </div>
     );
   }

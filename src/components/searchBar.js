@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Form from "react-bootstrap/Form";
 import { postSummonerName } from "../api";
+import UsageInstructions from "./homepageInstructions";
 import SummonerResume from "./summonerResume";
 import LoadingMessage from "./loadingMessage";
 import "./searchBar.css";
@@ -41,7 +42,11 @@ class SearchBar extends Component {
 
   render() {
     if (this.state.isSubmitSuccessful) {
-      return <SummonerResume summsInfo={this.state.summonerInfos} />;
+      return (
+        <div>
+          <SummonerResume summsInfo={this.state.summonerInfos} />
+        </div>
+      );
     } else if (this.state.isLoading) {
       return <LoadingMessage />;
     } else {
@@ -63,6 +68,7 @@ class SearchBar extends Component {
               />
             </Form>
           </div>
+          <UsageInstructions />
         </div>
       );
     }

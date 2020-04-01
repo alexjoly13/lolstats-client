@@ -131,7 +131,7 @@ class SummonerResume extends Component {
             return (
               <div className="game-resume my-4">
                 <div className="container game-card">
-                  <div className="row">
+                  <div className="row justify-content-between">
                     <div className="col-1 game-timing-infos align-self-center">
                       {oneGame.summonerGameDetails.stats.win ? (
                         <div className="result-indicator victory"></div>
@@ -199,7 +199,7 @@ class SummonerResume extends Component {
                         </div>
                       </div>
                     </div>
-                    <div className="player-ingame-stats col-2 align-self-center">
+                    <div className="player-ingame-stats col-1 align-self-center">
                       <div className="container">
                         <div className="row justify-content-center">
                           <p className="mb-1">
@@ -222,6 +222,11 @@ class SummonerResume extends Component {
                             Level {oneGame.summonerGameDetails.stats.champLevel}
                           </p>
                         </div>
+                      </div>
+                    </div>
+                    <div className="col-3 player-items">
+                      <div>
+                        <p>ITEMS</p>
                       </div>
                     </div>
                     <div className="col-5">
