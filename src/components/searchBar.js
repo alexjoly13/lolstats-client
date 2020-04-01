@@ -47,7 +47,7 @@ class SearchBar extends Component {
     } else {
       return (
         <div className="mt-5">
-          <div>
+          <div className="d-flex justify-content-center">
             <Form
               onSubmit={event => this.handleSubmit(event)}
               className="summ-bar"

@@ -75,7 +75,7 @@ class SummonerResume extends Component {
     const player = this.state.summDetails;
     const games = this.state.summMatches[0];
     return (
-      <section>
+      <section className="mb-5">
         <section className="summoner-resume m-5">
           <div className="container">
             {player.map(oneSummoner => {
@@ -201,14 +201,14 @@ class SummonerResume extends Component {
                     </div>
                     <div className="player-ingame-stats col-2 align-self-center">
                       <div className="container">
-                        <div className="row">
+                        <div className="row justify-content-center">
                           <p className="mb-1">
                             {oneGame.summonerGameDetails.stats.kills} /{" "}
                             {oneGame.summonerGameDetails.stats.deaths} /{" "}
                             {oneGame.summonerGameDetails.stats.assists}
                           </p>
                         </div>
-                        <div className="row">
+                        <div className="row justify-content-center">
                           <p className="mb-1">
                             {this.kdaCalculator(
                               oneGame.summonerGameDetails.stats.kills,
@@ -217,7 +217,7 @@ class SummonerResume extends Component {
                             )}
                           </p>
                         </div>
-                        <div className="row">
+                        <div className="row justify-content-center">
                           <p className="mb-1">
                             Level {oneGame.summonerGameDetails.stats.champLevel}
                           </p>
@@ -245,12 +245,14 @@ class SummonerResume extends Component {
                         </div>
                       </div>
                     </div>
-                    <div className="col-1">
-                      <FontAwesomeIcon
-                        icon={faChevronCircleDown}
-                        size="2x"
-                        color="#495057"
-                      />
+                    <div className="col-1 align-self-center">
+                      <div className="d-flex justify-content-center">
+                        <FontAwesomeIcon
+                          icon={faChevronCircleDown}
+                          size="2x"
+                          color="#495057"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
