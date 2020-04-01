@@ -80,13 +80,15 @@ class SummonerResume extends Component {
           <div className="container">
             {player.map(oneSummoner => {
               return (
-                <div className="row">
-                  <div className="col-1">
-                    <img
-                      className="summoner-icon"
-                      src={this.oneImg(oneSummoner.profileIconId)}
-                      alt="summ icon"
-                    />
+                <div className="row justify-content-between">
+                  <div className="col-1 align-self-center">
+                    <div>
+                      <img
+                        className="summoner-icon"
+                        src={this.oneImg(oneSummoner.profileIconId)}
+                        alt="summ icon"
+                      />
+                    </div>
                   </div>
                   <div className="col-6 align-self-center">
                     <h1>{oneSummoner.name}</h1>
@@ -156,24 +158,24 @@ class SummonerResume extends Component {
                         )}
                       </div>
                     </div>
-                    <div className="col-2 player-champion-infos align-self-center">
+                    <div className="col-1 player-champion-infos align-self-center">
                       <div className="container">
                         <div className="row">
-                          <div className="highlight-summoner-champion mb-2">
+                          <div className="highlight-summoner-champion mb-1">
                             <img
                               className="highligh-champ-img"
                               src={this.champImg(
                                 oneGame.summonerGameDetails.championId
                               )}
                             />
-                            <span className="played-champ-name ml-2 font-weight-bold">
-                              {oneGame.summonerGameDetails.championPlayedName}
-                            </span>
                           </div>
                         </div>
-                        <div className="row">
+                        <div className="row justify-content-center">
+                          <span className="played-champ-name mb-1 font-weight-bold">
+                            {oneGame.summonerGameDetails.championPlayedName}
+                          </span>
                           <div>
-                            <div className="d-flex w-50">
+                            <div className="d-flex w-100">
                               <div className="mr-1">
                                 <img
                                   src={this.summonerSpellShower(
@@ -224,7 +226,7 @@ class SummonerResume extends Component {
                     </div>
                     <div className="col-5">
                       <div className="container">
-                        <div className="row">
+                        <div className="row participants-identities">
                           {oneGame.participantIdentities.map((oneId, index) => {
                             return (
                               <div className="player-champion d-flex align-items-center col-6 mb-1">
