@@ -3,6 +3,7 @@ import moment from "moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronCircleDown } from "@fortawesome/free-solid-svg-icons";
 import { rankImgProvider } from "../helpers/summoner-helper";
+import LastGamesStatistics from "./lastGamesStats";
 import summSpells from "../helpers/summoner-spells.json";
 import "./summonerResume.css";
 
@@ -148,6 +149,8 @@ class SummonerResume extends Component {
             })}
           </div>
         </section>
+
+        <LastGamesStatistics gamesInfo={this.state.summMatches} />
 
         <section className="games-list">
           <h4>Last Games</h4>
