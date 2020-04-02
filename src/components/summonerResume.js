@@ -253,9 +253,9 @@ class SummonerResume extends Component {
                       <div className="container h-100">
                         <div className="row h-100 align-content-center">
                           {oneGame.summonerGameDetails.playerItems.map(
-                            oneItem => {
+                            (oneItem, index) => {
                               return (
-                                <div className="col-4 mb-1">
+                                <div className="col-4 mb-1" key={index}>
                                   {this.itemImgGetter(oneItem)}
                                 </div>
                               );
