@@ -59,6 +59,10 @@ div.game-resume > * {
   color: red;
 }
 
+.player-ingame-stats {
+  padding: 0px 10px 10px 0px;
+}
+
 .player-ingame-stats p {
   margin: 0;
   font-size: 12px;

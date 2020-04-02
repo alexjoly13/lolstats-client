@@ -62,7 +62,13 @@ class SummonerResume extends Component {
   typeOfQueue(queueId) {}
 
   kdaCalculator(kills, assists, deaths) {
-    return Math.floor(((kills + assists) / deaths) * 100) / 100 + " :1 KDA";
+    if (kills === 0 && assists === 0 && deaths === 0) {
+      return "0:00 KDA";
+    } else if (kills > 0 && assists > 0 && deaths === 0) {
+      return "Perfect KDA";
+    } else {
+      return Math.floor(((kills + assists) / deaths) * 100) / 100 + " :1 KDA";
+    }
   }
 
   killParticipationCalculator(kills, assists, totalTeamKills) {
