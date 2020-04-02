@@ -9,6 +9,7 @@ class LoadingMessage extends Component {
           <img
             className="loading-picture"
             src="https://media.giphy.com/media/gIHn0t7PNSzF7Xiw2b/giphy.gif"
+            alt="braum-dancing"
           />
         </div>
         <div className="d-flex justify-content-center">

@@ -5,12 +5,17 @@ class UsageInstructions extends Component {
   render() {
     return (
       <div className="container position-relative mt-5">
-        <img className="kayn-logo" src="/images/homepage/kayn.png" />
+        <img
+          className="kayn-logo"
+          src="/images/homepage/kayn.png"
+          alt="kayn-homepage-logo"
+        />
         <div className="row p-5 instructions-bg">
           <div className="col-4">
             <img
               className="search-screenshot"
               src="/images/homepage/summ-search.png"
+              alt="summ-instructions"
             />
             <h4 className="mt-3 text-center">Player Statistics</h4>
             <p className="text-center">
@@ -22,6 +27,7 @@ class UsageInstructions extends Component {
             <img
               className="search-screenshot"
               src="/images/homepage/summ-search.png"
+              alt="champ-instructions"
             />
             <h4 className="mt-3 text-center">Champion Informations</h4>{" "}
           </div>
@@ -29,6 +35,7 @@ class UsageInstructions extends Component {
             <img
               className="search-screenshot"
               src="/images/homepage/summ-search.png"
+              alt="stats-instructions"
             />
             <h4 className="mt-3 text-center">General Statistics</h4>{" "}
           </div>

@@ -106,6 +106,7 @@ class SummonerResume extends Component {
                     <img
                       src={rankImgProvider(oneSummoner.ranks.tier)}
                       className="rank-logo"
+                      alt="rank-icon"
                     />
                   </div>
                   <div className="col-2">
@@ -173,6 +174,7 @@ class SummonerResume extends Component {
                               src={this.champImg(
                                 oneGame.summonerGameDetails.championId
                               )}
+                              alt="played-champ-icon"
                             />
                           </div>
                         </div>
@@ -188,7 +190,7 @@ class SummonerResume extends Component {
                                     oneGame.summonerGameDetails.spell1Id
                                   )}
                                   className="summoner-spell-image"
-                                  alt="someBody"
+                                  alt="summSpell-1"
                                 />
                               </div>
                               <div>
@@ -197,7 +199,7 @@ class SummonerResume extends Component {
                                     oneGame.summonerGameDetails.spell2Id
                                   )}
                                   className="summoner-spell-image"
-                                  alt="someBody"
+                                  alt="summSpell-2"
                                 />
                               </div>
                             </div>
@@ -246,6 +248,7 @@ class SummonerResume extends Component {
                                   src={this.champImg(
                                     oneGame.participants[index].championId
                                   )}
+                                  alt="all-players-champ-icon"
                                 />
                                 <span className="ml-1">
                                   {oneId.player.summonerName}

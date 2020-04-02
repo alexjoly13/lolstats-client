@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { getChampionsList } from "../api";
 import "./champions.css";
 
@@ -18,6 +19,10 @@ class ChampionsList extends Component {
     });
   }
 
+  linkToChampion(championObject) {
+    return `/champions/${championObject.name.toLowerCase()}`;
+  }
+
   oneImg(patch, key) {
     return `https://cdn.communitydragon.org/${patch}/champion/${key}/square`;
   }
@@ -31,16 +36,21 @@ class ChampionsList extends Component {
         <div className="row">
           {values.map((oneChampion, index) => {
             return (
-              <div className="col-2" key={index}>
-                <img
-                  className="champ-icon"
-                  key={oneChampion.title}
-                  src={this.oneImg(oneChampion.version, oneChampion.key)}
-                  alt={oneChampion.title}
-                />
-                <p className="text-align-center" key={oneChampion.key}>
-                  {oneChampion.name}
-                </p>
+              <div>
+                {" "}
+                <Link to={this.linkToChampion(oneChampion)}>
+                  <div className="col-2" key={index}>
+                    <img
+                      className="champ-icon"
+                      key={oneChampion.title}
+                      src={this.oneImg(oneChampion.version, oneChampion.key)}
+                      alt={oneChampion.id}
+                    />
+                    <p className="text-align-center" key={oneChampion.key}>
+                      {oneChampion.name}
+                    </p>
+                  </div>
+                </Link>
               </div>
             );
           })}
