@@ -77,6 +77,20 @@ class SummonerResume extends Component {
     );
   }
 
+  itemImgGetter(itemId) {
+    if (itemId > 0) {
+      return (
+        <img
+          className="item-icon"
+          src={`http://ddragon.leagueoflegends.com/cdn/10.7.1/img/item/${itemId}.png`}
+          alt="item-mini"
+        />
+      );
+    } else {
+      return <div className="empty-item-block"></div>;
+    }
+  }
+
   render() {
     const player = this.state.summDetails;
     const games = this.state.summMatches[0];
@@ -86,7 +100,10 @@ class SummonerResume extends Component {
           <div className="container">
             {player.map(oneSummoner => {
               return (
-                <div className="row justify-content-between">
+                <div
+                  className="row justify-content-between"
+                  key={oneSummoner.puuid}
+                >
                   <div className="col-1 align-self-center">
                     <div>
                       <img
@@ -136,7 +153,7 @@ class SummonerResume extends Component {
           <h4>Last Games</h4>
           {games.map(oneGame => {
             return (
-              <div className="game-resume my-4">
+              <div className="game-resume my-4" key={oneGame.gameId}>
                 <div className="container game-card">
                   <div className="row justify-content-between">
                     <div className="col-1 game-timing-infos align-self-center">
@@ -159,9 +176,9 @@ class SummonerResume extends Component {
                       </div>
                       <div className="row justify-content-center">
                         {oneGame.summonerGameDetails.stats.win ? (
-                          <p className="victory-text">VICTORY</p>
+                          <p className="victory-text m-0">VICTORY</p>
                         ) : (
-                          <p className="defeat-text">DEFEAT</p>
+                          <p className="defeat-text m-0">DEFEAT</p>
                         )}
                       </div>
                     </div>
@@ -233,8 +250,18 @@ class SummonerResume extends Component {
                       </div>
                     </div>
                     <div className="col-3 player-items">
-                      <div>
-                        <p>ITEMS</p>
+                      <div className="container h-100">
+                        <div className="row h-100 align-content-center">
+                          {oneGame.summonerGameDetails.playerItems.map(
+                            oneItem => {
+                              return (
+                                <div className="col-4 mb-1">
+                                  {this.itemImgGetter(oneItem)}
+                                </div>
+                              );
+                            }
+                          )}
+                        </div>
                       </div>
                     </div>
                     <div className="col-5">
@@ -242,7 +269,10 @@ class SummonerResume extends Component {
                         <div className="row participants-identities">
                           {oneGame.participantIdentities.map((oneId, index) => {
                             return (
-                              <div className="player-champion d-flex align-items-center col-6 mb-1">
+                              <div
+                                className="player-champion d-flex align-items-center col-6 mb-1"
+                                key={oneId.player.summonerName}
+                              >
                                 <img
                                   className="inGame-champs-img"
                                   src={this.champImg(

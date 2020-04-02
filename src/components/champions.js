@@ -36,22 +36,22 @@ class ChampionsList extends Component {
         <div className="row">
           {values.map((oneChampion, index) => {
             return (
-              <div>
-                {" "}
-                <Link to={this.linkToChampion(oneChampion)}>
-                  <div className="col-2" key={index}>
-                    <img
-                      className="champ-icon"
-                      key={oneChampion.title}
-                      src={this.oneImg(oneChampion.version, oneChampion.key)}
-                      alt={oneChampion.id}
-                    />
-                    <p className="text-align-center" key={oneChampion.key}>
-                      {oneChampion.name}
-                    </p>
-                  </div>
-                </Link>
-              </div>
+              <Link
+                to={this.linkToChampion(oneChampion)}
+                key={oneChampion.name}
+              >
+                <div className="col-2" key={index}>
+                  <img
+                    className="champ-icon"
+                    key={oneChampion.title}
+                    src={this.oneImg(oneChampion.version, oneChampion.key)}
+                    alt={oneChampion.id}
+                  />
+                  <p className="text-align-center" key={oneChampion.key}>
+                    {oneChampion.name}
+                  </p>
+                </div>
+              </Link>
             );
           })}
         </div>
