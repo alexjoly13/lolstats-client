@@ -7,14 +7,14 @@ class ChampionsList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      championsArray: []
+      championsArray: [],
     };
   }
 
   componentDidMount() {
-    getChampionsList().then(response => {
+    getChampionsList().then((response) => {
       this.setState({
-        championsArray: response.data[0]
+        championsArray: response.data[0],
       });
     });
   }
@@ -36,22 +36,17 @@ class ChampionsList extends Component {
         <div className="row">
           {values.map((oneChampion, index) => {
             return (
-              <Link
-                to={this.linkToChampion(oneChampion)}
-                key={oneChampion.name}
-              >
-                <div className="col-2" key={index}>
-                  <img
-                    className="champ-icon"
-                    key={oneChampion.title}
-                    src={this.oneImg(oneChampion.version, oneChampion.key)}
-                    alt={oneChampion.id}
-                  />
-                  <p className="text-align-center" key={oneChampion.key}>
-                    {oneChampion.name}
-                  </p>
-                </div>
-              </Link>
+              <div className="col-2" key={index}>
+                <img
+                  className="champ-icon"
+                  key={oneChampion.title}
+                  src={this.oneImg(oneChampion.version, oneChampion.key)}
+                  alt={oneChampion.id}
+                />
+                <p className="text-align-center" key={oneChampion.key}>
+                  {oneChampion.name}
+                </p>
+              </div>
             );
           })}
         </div>

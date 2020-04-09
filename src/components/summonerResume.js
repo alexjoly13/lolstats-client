@@ -14,7 +14,7 @@ class SummonerResume extends Component {
       summonerName: this.props.summsInfo.summoner.name,
       summDetails: [this.props.summsInfo.summoner],
       summMatches: [this.props.summsInfo.lastGames],
-      summStats: this.props.summsInfo.lastGamesStats
+      summStats: this.props.summsInfo.lastGamesStats,
     };
   }
 
@@ -51,7 +51,7 @@ class SummonerResume extends Component {
   summonerSpellShower(pickedSpell) {
     const spells = Object.values(summSpells[0].data);
     let address;
-    spells.map(oneSpell => {
+    spells.map((oneSpell) => {
       if (parseInt(oneSpell.key) === pickedSpell) {
         address =
           "http://ddragon.leagueoflegends.com/cdn/10.6.1/img/spell/" +
@@ -100,7 +100,7 @@ class SummonerResume extends Component {
       <section className="mb-5">
         <section className="summoner-resume m-5">
           <div className="container">
-            {player.map(oneSummoner => {
+            {player.map((oneSummoner) => {
               return (
                 <div
                   className="row justify-content-between"
@@ -121,29 +121,40 @@ class SummonerResume extends Component {
                       Level {oneSummoner.summonerLevel}
                     </span>
                   </div>
-                  <div className="col-2 align-self-center">
-                    <img
-                      src={rankImgProvider(oneSummoner.ranks.tier)}
-                      className="rank-logo"
-                      alt="rank-icon"
-                    />
-                  </div>
-                  <div className="col-2">
-                    <p>
-                      {oneSummoner.ranks.tier} {oneSummoner.ranks.rank}
-                    </p>
-                    <p>{oneSummoner.ranks.leaguePoints} LP</p>
-                    <p>
-                      {oneSummoner.ranks.wins} Wins / {oneSummoner.ranks.losses}{" "}
-                      Losses
-                    </p>
-                    <p>
-                      {this.winrateCalculator(
-                        oneSummoner.ranks.wins,
-                        oneSummoner.ranks.losses
-                      )}{" "}
-                      Winrate
-                    </p>
+                  <div className="col-4 align-self-center">
+                    {oneSummoner.summonerLevel >= 30 ? (
+                      <div className="row">
+                        <div className="col-6 align-self-center">
+                          <img
+                            src={rankImgProvider(oneSummoner.ranks.tier)}
+                            className="rank-logo"
+                            alt="rank-icon"
+                          />
+                        </div>
+
+                        <div className="col-6">
+                          <p>
+                            {oneSummoner.ranks.tier} {oneSummoner.ranks.rank}
+                          </p>
+                          <p>{oneSummoner.ranks.leaguePoints} LP</p>
+                          <p>
+                            {oneSummoner.ranks.wins} Wins /{" "}
+                            {oneSummoner.ranks.losses} Losses
+                          </p>
+                          <p>
+                            {this.winrateCalculator(
+                              oneSummoner.ranks.wins,
+                              oneSummoner.ranks.losses
+                            )}{" "}
+                            Winrate
+                          </p>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="d-flex justify-content-center">
+                        <span>Unranked</span>
+                      </div>
+                    )}
                   </div>
                 </div>
               );
@@ -155,7 +166,7 @@ class SummonerResume extends Component {
 
         <section className="games-list">
           <h4>Last Games</h4>
-          {games.map(oneGame => {
+          {games.map((oneGame) => {
             return (
               <div className="game-resume my-4" key={oneGame.gameId}>
                 <div className="container game-card">
