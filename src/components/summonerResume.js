@@ -13,7 +13,8 @@ class SummonerResume extends Component {
     this.state = {
       summonerName: this.props.summsInfo.summoner.name,
       summDetails: [this.props.summsInfo.summoner],
-      summMatches: [this.props.summsInfo.lastGames]
+      summMatches: [this.props.summsInfo.lastGames],
+      summStats: this.props.summsInfo.lastGamesStats
     };
   }
 
@@ -150,7 +151,7 @@ class SummonerResume extends Component {
           </div>
         </section>
 
-        <LastGamesStatistics gamesInfo={this.state.summMatches} />
+        <LastGamesStatistics gamesInfo={this.state.summStats} />
 
         <section className="games-list">
           <h4>Last Games</h4>

@@ -13,7 +13,7 @@ class SearchBar extends Component {
       summonerName: "",
       summonerInfos: {},
       isLoading: false,
-      isSubmitSuccessful: false
+      isSubmitSuccessful: false,
     };
   }
 
@@ -28,14 +28,14 @@ class SearchBar extends Component {
     let objectReturned = this.state.summonerInfos;
     this.setState({ isLoading: true });
 
-    postSummonerName(summSearch).then(response => {
+    postSummonerName(summSearch).then((response) => {
       console.log("Summoner name search : ", response.data);
       objectReturned = Object.assign(response.data);
       this.setState({
         summonerName: "",
         isSubmitSuccessful: true,
         isLoading: false,
-        summonerInfos: objectReturned
+        summonerInfos: objectReturned,
       });
     });
   }
@@ -54,7 +54,7 @@ class SearchBar extends Component {
         <div className="homepage-container">
           <div className="d-flex justify-content-center">
             <Form
-              onSubmit={event => this.handleSubmit(event)}
+              onSubmit={(event) => this.handleSubmit(event)}
               className="summ-bar"
             >
               <Form.Control
@@ -64,7 +64,7 @@ class SearchBar extends Component {
                 id="Searchbar"
                 name="summonerName"
                 value={this.state.summonerName}
-                onChange={event => this.genericOnChange(event)}
+                onChange={(event) => this.genericOnChange(event)}
               />
             </Form>
           </div>
