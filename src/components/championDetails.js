@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { getChampionDetails } from "../api";
+import { champIconProvider } from "../helpers/summoner-helper";
 
 let frameStyle;
 
@@ -15,7 +16,7 @@ class ChampionDetails extends Component {
 
   frame(patch, key) {
     return (frameStyle = {
-      width: "80%",
+      width: "75%",
       height: "300px",
       color: "white",
       backgroundImage: `url(https://cdn.communitydragon.org/${patch}/champion/${key}/splash-art/centered)`,
@@ -33,32 +34,37 @@ class ChampionDetails extends Component {
     });
   }
 
-  oneImg(patch, key) {
-    return `https://cdn.communitydragon.org/${patch}/champion/${key}/square`;
-  }
-
   render() {
     const champInfos = Object.values(this.state.championInfos);
     const version = this.state.patch;
     console.log(champInfos);
     return (
-      <section className="champion-detailed-infos d-flex justify-content-center">
+      <section className="champion-detailed-infos d-flex justify-content-center mt-4">
         {champInfos.map((oneInfo) => {
           return (
             <div style={this.frame(version, oneInfo.key)}>
-              <div>
-                <img src={this.oneImg(version, oneInfo.key)} />
-                <h1>{oneInfo.name}</h1>
-                <h5>{oneInfo.title}</h5>
-              </div>
-              <div>
-                {oneInfo.tags.map((oneTag) => {
-                  return (
-                    <div>
-                      <span>{oneTag}</span>
+              <div className="h-100 d-flex align-items-center">
+                <div className="container">
+                  <div className="row">
+                    <div className="col-2">
+                      <img src={champIconProvider(oneInfo.image.full)} />
                     </div>
-                  );
-                })}
+                    <div className="col-3 align-self-center">
+                      <div>
+                        <h3>{oneInfo.name}</h3>
+                      </div>
+                      <div>
+                        {oneInfo.tags.map((oneTag) => {
+                          return (
+                            <div>
+                              <span>{oneTag}</span>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           );

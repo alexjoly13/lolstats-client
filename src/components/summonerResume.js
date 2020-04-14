@@ -3,6 +3,7 @@ import moment from "moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronCircleDown } from "@fortawesome/free-solid-svg-icons";
 import { rankImgProvider } from "../helpers/summoner-helper";
+import { profileIconProvider } from "../helpers/summoner-helper";
 import LastGamesStatistics from "./lastGamesStats";
 import summSpells from "../helpers/summoner-spells.json";
 import "./summonerResume.css";
@@ -16,10 +17,6 @@ class SummonerResume extends Component {
       summMatches: [this.props.summsInfo.lastGames],
       summStats: this.props.summsInfo.lastGamesStats,
     };
-  }
-
-  oneImg(key) {
-    return `https://cdn.communitydragon.org/10.2.1/profile-icon/${key}`;
   }
 
   champImg(key) {
@@ -110,7 +107,7 @@ class SummonerResume extends Component {
                     <div>
                       <img
                         className="summoner-icon"
-                        src={this.oneImg(oneSummoner.profileIconId)}
+                        src={profileIconProvider(oneSummoner.profileIconId)}
                         alt="summ icon"
                       />
                     </div>

@@ -22,3 +22,11 @@ export function rankImgProvider(rankedTier) {
       console.log("Sorry something went wrong");
   }
 }
+
+export function champIconProvider(championName) {
+  return `/images/champion-icons/${championName}`;
+}
+
+export function profileIconProvider(iconId) {
+  return `/images/profile-icons/${iconId}.png`;
+}

@@ -26,7 +26,7 @@ class UsageInstructions extends Component {
           <div className="col-4">
             <img
               className="search-screenshot"
-              src="/images/homepage/summ-search.png"
+              src="/images/homepage/champion-details.png"
               alt="champ-instructions"
             />
             <h4 className="mt-3 text-center">Champion Informations</h4>{" "}

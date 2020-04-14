@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { champIconProvider } from "../helpers/summoner-helper";
 import "./champions.css";
 
 class ChampionsList extends Component {
@@ -10,10 +11,6 @@ class ChampionsList extends Component {
     };
   }
 
-  oneImg(patch, key) {
-    return `https://cdn.communitydragon.org/${patch}/champion/${key}/square`;
-  }
-
   render() {
     const champions = this.state.championsArray;
     return (
@@ -21,12 +18,12 @@ class ChampionsList extends Component {
         <div className="row">
           {champions.map((oneChampion, index) => {
             return (
-              <Link to={`/champions/${oneChampion.name}`}>
-                <div className="col-2" key={index}>
+              <Link to={`/champions/${oneChampion.name}`} className="col">
+                <div className="" key={index}>
                   <img
                     className="champ-icon"
                     key={oneChampion.title}
-                    src={this.oneImg(oneChampion.version, oneChampion.key)}
+                    src={champIconProvider(oneChampion.image.full)}
                     alt={oneChampion.id}
                   />
                   <p className="text-align-center" key={oneChampion.key}>
