@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { getChampionDetails } from "../api";
 
+let frameStyle;
+
 class ChampionDetails extends Component {
   constructor(props) {
     super(props);
@@ -9,6 +11,16 @@ class ChampionDetails extends Component {
       championInfos: [],
       patch: {},
     };
+  }
+
+  frame(patch, key) {
+    return (frameStyle = {
+      width: "80%",
+      height: "300px",
+      color: "white",
+      backgroundImage: `url(https://cdn.communitydragon.org/${patch}/champion/${key}/splash-art/centered)`,
+      backgroundPositionY: "-100px",
+    });
   }
 
   componentDidMount() {
@@ -30,13 +42,24 @@ class ChampionDetails extends Component {
     const version = this.state.patch;
     console.log(champInfos);
     return (
-      <section className="champion-detailed-infos">
+      <section className="champion-detailed-infos d-flex justify-content-center">
         {champInfos.map((oneInfo) => {
           return (
-            <div>
-              <img src={this.oneImg(version, oneInfo.key)} />
-              <h1>{oneInfo.name}</h1>
-              <h5>{oneInfo.title}</h5>
+            <div style={this.frame(version, oneInfo.key)}>
+              <div>
+                <img src={this.oneImg(version, oneInfo.key)} />
+                <h1>{oneInfo.name}</h1>
+                <h5>{oneInfo.title}</h5>
+              </div>
+              <div>
+                {oneInfo.tags.map((oneTag) => {
+                  return (
+                    <div>
+                      <span>{oneTag}</span>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           );
         })}
