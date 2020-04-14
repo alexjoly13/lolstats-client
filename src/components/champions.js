@@ -1,26 +1,13 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { getChampionsList } from "../api";
 import "./champions.css";
 
 class ChampionsList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      championsArray: [],
+      championsArray: this.props.allChampions,
     };
-  }
-
-  componentDidMount() {
-    getChampionsList().then((response) => {
-      this.setState({
-        championsArray: response.data[0],
-      });
-    });
-  }
-
-  linkToChampion(championObject) {
-    return `/champions/${championObject.name.toLowerCase()}`;
   }
 
   oneImg(patch, key) {
@@ -28,25 +15,25 @@ class ChampionsList extends Component {
   }
 
   render() {
-    const { championsArray } = this.state;
-    const values = Object.values(championsArray);
-    console.log(values);
+    const champions = this.state.championsArray;
     return (
       <div className="container my-5">
         <div className="row">
-          {values.map((oneChampion, index) => {
+          {champions.map((oneChampion, index) => {
             return (
-              <div className="col-2" key={index}>
-                <img
-                  className="champ-icon"
-                  key={oneChampion.title}
-                  src={this.oneImg(oneChampion.version, oneChampion.key)}
-                  alt={oneChampion.id}
-                />
-                <p className="text-align-center" key={oneChampion.key}>
-                  {oneChampion.name}
-                </p>
-              </div>
+              <Link to={`/champions/${oneChampion.name}`}>
+                <div className="col-2" key={index}>
+                  <img
+                    className="champ-icon"
+                    key={oneChampion.title}
+                    src={this.oneImg(oneChampion.version, oneChampion.key)}
+                    alt={oneChampion.id}
+                  />
+                  <p className="text-align-center" key={oneChampion.key}>
+                    {oneChampion.name}
+                  </p>
+                </div>
+              </Link>
             );
           })}
         </div>

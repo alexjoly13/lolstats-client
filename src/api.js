@@ -2,7 +2,7 @@ import axios from "axios";
 
 const backendApi = axios.create({
   baseURL: process.env.REACT_APP_BACKEND_URL,
-  withCredentials: true
+  withCredentials: true,
 });
 
 function errorHandler(err) {
@@ -23,4 +23,8 @@ export function postSummonerName(SummonerName) {
 
 export function getChampionsList(championList) {
   return backendApi.get("/champions", championList).catch(errorHandler);
+}
+
+export function getChampionDetails(championName) {
+  return backendApi.get(`/champions/${championName}`).catch(errorHandler);
 }
