@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { getGameDuration } from "../helpers/game-infos-helper";
+import { getTeamStats } from "../helpers/stats-helper";
 import "./championDetails.css";
 
 class GameDetails extends Component {
@@ -9,9 +11,22 @@ class GameDetails extends Component {
     };
   }
   render() {
-    const info = this.state.gameResultInfos;
-    console.log(info);
-    return <p>Hello Friend</p>;
+    const match = this.state.gameResultInfos;
+    console.log(match);
+    return (
+      <section className="match-details">
+        <div className="container">
+          <div className="row">
+            <div>
+              <p>
+                <strong>Match</strong> ({getGameDuration(match.gameDuration)})
+              </p>
+              <p>{getTeamStats(match.participants)}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
   }
 }
 

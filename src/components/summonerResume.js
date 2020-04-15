@@ -1,19 +1,22 @@
 import React, { Component } from "react";
-import moment from "moment";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronCircleRight } from "@fortawesome/free-solid-svg-icons";
-import { rankImgProvider } from "../helpers/summoner-helper";
-import { profileIconProvider } from "../helpers/summoner-helper";
+import { rankImgProvider } from "../helpers/images-helper";
+import { profileIconProvider } from "../helpers/images-helper";
+import { gameCreatedAt } from "../helpers/game-infos-helper";
+import { getGameDuration } from "../helpers/game-infos-helper";
+import { winrateCalculator } from "../helpers/stats-helper";
+import { kdaCalculator } from "../helpers/stats-helper";
 import LastGamesStatistics from "./lastGamesStats";
 import summSpells from "../helpers/summoner-spells.json";
 import "./summonerResume.css";
-import GameDetails from "./gameDetails";
 
 class SummonerResume extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      patchVersion: this.props.location.state.summsInfo.version,
       summonerName: this.props.location.state.summsInfo.summoner.name,
       summDetails: [this.props.location.state.summsInfo.summoner],
       summMatches: [this.props.location.state.summsInfo.lastGames],
@@ -23,28 +26,6 @@ class SummonerResume extends Component {
 
   champImg(key) {
     return `https://cdn.communitydragon.org/10.2.1/champion/${key}/square`;
-  }
-
-  winrateCalculator(wins, loss) {
-    return Math.floor((wins / (wins + loss)) * 100) + "%";
-  }
-
-  gameDuration(time) {
-    let minutes = Math.floor(time / 60);
-    let seconds = time - minutes * 60;
-
-    if (time < 241) {
-      return minutes + ":" + seconds + " Remake";
-    } else {
-      return minutes + ":" + seconds;
-    }
-  }
-
-  gameCreatedAt(date) {
-    let x = date.toString().slice(0, -3);
-    let y = parseInt(x);
-    let z = moment.unix(y).format("YYYYMMDD HH:mm:ss");
-    return moment(z, "YYYYMMDD HH:mm:ss").fromNow();
   }
 
   summonerSpellShower(pickedSpell) {
@@ -61,16 +42,6 @@ class SummonerResume extends Component {
   }
 
   typeOfQueue(queueId) {}
-
-  kdaCalculator(kills, assists, deaths) {
-    if (kills === 0 && assists === 0 && deaths === 0) {
-      return "0:00 KDA";
-    } else if (kills > 0 && assists > 0 && deaths === 0) {
-      return "Perfect KDA";
-    } else {
-      return Math.floor(((kills + assists) / deaths) * 100) / 100 + " :1 KDA";
-    }
-  }
 
   killParticipationCalculator(kills, assists, totalTeamKills) {
     return (
@@ -141,7 +112,7 @@ class SummonerResume extends Component {
                             {oneSummoner.ranks.losses} Losses
                           </p>
                           <p>
-                            {this.winrateCalculator(
+                            {winrateCalculator(
                               oneSummoner.ranks.wins,
                               oneSummoner.ranks.losses
                             )}{" "}
@@ -179,13 +150,13 @@ class SummonerResume extends Component {
                       <div className="result-indicator"></div>
                       <div className="row justify-content-center">
                         <p className="">
-                          {this.gameDuration(oneGame.gameDuration)}
+                          {getGameDuration(oneGame.gameDuration)}
                         </p>
                       </div>
 
                       <div className="row justify-content-center">
                         <p className="">
-                          {this.gameCreatedAt(oneGame.gameCreation)}
+                          {gameCreatedAt(oneGame.gameCreation)}
                         </p>
                       </div>
                       <div className="row justify-content-center">
@@ -249,7 +220,7 @@ class SummonerResume extends Component {
                         </div>
                         <div className="row justify-content-center">
                           <p className="mb-1">
-                            {this.kdaCalculator(
+                            {kdaCalculator(
                               oneGame.summonerGameDetails.stats.kills,
                               oneGame.summonerGameDetails.stats.assists,
                               oneGame.summonerGameDetails.stats.deaths

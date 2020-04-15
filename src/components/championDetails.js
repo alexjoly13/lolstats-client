@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { getChampionDetails } from "../api";
-import { champIconProvider } from "../helpers/summoner-helper";
+import { champIconProvider } from "../helpers/images-helper";
 
 let frameStyle;
 

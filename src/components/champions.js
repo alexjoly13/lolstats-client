@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { champIconProvider } from "../helpers/summoner-helper";
+import { champIconProvider } from "../helpers/images-helper";
 import "./champions.css";
 
 class ChampionsList extends Component {
