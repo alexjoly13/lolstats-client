@@ -18,7 +18,7 @@ class ChampionsList extends Component {
         <div className="row">
           {champions.map((oneChampion, index) => {
             return (
-              <Link to={`/champions/${oneChampion.name}`} className="col">
+              <Link to={`/champions/${oneChampion.id}`} className="col">
                 <div className="" key={index}>
                   <img
                     className="champ-icon"

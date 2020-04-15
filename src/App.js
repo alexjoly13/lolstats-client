@@ -48,12 +48,7 @@ class App extends Component {
 
             <Route
               path="/champions/:championName"
-              render={(props) => (
-                <ChampionDetails
-                  allChampions={champsList}
-                  match={props.match}
-                />
-              )}
+              render={(props) => <ChampionDetails match={props.match} />}
             />
             <Route exact path="/:summonerName" component={SummonerResume} />
             <Route path="/:summonerName/:gameId" component={GameDetails} />
