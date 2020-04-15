@@ -19,7 +19,7 @@ class ChampionDetails extends Component {
       width: "75%",
       height: "300px",
       color: "white",
-      backgroundImage: `url(https://cdn.communitydragon.org/${patch}/champion/${key}/splash-art/centered)`,
+      backgroundImage: `url(https://cdn.communitydragon.org/10.7.1/champion/${key}/splash-art/centered)`,
       backgroundPositionY: "-100px",
     });
   }

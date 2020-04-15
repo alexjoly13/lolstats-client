@@ -5,6 +5,7 @@ import UsageInstructions from "./homepageInstructions";
 import SummonerResume from "./summonerResume";
 import LoadingMessage from "./loadingMessage";
 import "./searchBar.css";
+import { Redirect } from "react-router-dom";
 
 class SearchBar extends Component {
   constructor(props) {
@@ -44,7 +45,14 @@ class SearchBar extends Component {
     if (this.state.isSubmitSuccessful) {
       return (
         <div>
-          <SummonerResume summsInfo={this.state.summonerInfos} />
+          <Redirect
+            to={{
+              pathname: `/${this.state.summonerInfos.summoner.name}`,
+              state: {
+                summsInfo: this.state.summonerInfos,
+              },
+            }}
+          />
         </div>
       );
     } else if (this.state.isLoading) {

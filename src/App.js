@@ -5,6 +5,8 @@ import NavigationBar from "./components/navigationBar";
 import SearchContainer from "./components/searchContainer";
 import ChampionsList from "./components/champions";
 import ChampionDetails from "./components/championDetails";
+import SummonerResume from "./components/summonerResume";
+import GameDetails from "./components/gameDetails";
 import Footer from "./components/footer";
 import { getChampionsList } from "./api";
 
@@ -53,6 +55,8 @@ class App extends Component {
                 />
               )}
             />
+            <Route exact path="/:summonerName" component={SummonerResume} />
+            <Route path="/:summonerName/:gameId" component={GameDetails} />
           </Switch>
         </div>
         <Footer />

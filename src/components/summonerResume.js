@@ -1,21 +1,23 @@
 import React, { Component } from "react";
 import moment from "moment";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronCircleDown } from "@fortawesome/free-solid-svg-icons";
+import { faChevronCircleRight } from "@fortawesome/free-solid-svg-icons";
 import { rankImgProvider } from "../helpers/summoner-helper";
 import { profileIconProvider } from "../helpers/summoner-helper";
 import LastGamesStatistics from "./lastGamesStats";
 import summSpells from "../helpers/summoner-spells.json";
 import "./summonerResume.css";
+import GameDetails from "./gameDetails";
 
 class SummonerResume extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      summonerName: this.props.summsInfo.summoner.name,
-      summDetails: [this.props.summsInfo.summoner],
-      summMatches: [this.props.summsInfo.lastGames],
-      summStats: this.props.summsInfo.lastGamesStats,
+      summonerName: this.props.location.state.summsInfo.summoner.name,
+      summDetails: [this.props.location.state.summsInfo.summoner],
+      summMatches: [this.props.location.state.summsInfo.lastGames],
+      summStats: this.props.location.state.summsInfo.lastGamesStats,
     };
   }
 
@@ -303,11 +305,20 @@ class SummonerResume extends Component {
                     </div>
                     <div className="col-1 align-self-center">
                       <div className="d-flex justify-content-center">
-                        <FontAwesomeIcon
-                          icon={faChevronCircleDown}
-                          size="2x"
-                          color="#495057"
-                        />
+                        <Link
+                          to={{
+                            pathname: `/${this.state.summonerName}/${oneGame.gameId}`,
+                            state: {
+                              specificGameDetails: oneGame,
+                            },
+                          }}
+                        >
+                          <FontAwesomeIcon
+                            icon={faChevronCircleRight}
+                            size="2x"
+                            color="#495057"
+                          />
+                        </Link>
                       </div>
                     </div>
                   </div>
