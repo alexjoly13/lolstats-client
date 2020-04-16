@@ -16,12 +16,12 @@ export function getTeamStats(participantsArray) {
   let blueTeamKills = 0;
   let blueTeamDeaths = 0;
   let blueTeamAssists = 0;
-  let redTeamKills = 0;
-  let redTeamDeaths = 0;
-  let redTeamAssists = 0;
+  // let redTeamKills = 0;
+  // let redTeamDeaths = 0;
+  // let redTeamAssists = 0;
 
   participantsArray.forEach((oneParticipant) => {
-    if (oneParticipant.teamId == 100) {
+    if (oneParticipant.teamId === 100) {
       blueTeamKills += oneParticipant.stats.kills;
       blueTeamDeaths += oneParticipant.stats.deaths;
       blueTeamAssists += oneParticipant.stats.assists;

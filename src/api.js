@@ -17,6 +17,10 @@ function errorHandler(err) {
   throw err;
 }
 
+export function checkLastVersion(versionToTest) {
+  return backendApi.get("/version", versionToTest).catch(errorHandler);
+}
+
 export function postSummonerName(SummonerName) {
   return backendApi.post("/summoner", SummonerName).catch(errorHandler);
 }
