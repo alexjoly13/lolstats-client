@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./ESportHomePage.css";
 import { getLeaguesList } from "../api";
+import { getLeagueLocation } from "../helpers/esport-helper";
 
 class EsportHomepage extends Component {
   constructor(props) {
@@ -32,7 +33,8 @@ class EsportHomepage extends Component {
                 <div className="col-3">
                   <img className="league-logo" src={oneLeague.image_url}></img>
                   <p>
-                    <strong>{oneLeague.name}</strong>
+                    <strong>{oneLeague.name}</strong>{" "}
+                    {getLeagueLocation(oneLeague.id)}
                   </p>
                 </div>
               );
