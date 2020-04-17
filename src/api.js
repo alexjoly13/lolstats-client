@@ -32,3 +32,7 @@ export function getChampionsList(championList) {
 export function getChampionDetails(championName) {
   return backendApi.get(`/champions/${championName}`).catch(errorHandler);
 }
+
+export function getLeaguesList(leagues) {
+  return backendApi.get("/esport", leagues).catch(errorHandler);
+}

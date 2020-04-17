@@ -47,7 +47,7 @@ class SearchBar extends Component {
         <div>
           <Redirect
             to={{
-              pathname: `/${this.state.summonerInfos.summoner.name}`,
+              pathname: `/summoner/${this.state.summonerInfos.summoner.name}`,
               state: {
                 summsInfo: this.state.summonerInfos,
               },

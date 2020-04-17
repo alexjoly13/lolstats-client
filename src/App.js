@@ -10,6 +10,7 @@ import SummonerResume from "./components/summonerResume";
 import GameDetails from "./components/gameDetails";
 import Footer from "./components/footer";
 import { checkLastVersion } from "./api";
+import EsportHomepage from "./components/ESportHomePage";
 
 let versionCookie = Cookies.get("version");
 
@@ -42,8 +43,16 @@ class App extends Component {
               path="/champions/:championName"
               render={(props) => <ChampionDetails match={props.match} />}
             />
-            <Route exact path="/:summonerName" component={SummonerResume} />
-            <Route path="/:summonerName/:gameId" component={GameDetails} />
+            <Route
+              exact
+              path="/summoner/:summonerName"
+              component={SummonerResume}
+            />
+            <Route
+              path="/summoner/:summonerName/:gameId"
+              component={GameDetails}
+            />
+            <Route exact path="/esport" component={EsportHomepage} />
           </Switch>
         </div>
         <Footer />

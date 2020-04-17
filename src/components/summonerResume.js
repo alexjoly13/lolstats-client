@@ -249,7 +249,7 @@ class SummonerResume extends Component {
                       <div className="d-flex justify-content-center">
                         <Link
                           to={{
-                            pathname: `/${this.state.summonerName}/${oneGame.gameId}`,
+                            pathname: `/summoner/${this.state.summonerName}/${oneGame.gameId}`,
                             state: {
                               specificGameDetails: oneGame,
                             },
