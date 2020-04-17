@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { getChampionDetails } from "../api";
 import { champIconProvider } from "../helpers/images-helper";
+import { getFrameStyle } from "../helpers/images-helper";
 
 let frameStyle;
 
@@ -14,15 +15,15 @@ class ChampionDetails extends Component {
     };
   }
 
-  frame(patch, key) {
-    return (frameStyle = {
-      width: "75%",
-      height: "300px",
-      color: "white",
-      backgroundImage: `url(https://cdn.communitydragon.org/10.7.1/champion/${key}/splash-art/centered)`,
-      backgroundPositionY: "-100px",
-    });
-  }
+  // frame(patch, key) {
+  //   return (frameStyle = {
+  //     width: "75%",
+  //     height: "300px",
+  //     color: "white",
+  //     backgroundImage: `url(https://cdn.communitydragon.org/10.7.1/champion/${key}/splash-art/centered)`,
+  //     backgroundPositionY: "-100px",
+  //   });
+  // }
 
   componentDidMount() {
     const champName = this.state.championName;
@@ -42,7 +43,7 @@ class ChampionDetails extends Component {
       <section className="champion-detailed-infos d-flex justify-content-center mt-4">
         {champInfos.map((oneInfo) => {
           return (
-            <div style={this.frame(version, oneInfo.key)}>
+            <div style={getFrameStyle(oneInfo.id)}>
               <div className="h-100 d-flex align-items-center">
                 <div className="container">
                   <div className="row">

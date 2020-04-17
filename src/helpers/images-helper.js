@@ -1,3 +1,9 @@
+import React from "react";
+import Cookies from "js-cookie";
+import summSpells from "../helpers/summoner-spells.json";
+
+const version = Cookies.get("version");
+
 export function rankImgProvider(rankedTier) {
   switch (rankedTier) {
     case "IRON":
@@ -23,10 +29,54 @@ export function rankImgProvider(rankedTier) {
   }
 }
 
+export function champImg(key) {
+  return `https://cdn.communitydragon.org/${version}/champion/${key}/square`;
+}
+
 export function champIconProvider(championName) {
-  return `/images/champion-icons/${championName}`;
+  return `http://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${championName}`;
 }
 
 export function profileIconProvider(iconId) {
   return `/images/profile-icons/${iconId}.png`;
+}
+
+export function summonerSpellShower(pickedSpell) {
+  const spells = Object.values(summSpells[0].data);
+  let address;
+  spells.map((oneSpell) => {
+    if (parseInt(oneSpell.key) === pickedSpell) {
+      address =
+        `http://ddragon.leagueoflegends.com/cdn/${version}/img/spell/` +
+        oneSpell.image.full;
+    }
+  });
+  return address;
+}
+
+export function itemImgGetter(itemId) {
+  if (itemId > 0) {
+    return (
+      <img
+        className="item-icon"
+        src={`http://ddragon.leagueoflegends.com/cdn/${version}/img/item/${itemId}.png`}
+        alt="item-mini"
+      />
+    );
+  } else {
+    return <div className="empty-item-block"></div>;
+  }
+}
+
+// CHAMPION DETAILS
+
+export function getFrameStyle(key) {
+  let frameStyle;
+  return (frameStyle = {
+    width: "75%",
+    height: "300px",
+    color: "white",
+    backgroundImage: `url(https://cdn.communitydragon.org/${version}/champion/${key}/splash-art/centered)`,
+    backgroundPositionY: "-100px",
+  });
 }

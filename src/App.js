@@ -4,13 +4,12 @@ import Cookies from "js-cookie";
 import "./App.css";
 import NavigationBar from "./components/navigationBar";
 import SearchContainer from "./components/searchContainer";
-import ChampionsList from "./components/champions";
+import ChampionsList from "./components/championsList";
 import ChampionDetails from "./components/championDetails";
 import SummonerResume from "./components/summonerResume";
 import GameDetails from "./components/gameDetails";
 import Footer from "./components/footer";
 import { checkLastVersion } from "./api";
-import { getChampionsList } from "./api";
 
 let versionCookie = Cookies.get("version");
 
@@ -19,7 +18,6 @@ class App extends Component {
     super(props);
     this.state = {
       championsArray: [],
-      isSubmitSuccessful: false,
     };
   }
 
@@ -29,32 +27,16 @@ class App extends Component {
         Cookies.set("version", response.data, { expires: 1 });
       });
     }
-
-    getChampionsList().then((response) => {
-      this.setState({
-        championsArray: Object.values(response.data[0]),
-        isSubmitSuccessful: true,
-      });
-    });
   }
 
   render() {
-    const champsList = this.state.championsArray;
     return (
       <section id="App">
         <div className="content">
           <NavigationBar />
           <Switch>
             <Route exact path="/" component={SearchContainer} />
-            {this.state.isSubmitSuccessful ? (
-              <Route
-                exact
-                path="/champions"
-                render={() => <ChampionsList allChampions={champsList} />}
-              />
-            ) : (
-              <div></div>
-            )}
+            <Route exact path="/champions" render={() => <ChampionsList />} />
 
             <Route
               path="/champions/:championName"

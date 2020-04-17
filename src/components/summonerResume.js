@@ -4,12 +4,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronCircleRight } from "@fortawesome/free-solid-svg-icons";
 import { rankImgProvider } from "../helpers/images-helper";
 import { profileIconProvider } from "../helpers/images-helper";
+import { champImg } from "../helpers/images-helper";
+import { summonerSpellShower } from "../helpers/images-helper";
+import { itemImgGetter } from "../helpers/images-helper";
 import { gameCreatedAt } from "../helpers/game-infos-helper";
 import { getGameDuration } from "../helpers/game-infos-helper";
 import { winrateCalculator } from "../helpers/stats-helper";
 import { kdaCalculator } from "../helpers/stats-helper";
 import LastGamesStatistics from "./lastGamesStats";
-import summSpells from "../helpers/summoner-spells.json";
 import "./summonerResume.css";
 
 class SummonerResume extends Component {
@@ -24,44 +26,13 @@ class SummonerResume extends Component {
     };
   }
 
-  champImg(key) {
-    return `https://cdn.communitydragon.org/10.2.1/champion/${key}/square`;
-  }
+  // typeOfQueue(queueId) {}
 
-  summonerSpellShower(pickedSpell) {
-    const spells = Object.values(summSpells[0].data);
-    let address;
-    spells.map((oneSpell) => {
-      if (parseInt(oneSpell.key) === pickedSpell) {
-        address =
-          "http://ddragon.leagueoflegends.com/cdn/10.6.1/img/spell/" +
-          oneSpell.image.full;
-      }
-    });
-    return address;
-  }
-
-  typeOfQueue(queueId) {}
-
-  killParticipationCalculator(kills, assists, totalTeamKills) {
-    return (
-      Math.floor((kills + assists) / totalTeamKills) + "% Kill Participation"
-    );
-  }
-
-  itemImgGetter(itemId) {
-    if (itemId > 0) {
-      return (
-        <img
-          className="item-icon"
-          src={`http://ddragon.leagueoflegends.com/cdn/10.7.1/img/item/${itemId}.png`}
-          alt="item-mini"
-        />
-      );
-    } else {
-      return <div className="empty-item-block"></div>;
-    }
-  }
+  // killParticipationCalculator(kills, assists, totalTeamKills) {
+  //   return (
+  //     Math.floor((kills + assists) / totalTeamKills) + "% Kill Participation"
+  //   );
+  // }
 
   render() {
     const player = this.state.summDetails;
@@ -173,7 +144,7 @@ class SummonerResume extends Component {
                           <div className="highlight-summoner-champion mb-1">
                             <img
                               className="highligh-champ-img"
-                              src={this.champImg(
+                              src={champImg(
                                 oneGame.summonerGameDetails.championId
                               )}
                               alt="played-champ-icon"
@@ -188,7 +159,7 @@ class SummonerResume extends Component {
                             <div className="d-flex w-100">
                               <div className="mr-1">
                                 <img
-                                  src={this.summonerSpellShower(
+                                  src={summonerSpellShower(
                                     oneGame.summonerGameDetails.spell1Id
                                   )}
                                   className="summoner-spell-image"
@@ -197,7 +168,7 @@ class SummonerResume extends Component {
                               </div>
                               <div>
                                 <img
-                                  src={this.summonerSpellShower(
+                                  src={summonerSpellShower(
                                     oneGame.summonerGameDetails.spell2Id
                                   )}
                                   className="summoner-spell-image"
@@ -241,7 +212,7 @@ class SummonerResume extends Component {
                             (oneItem, index) => {
                               return (
                                 <div className="col-4 mb-1" key={index}>
-                                  {this.itemImgGetter(oneItem)}
+                                  {itemImgGetter(oneItem)}
                                 </div>
                               );
                             }
@@ -260,7 +231,7 @@ class SummonerResume extends Component {
                               >
                                 <img
                                   className="inGame-champs-img"
-                                  src={this.champImg(
+                                  src={champImg(
                                     oneGame.participants[index].championId
                                   )}
                                   alt="all-players-champ-icon"

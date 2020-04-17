@@ -1,14 +1,23 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { champIconProvider } from "../helpers/images-helper";
-import "./champions.css";
+import { getChampionsList } from "../api";
+import "./championsList.css";
 
 class ChampionsList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      championsArray: this.props.allChampions,
+      championsArray: [],
     };
+  }
+
+  componentDidMount() {
+    getChampionsList().then((response) => {
+      this.setState({
+        championsArray: Object.values(response.data[0]),
+      });
+    });
   }
 
   render() {
