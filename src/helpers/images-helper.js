@@ -1,6 +1,6 @@
 import React from "react";
 import Cookies from "js-cookie";
-import summSpells from "../helpers/summoner-spells.json";
+import summSpells from "../data/summoner-spells.json";
 
 const version = Cookies.get("version");
 

@@ -1,4 +1,5 @@
 import moment from "moment";
+import queueList from "../data/queues.json";
 
 export function gameCreatedAt(date) {
   let x = date.toString().slice(0, -3);
@@ -16,4 +17,14 @@ export function getGameDuration(time) {
   } else {
     return minutes + ":" + seconds;
   }
+}
+
+export function getGameQueue(gameQueueId) {
+  let retour;
+  queueList.map((oneQueue) => {
+    if (oneQueue.queueId === gameQueueId) {
+      retour = oneQueue.description;
+    }
+  });
+  return retour;
 }

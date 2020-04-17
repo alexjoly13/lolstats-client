@@ -7,7 +7,7 @@ class DoughnutChart extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      gameStats: this.props.stats
+      gameStats: this.props.stats,
     };
   }
 
@@ -16,25 +16,25 @@ class DoughnutChart extends Component {
     console.log(stats);
     const options = {
       animationEnabled: true,
-      width: 120,
-      height: 200,
+      width: 100,
+      height: 180,
       subtitles: [
         {
           text: stats.winrate,
           verticalAlign: "center",
           fontSize: 16,
-          dockInsidePlotArea: true
-        }
+          dockInsidePlotArea: true,
+        },
       ],
       data: [
         {
           type: "doughnut",
           dataPoints: [
             { name: "Wins", y: stats.victories },
-            { name: "Losses", y: stats.defeats }
-          ]
-        }
-      ]
+            { name: "Losses", y: stats.defeats },
+          ],
+        },
+      ],
     };
 
     return (

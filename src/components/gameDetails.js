@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { getGameDuration } from "../helpers/game-infos-helper";
+import { getGameDuration, getGameQueue } from "../helpers/game-infos-helper";
 import { getTeamStats } from "../helpers/stats-helper";
-import "./championDetails.css";
+import "./gameDetails.css";
 
 class GameDetails extends Component {
   constructor(props) {
@@ -15,16 +15,30 @@ class GameDetails extends Component {
     console.log(match);
     return (
       <section className="match-details">
-        <div className="container">
-          <div className="row">
-            <div>
-              <p>
-                <strong>Match</strong> ({getGameDuration(match.gameDuration)})
-              </p>
-              <p>{getTeamStats(match.participants)}</p>
+        <section className="m-5 match-banner">
+          <div className="container match-presentation">
+            <div className="row">
+              <div className="col-3 d-flex align-items-center ml-5 generic-match-info">
+                <div>
+                  <h1>Match</h1>
+                  <p>{getGameQueue(match.queueId)}</p>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+        </section>
+        <section>
+          <div className="container">
+            <div className="row">
+              <div>
+                <p>
+                  <strong>Match</strong> ({getGameDuration(match.gameDuration)})
+                </p>
+                <p>{getTeamStats(match.participants)}</p>
+              </div>
+            </div>
+          </div>
+        </section>
       </section>
     );
   }

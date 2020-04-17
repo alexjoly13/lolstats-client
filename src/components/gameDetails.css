@@ -1,0 +1,12 @@
+.match-presentation {
+  height: 200px;
+  background-image: url("/images/homepage/lol-banner.jpeg");
+  background-position: center;
+  background-size: cover;
+  color: white;
+  /* background-color: #e1e2e2; */
+}
+
+.generic-match-info {
+  height: 200px;
+}

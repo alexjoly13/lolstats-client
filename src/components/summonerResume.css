@@ -1,3 +1,7 @@
+.summId-bg {
+  background-color: #e1e2e2;
+}
+
 .summoner-icon {
   width: 120%;
 }
@@ -16,7 +20,8 @@
 }
 
 .game-card {
-  border: 2px solid black;
+  background-color: #e1e2e2;
+  border-radius: 3px;
 }
 
 .player-champion-infos p {
@@ -33,18 +38,22 @@ div.game-resume > * {
   font-size: 12px;
 }
 
+.game-timing-infos p {
+  margin-bottom: 10px;
+}
+
 .result-indicator {
   position: absolute;
   width: 6px;
-  height: 72px;
-  top: 6px;
+  height: 82px;
+  top: 8px;
   left: 0px;
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;
 }
 
 .victory {
-  background-color: #2deb90;
+  background-color: #12d678;
 }
 
 .defeat {
@@ -52,20 +61,33 @@ div.game-resume > * {
 }
 
 .victory-text {
-  color: #2deb90;
+  color: #12d678;
+  font-size: 15px;
 }
 
 .defeat-text {
   color: red;
+  font-size: 15px;
+}
+
+.queue-indicator {
+  width: 104px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.played-champ-name {
+  font-size: 14px;
 }
 
 .player-ingame-stats {
-  padding: 0px 10px 10px 0px;
+  padding: 0px 10px 0px 10px;
 }
 
 .player-ingame-stats p {
   margin: 0;
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .participants-identities:first-child {
@@ -81,7 +103,7 @@ div.game-resume > * {
 }
 
 .item-icon {
-  width: 50%;
+  width: 125%;
 }
 
 .empty-item-block {
@@ -89,4 +111,9 @@ div.game-resume > * {
   height: 27.33px;
   background-color: grey;
   border-radius: 3px;
+}
+
+.see-more-link {
+  font-size: 14px;
+  text-decoration: none;
 }

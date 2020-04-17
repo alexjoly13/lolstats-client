@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Form from "react-bootstrap/Form";
 import { postSummonerName } from "../api";
 import UsageInstructions from "./homepageInstructions";
-import SummonerResume from "./summonerResume";
 import LoadingMessage from "./loadingMessage";
 import "./searchBar.css";
 import { Redirect } from "react-router-dom";

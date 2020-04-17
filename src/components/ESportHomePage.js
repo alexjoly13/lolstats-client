@@ -31,11 +31,17 @@ class EsportHomepage extends Component {
             {leagues.map((oneLeague) => {
               return (
                 <div className="col-3">
-                  <img className="league-logo" src={oneLeague.image_url}></img>
-                  <p>
-                    <strong>{oneLeague.name}</strong>{" "}
-                    {getLeagueLocation(oneLeague.id)}
-                  </p>
+                  <div>
+                    <img
+                      className="league-logo"
+                      src={oneLeague.image_url}
+                      alt={oneLeague.name}
+                    ></img>
+                    <p>
+                      <strong>{oneLeague.name}</strong>{" "}
+                      {getLeagueLocation(oneLeague.id)}
+                    </p>
+                  </div>
                 </div>
               );
             })}

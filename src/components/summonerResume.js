@@ -9,6 +9,7 @@ import { summonerSpellShower } from "../helpers/images-helper";
 import { itemImgGetter } from "../helpers/images-helper";
 import { gameCreatedAt } from "../helpers/game-infos-helper";
 import { getGameDuration } from "../helpers/game-infos-helper";
+import { getGameQueue } from "../helpers/game-infos-helper";
 import { winrateCalculator } from "../helpers/stats-helper";
 import { kdaCalculator } from "../helpers/stats-helper";
 import LastGamesStatistics from "./lastGamesStats";
@@ -40,7 +41,7 @@ class SummonerResume extends Component {
     return (
       <section className="mb-5">
         <section className="summoner-resume m-5">
-          <div className="container">
+          <div className="container summId-bg">
             {player.map((oneSummoner) => {
               return (
                 <div
@@ -106,19 +107,27 @@ class SummonerResume extends Component {
         <LastGamesStatistics gamesInfo={this.state.summStats} />
 
         <section className="games-list">
-          <h4>Last Games</h4>
+          <div className="container p-0">
+            <h3>Recent Games</h3>
+          </div>
+
           {games.map((oneGame) => {
             return (
-              <div className="game-resume my-4" key={oneGame.gameId}>
+              <div className="game-resume my-2" key={oneGame.gameId}>
                 <div className="container game-card">
                   <div className="row justify-content-between">
-                    <div className="col-1 game-timing-infos align-self-center">
+                    <div className="col-2 game-timing-infos align-self-center h-100">
                       {oneGame.summonerGameDetails.stats.win ? (
                         <div className="result-indicator victory"></div>
                       ) : (
                         <div className="result-indicator defeat"></div>
                       )}
                       <div className="result-indicator"></div>
+                      <div className="row justify-content-center">
+                        <p className="queue-indicator">
+                          {getGameQueue(oneGame.queueId)}
+                        </p>
+                      </div>
                       <div className="row justify-content-center">
                         <p className="">
                           {getGameDuration(oneGame.gameDuration)}
@@ -205,7 +214,7 @@ class SummonerResume extends Component {
                         </div>
                       </div>
                     </div>
-                    <div className="col-3 player-items">
+                    <div className="col-2 player-items">
                       <div className="container h-100">
                         <div className="row h-100 align-content-center">
                           {oneGame.summonerGameDetails.playerItems.map(
@@ -247,20 +256,23 @@ class SummonerResume extends Component {
                     </div>
                     <div className="col-1 align-self-center">
                       <div className="d-flex justify-content-center">
-                        <Link
-                          to={{
-                            pathname: `/summoner/${this.state.summonerName}/${oneGame.gameId}`,
-                            state: {
-                              specificGameDetails: oneGame,
-                            },
-                          }}
-                        >
-                          <FontAwesomeIcon
-                            icon={faChevronCircleRight}
-                            size="2x"
-                            color="#495057"
-                          />
-                        </Link>
+                        <div>
+                          <Link
+                            to={{
+                              pathname: `/summoner/${this.state.summonerName}/${oneGame.gameId}`,
+                              state: {
+                                specificGameDetails: oneGame,
+                              },
+                            }}
+                          >
+                            <FontAwesomeIcon
+                              icon={faChevronCircleRight}
+                              size="2x"
+                              color="#495057"
+                            />
+                            <p className="see-more-link">Match Details</p>
+                          </Link>
+                        </div>
                       </div>
                     </div>
                   </div>

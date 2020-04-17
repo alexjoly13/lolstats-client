@@ -27,7 +27,10 @@ class ChampionsList extends Component {
         <div className="row">
           {champions.map((oneChampion, index) => {
             return (
-              <Link to={`/champions/${oneChampion.id}`} className="col">
+              <Link
+                to={`/champions/${oneChampion.id}`}
+                className="col text-decoration-none"
+              >
                 <div className="" key={index}>
                   <img
                     className="champ-icon"
@@ -35,7 +38,7 @@ class ChampionsList extends Component {
                     src={champIconProvider(oneChampion.image.full)}
                     alt={oneChampion.id}
                   />
-                  <p className="text-align-center" key={oneChampion.key}>
+                  <p className="text-center" key={oneChampion.key}>
                     {oneChampion.name}
                   </p>
                 </div>

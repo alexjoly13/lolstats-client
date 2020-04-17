@@ -3,8 +3,6 @@ import { getChampionDetails } from "../api";
 import { champIconProvider } from "../helpers/images-helper";
 import { getFrameStyle } from "../helpers/images-helper";
 
-let frameStyle;
-
 class ChampionDetails extends Component {
   constructor(props) {
     super(props);
@@ -37,7 +35,6 @@ class ChampionDetails extends Component {
 
   render() {
     const champInfos = Object.values(this.state.championInfos);
-    const version = this.state.patch;
     console.log(champInfos);
     return (
       <section className="champion-detailed-infos d-flex justify-content-center mt-4">
@@ -48,7 +45,10 @@ class ChampionDetails extends Component {
                 <div className="container">
                   <div className="row">
                     <div className="col-2">
-                      <img src={champIconProvider(oneInfo.image.full)} />
+                      <img
+                        src={champIconProvider(oneInfo.image.full)}
+                        alt={oneInfo.name}
+                      />
                     </div>
                     <div className="col-3 align-self-center">
                       <div>
