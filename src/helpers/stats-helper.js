@@ -1,3 +1,5 @@
+import React from "react";
+
 export function winrateCalculator(wins, loss) {
   return Math.floor((wins / (wins + loss)) * 100) + "%";
 }
@@ -12,21 +14,26 @@ export function kdaCalculator(kills, assists, deaths) {
   }
 }
 
-export function getTeamStats(participantsArray) {
-  let blueTeamKills = 0;
-  let blueTeamDeaths = 0;
-  let blueTeamAssists = 0;
-  // let redTeamKills = 0;
-  // let redTeamDeaths = 0;
-  // let redTeamAssists = 0;
+export function getTeamStats(participantsArray, scoreTeamId) {
+  let Kills = 0;
+  let Deaths = 0;
+  let Assists = 0;
 
   participantsArray.forEach((oneParticipant) => {
-    if (oneParticipant.teamId === 100) {
-      blueTeamKills += oneParticipant.stats.kills;
-      blueTeamDeaths += oneParticipant.stats.deaths;
-      blueTeamAssists += oneParticipant.stats.assists;
+    if (oneParticipant.teamId === scoreTeamId) {
+      Kills += oneParticipant.stats.kills;
+      Deaths += oneParticipant.stats.deaths;
+      Assists += oneParticipant.stats.assists;
     }
   });
 
-  return blueTeamKills + " / " + blueTeamDeaths + " / " + blueTeamAssists;
+  return Kills + " / " + Deaths + " / " + Assists;
+}
+
+export function winOrLose(team) {
+  return team.win === "Win" ? (
+    <span className="victory-text">VICTORY</span>
+  ) : (
+    <span className="defeat-text">DEFEAT</span>
+  );
 }

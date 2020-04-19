@@ -10,3 +10,12 @@
 .generic-match-info {
   height: 200px;
 }
+
+.match-scoreboard {
+  background-color: #e1e2e2;
+  border-radius: 5px;
+}
+
+.matchdetails-champ-icon {
+  width: 20%;
+}

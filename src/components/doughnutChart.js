@@ -13,7 +13,6 @@ class DoughnutChart extends Component {
 
   render() {
     const stats = this.state.gameStats;
-    console.log(stats);
     const options = {
       animationEnabled: true,
       width: 100,

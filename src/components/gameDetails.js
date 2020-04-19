@@ -1,6 +1,10 @@
 import React, { Component } from "react";
-import { getGameDuration, getGameQueue } from "../helpers/game-infos-helper";
-import { getTeamStats } from "../helpers/stats-helper";
+import {
+  getGameDuration,
+  getGameQueue,
+  getTeamsSide,
+} from "../helpers/game-infos-helper";
+import { getTeamStats, winOrLose } from "../helpers/stats-helper";
 import "./gameDetails.css";
 
 class GameDetails extends Component {
@@ -28,13 +32,41 @@ class GameDetails extends Component {
           </div>
         </section>
         <section>
-          <div className="container">
+          <div className="container match-scoreboard">
             <div className="row">
-              <div>
-                <p>
-                  <strong>Match</strong> ({getGameDuration(match.gameDuration)})
-                </p>
-                <p>{getTeamStats(match.participants)}</p>
+              <div className="w-100 d-flex justify-content-around">
+                <div>{winOrLose(match.teams[0])}</div>
+
+                <div>
+                  <span>{getTeamStats(match.participants, 100)}</span>
+                </div>
+                <div>
+                  <span>
+                    <strong>Match</strong> (
+                    {getGameDuration(match.gameDuration)})
+                  </span>
+                </div>
+
+                <div>
+                  <span>{getTeamStats(match.participants, 200)}</span>
+                </div>
+                <div>{winOrLose(match.teams[1])}</div>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-2">
+                {getTeamsSide(
+                  match.participants,
+                  match.participantIdentities,
+                  100
+                )}
+              </div>
+              <div className="col-2">
+                {getTeamsSide(
+                  match.participants,
+                  match.participantIdentities,
+                  200
+                )}
               </div>
             </div>
           </div>
