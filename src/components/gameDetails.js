@@ -57,14 +57,14 @@ class GameDetails extends Component {
               <div className="col-2">
                 {getTeamsSide(
                   match.participants,
-                  match.participantIdentities,
+
                   100
                 )}
               </div>
               <div className="col-2">
                 {getTeamsSide(
                   match.participants,
-                  match.participantIdentities,
+
                   200
                 )}
               </div>

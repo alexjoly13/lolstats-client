@@ -232,21 +232,19 @@ class SummonerResume extends Component {
                     <div className="col-5">
                       <div className="container">
                         <div className="row participants-identities">
-                          {oneGame.participantIdentities.map((oneId, index) => {
+                          {oneGame.participants.map((oneParticipant) => {
                             return (
                               <div
                                 className="player-champion d-flex align-items-center col-6 mb-1"
-                                key={oneId.player.summonerName}
+                                key={oneParticipant.summonerName}
                               >
                                 <img
                                   className="inGame-champs-img"
-                                  src={champImg(
-                                    oneGame.participants[index].championId
-                                  )}
+                                  src={champImg(oneParticipant.championId)}
                                   alt="all-players-champ-icon"
                                 />
                                 <span className="ml-1">
-                                  {oneId.player.summonerName}
+                                  {oneParticipant.summonerName}
                                 </span>
                               </div>
                             );

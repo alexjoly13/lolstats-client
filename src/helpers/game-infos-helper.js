@@ -38,44 +38,31 @@ export function getGameQueue(gameQueueId) {
   return retour;
 }
 
-export function getTeamsSide(
-  participantsArray,
-  participantsIdentitiesArray,
-  teamsId
-) {
+export function getTeamsSide(participantsArray, teamsId) {
   const teamPicked = participantsArray.filter(
     (player) => player.teamId === teamsId
   );
 
-  const identitiesPicked = teamPicked.map((onePlayer) => {
-    return participantsIdentitiesArray.filter(
-      (player) => player.participantId === onePlayer.participantId
-    );
-  });
-
-  console.log(teamPicked);
-  console.log(identitiesPicked);
-
   return teamsId == 100 ? (
     <div className="">
-      {teamPicked.map((onePlayer, index) => {
+      {teamPicked.map((onePlayer) => {
         return (
           <div>
             <img
               src={champImg(onePlayer.championId)}
               className="matchdetails-champ-icon"
             />
-            <span>{identitiesPicked[index][0].player.summonerName}</span>
+            <span>{onePlayer.summonerName}</span>
           </div>
         );
       })}
     </div>
   ) : (
     <div className="">
-      {teamPicked.map((onePlayer, index) => {
+      {teamPicked.map((onePlayer) => {
         return (
           <div>
-            <span>{identitiesPicked[index][0].player.summonerName}</span>
+            <span>{onePlayer.summonerName}</span>
             <img
               src={champImg(onePlayer.championId)}
               className="matchdetails-champ-icon"
