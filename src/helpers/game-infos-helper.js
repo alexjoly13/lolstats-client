@@ -43,7 +43,7 @@ export function getTeamsSide(participantsArray, teamsId) {
     (player) => player.teamId === teamsId
   );
 
-  return teamsId == 100 ? (
+  return teamsId === 100 ? (
     <div className="">
       {teamPicked.map((onePlayer) => {
         return (

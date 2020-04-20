@@ -4,7 +4,11 @@ import {
   getGameQueue,
   getTeamsSide,
 } from "../helpers/game-infos-helper";
-import { getTeamStats, winOrLose } from "../helpers/stats-helper";
+import {
+  getTeamStats,
+  winOrLose,
+  kdaCalculator,
+} from "../helpers/stats-helper";
 import { champImg } from "../helpers/images-helper.js";
 import "./gameDetails.css";
 
@@ -54,39 +58,65 @@ class GameDetails extends Component {
                 <div>{winOrLose(match.teams[1])}</div>
               </div>
             </div>
+
+            <hr></hr>
+
             <div className="row">
-              <div className="col-2">
-                {match.teams[0].teamMembers.map((onePlayer) => {
-                  return (
-                    <div className="row">
-                      <div className="col-12">
-                        <img
-                          src={champImg(onePlayer.championId)}
-                          className="matchdetails-champ-icon"
-                        />
-                        <span>{onePlayer.summonerName}</span>
+              <div className="col-12">
+                <div className="row">
+                  {match.teams.map((oneTeam) => {
+                    return oneTeam.teamId === 100 ? (
+                      <div className="col-6">
+                        {oneTeam.teamMembers.map((onePlayer) => {
+                          return (
+                            <div className="row mb-2">
+                              <div className="col-4">
+                                <img
+                                  src={champImg(onePlayer.championId)}
+                                  className="matchdetails-champ-icon"
+                                />
+                                <span>{onePlayer.summonerName}</span>
+                              </div>
+                              <div className="col-2">
+                                <span>
+                                  {onePlayer.stats.kills} /
+                                  {onePlayer.stats.deaths} /
+                                  {onePlayer.stats.assists}
+                                </span>
+                              </div>
+                            </div>
+                          );
+                        })}
                       </div>
-                    </div>
-                  );
-                })}
-              </div>
-              <div className="col-8"></div>
-              <div className="col-2">
-                {match.teams[1].teamMembers.map((onePlayer) => {
-                  return (
-                    <div className="row">
-                      <div className="col-12">
-                        <div className="d-flex justify-content-end">
-                          <span>{onePlayer.summonerName}</span>
-                          <img
-                            src={champImg(onePlayer.championId)}
-                            className="matchdetails-champ-icon"
-                          />
-                        </div>
+                    ) : (
+                      <div className="col-6">
+                        {oneTeam.teamMembers.map((onePlayer) => {
+                          return (
+                            <div className="row mb-2">
+                              <div className="col-6"></div>
+                              <div className="col-2">
+                                <span>
+                                  {onePlayer.stats.kills} /
+                                  {onePlayer.stats.deaths} /
+                                  {onePlayer.stats.assists}
+                                </span>
+                              </div>
+                              <div className="col-4">
+                                <div className="d-flex justify-content-end">
+                                  <span>{onePlayer.summonerName}</span>
+                                  <img
+                                    src={champImg(onePlayer.championId)}
+                                    className="matchdetails-champ-icon"
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                          );
+                        })}
                       </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
+                </div>
               </div>
             </div>
           </div>
