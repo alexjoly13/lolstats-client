@@ -9,7 +9,7 @@ import {
   winOrLose,
   kdaCalculator,
 } from "../helpers/stats-helper";
-import { champImg } from "../helpers/images-helper.js";
+import { champImg, itemImgGetter } from "../helpers/images-helper.js";
 import "./gameDetails.css";
 
 class GameDetails extends Component {
@@ -73,7 +73,7 @@ class GameDetails extends Component {
                               <div className="col-4">
                                 <img
                                   src={champImg(onePlayer.championId)}
-                                  className="matchdetails-champ-icon"
+                                  className="matchdetails-champ-icon mr-1"
                                 />
                                 <span>{onePlayer.summonerName}</span>
                               </div>
@@ -84,6 +84,35 @@ class GameDetails extends Component {
                                   {onePlayer.stats.assists}
                                 </span>
                               </div>
+                              <div className="col-6">
+                                <div className="row mb-1">
+                                  <div className="item-holder mr-2">
+                                    {itemImgGetter(onePlayer.stats.item0)}
+                                  </div>
+                                  <div className="item-holder mr-2">
+                                    {itemImgGetter(onePlayer.stats.item1)}
+                                  </div>
+                                  <div className="item-holder">
+                                    {itemImgGetter(onePlayer.stats.item2)}
+                                  </div>
+                                </div>
+                                <div className="row">
+                                  <div className="item-holder mr-2">
+                                    {itemImgGetter(onePlayer.stats.item3)}
+                                  </div>
+                                  <div className="item-holder mr-2">
+                                    {itemImgGetter(onePlayer.stats.item4)}
+                                  </div>
+                                  <div className="item-holder">
+                                    {itemImgGetter(onePlayer.stats.item5)}
+                                  </div>
+                                </div>
+                                <div className="d-flex">
+                                  <div className="item-holder">
+                                    {itemImgGetter(onePlayer.stats.item6)}
+                                  </div>
+                                </div>
+                              </div>
                             </div>
                           );
                         })}
@@ -93,7 +122,30 @@ class GameDetails extends Component {
                         {oneTeam.teamMembers.map((onePlayer) => {
                           return (
                             <div className="row mb-2">
-                              <div className="col-6"></div>
+                              <div className="col-6">
+                                <div className="row mb-1">
+                                  <div className="item-holder mr-2">
+                                    {itemImgGetter(onePlayer.stats.item0)}
+                                  </div>
+                                  <div className="item-holder mr-2">
+                                    {itemImgGetter(onePlayer.stats.item1)}
+                                  </div>
+                                  <div className="item-holder">
+                                    {itemImgGetter(onePlayer.stats.item2)}
+                                  </div>
+                                </div>
+                                <div className="row">
+                                  <div className="item-holder mr-2">
+                                    {itemImgGetter(onePlayer.stats.item3)}
+                                  </div>
+                                  <div className="item-holder mr-2">
+                                    {itemImgGetter(onePlayer.stats.item4)}
+                                  </div>
+                                  <div className="item-holder">
+                                    {itemImgGetter(onePlayer.stats.item5)}
+                                  </div>
+                                </div>
+                              </div>
                               <div className="col-2">
                                 <span>
                                   {onePlayer.stats.kills} /
@@ -106,7 +158,7 @@ class GameDetails extends Component {
                                   <span>{onePlayer.summonerName}</span>
                                   <img
                                     src={champImg(onePlayer.championId)}
-                                    className="matchdetails-champ-icon"
+                                    className="matchdetails-champ-icon ml-1"
                                   />
                                 </div>
                               </div>
