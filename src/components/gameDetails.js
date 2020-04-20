@@ -5,9 +5,12 @@ import {
   getTeamsSide,
 } from "../helpers/game-infos-helper";
 import {
-  getTeamStats,
   winOrLose,
   kdaCalculator,
+  getTotalKills,
+  getTotalDeaths,
+  getTotalAssists,
+  KPCalculator,
 } from "../helpers/stats-helper";
 import { champImg, itemImgGetter } from "../helpers/images-helper.js";
 import "./gameDetails.css";
@@ -43,7 +46,11 @@ class GameDetails extends Component {
                 <div>{winOrLose(match.teams[0])}</div>
 
                 <div>
-                  <span>{getTeamStats(match.participants, 100)}</span>
+                  <span>{getTotalKills(match.participants, 100)}</span>{" "}
+                  <span> / </span>
+                  <span>{getTotalDeaths(match.participants, 100)}</span>{" "}
+                  <span> / </span>
+                  <span>{getTotalAssists(match.participants, 100)}</span>
                 </div>
                 <div>
                   <span>
@@ -53,7 +60,11 @@ class GameDetails extends Component {
                 </div>
 
                 <div>
-                  <span>{getTeamStats(match.participants, 200)}</span>
+                  <span>{getTotalKills(match.participants, 200)}</span>{" "}
+                  <span> / </span>
+                  <span>{getTotalDeaths(match.participants, 200)}</span>{" "}
+                  <span> / </span>
+                  <span>{getTotalAssists(match.participants, 200)}</span>
                 </div>
                 <div>{winOrLose(match.teams[1])}</div>
               </div>
@@ -77,39 +88,82 @@ class GameDetails extends Component {
                                 />
                                 <span>{onePlayer.summonerName}</span>
                               </div>
-                              <div className="col-2">
-                                <span>
-                                  {onePlayer.stats.kills} /
-                                  {onePlayer.stats.deaths} /
-                                  {onePlayer.stats.assists}
-                                </span>
+                              <div className="col-3 d-flex justify-content-center">
+                                <div>
+                                  <div>
+                                    <span>
+                                      {onePlayer.stats.kills} /
+                                      {onePlayer.stats.deaths} /
+                                      {onePlayer.stats.assists}
+                                    </span>
+                                  </div>
+                                  <div>
+                                    <span>
+                                      {onePlayer.stats.totalMinionsKilled} CS
+                                    </span>
+                                  </div>
+                                  <div>
+                                    <span>
+                                      {KPCalculator(
+                                        getTotalKills(match.participants, 100),
+                                        onePlayer.stats.kills,
+                                        onePlayer.stats.assists
+                                      )}
+                                      % Kills P.
+                                    </span>
+                                  </div>
+                                </div>
                               </div>
-                              <div className="col-6">
-                                <div className="row mb-1">
-                                  <div className="item-holder mr-2">
-                                    {itemImgGetter(onePlayer.stats.item0)}
+                              <div className="col-5 d-flex align-items-center">
+                                <div className="d-inline-block items-container">
+                                  <div className="item-display-row mb-1">
+                                    <div className="item-holder d-inline-flex mr-2">
+                                      {itemImgGetter(
+                                        onePlayer.stats.item0,
+                                        "item-details-icon"
+                                      )}
+                                    </div>
+                                    <div className="item-holder d-inline-flex mr-2">
+                                      {itemImgGetter(
+                                        onePlayer.stats.item1,
+                                        "item-details-icon"
+                                      )}
+                                    </div>
+                                    <div className="item-holder d-inline-flex">
+                                      {itemImgGetter(
+                                        onePlayer.stats.item2,
+                                        "item-details-icon"
+                                      )}
+                                    </div>
                                   </div>
-                                  <div className="item-holder mr-2">
-                                    {itemImgGetter(onePlayer.stats.item1)}
-                                  </div>
-                                  <div className="item-holder">
-                                    {itemImgGetter(onePlayer.stats.item2)}
+                                  <div className="item-display-row">
+                                    <div className="item-holder d-inline-flex mr-2">
+                                      {itemImgGetter(
+                                        onePlayer.stats.item3,
+                                        "item-details-icon"
+                                      )}
+                                    </div>
+                                    <div className="item-holder d-inline-flex mr-2">
+                                      {itemImgGetter(
+                                        onePlayer.stats.item4,
+                                        "item-details-icon"
+                                      )}
+                                    </div>
+                                    <div className="item-holder d-inline-flex">
+                                      {itemImgGetter(
+                                        onePlayer.stats.item5,
+                                        "item-details-icon"
+                                      )}
+                                    </div>
                                   </div>
                                 </div>
-                                <div className="row">
-                                  <div className="item-holder mr-2">
-                                    {itemImgGetter(onePlayer.stats.item3)}
-                                  </div>
-                                  <div className="item-holder mr-2">
-                                    {itemImgGetter(onePlayer.stats.item4)}
-                                  </div>
+
+                                <div className="d-inline-block">
                                   <div className="item-holder">
-                                    {itemImgGetter(onePlayer.stats.item5)}
-                                  </div>
-                                </div>
-                                <div className="d-flex">
-                                  <div className="item-holder">
-                                    {itemImgGetter(onePlayer.stats.item6)}
+                                    {itemImgGetter(
+                                      onePlayer.stats.item6,
+                                      "item-details-icon"
+                                    )}
                                   </div>
                                 </div>
                               </div>
@@ -122,36 +176,87 @@ class GameDetails extends Component {
                         {oneTeam.teamMembers.map((onePlayer) => {
                           return (
                             <div className="row mb-2">
-                              <div className="col-6">
-                                <div className="row mb-1">
-                                  <div className="item-holder mr-2">
-                                    {itemImgGetter(onePlayer.stats.item0)}
+                              <div className="col-5 d-flex align-items-center">
+                                <div className="d-inline-block items-container">
+                                  <div className="item-display-row mb-1">
+                                    <div className="item-holder d-inline-flex mr-2">
+                                      {itemImgGetter(
+                                        onePlayer.stats.item0,
+                                        "item-details-icon"
+                                      )}
+                                    </div>
+                                    <div className="item-holder d-inline-flex mr-2">
+                                      {itemImgGetter(
+                                        onePlayer.stats.item1,
+                                        "item-details-icon"
+                                      )}
+                                    </div>
+                                    <div className="item-holder d-inline-flex">
+                                      {itemImgGetter(
+                                        onePlayer.stats.item2,
+                                        "item-details-icon"
+                                      )}
+                                    </div>
                                   </div>
-                                  <div className="item-holder mr-2">
-                                    {itemImgGetter(onePlayer.stats.item1)}
-                                  </div>
-                                  <div className="item-holder">
-                                    {itemImgGetter(onePlayer.stats.item2)}
+                                  <div className="item-display-row">
+                                    <div className="item-holder d-inline-flex mr-2">
+                                      {itemImgGetter(
+                                        onePlayer.stats.item3,
+                                        "item-details-icon"
+                                      )}
+                                    </div>
+                                    <div className="item-holder d-inline-flex mr-2">
+                                      {itemImgGetter(
+                                        onePlayer.stats.item4,
+                                        "item-details-icon"
+                                      )}
+                                    </div>
+                                    <div className="item-holder d-inline-flex">
+                                      {itemImgGetter(
+                                        onePlayer.stats.item5,
+                                        "item-details-icon"
+                                      )}
+                                    </div>
                                   </div>
                                 </div>
-                                <div className="row">
-                                  <div className="item-holder mr-2">
-                                    {itemImgGetter(onePlayer.stats.item3)}
-                                  </div>
-                                  <div className="item-holder mr-2">
-                                    {itemImgGetter(onePlayer.stats.item4)}
-                                  </div>
+
+                                <div className="d-inline-block">
                                   <div className="item-holder">
-                                    {itemImgGetter(onePlayer.stats.item5)}
+                                    {itemImgGetter(
+                                      onePlayer.stats.item6,
+                                      "item-details-icon"
+                                    )}
                                   </div>
                                 </div>
                               </div>
-                              <div className="col-2">
-                                <span>
-                                  {onePlayer.stats.kills} /
-                                  {onePlayer.stats.deaths} /
-                                  {onePlayer.stats.assists}
-                                </span>
+                              <div className="col-3 d-flex justify-content-center">
+                                <div>
+                                  <div>
+                                    <span>
+                                      {onePlayer.stats.kills} /
+                                      {onePlayer.stats.deaths} /
+                                      {onePlayer.stats.assists}
+                                    </span>
+                                  </div>
+                                  <div>
+                                    <span>
+                                      {onePlayer.stats.totalMinionsKilled} CS
+                                    </span>
+                                    <div>
+                                      <span>
+                                        {KPCalculator(
+                                          getTotalKills(
+                                            match.participants,
+                                            100
+                                          ),
+                                          onePlayer.stats.kills,
+                                          onePlayer.stats.assists
+                                        )}
+                                        % Kills P.
+                                      </span>
+                                    </div>
+                                  </div>
+                                </div>
                               </div>
                               <div className="col-4">
                                 <div className="d-flex justify-content-end">

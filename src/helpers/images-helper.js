@@ -54,11 +54,11 @@ export function summonerSpellShower(pickedSpell) {
   return address;
 }
 
-export function itemImgGetter(itemId) {
+export function itemImgGetter(itemId, classNameToUse) {
   if (itemId > 0) {
     return (
       <img
-        className="item-icon"
+        className={classNameToUse}
         src={`http://ddragon.leagueoflegends.com/cdn/${version}/img/item/${itemId}.png`}
         alt="item-mini"
       />

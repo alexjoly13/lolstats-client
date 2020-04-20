@@ -20,6 +20,20 @@
   width: 20%;
 }
 
+.items-container {
+  width: 93px;
+}
+
+.item-display-row {
+  width: 92px;
+  margin: 0;
+}
+
 .item-holder {
-  width: 7%;
+  width: 23px;
+  height: 23px;
+}
+
+.item-details-icon {
+  width: 100%;
 }

@@ -14,20 +14,34 @@ export function kdaCalculator(kills, assists, deaths) {
   }
 }
 
-export function getTeamStats(participantsArray, scoreTeamId) {
-  let Kills = 0;
-  let Deaths = 0;
-  let Assists = 0;
-
+export function getTotalKills(participantsArray, scoreTeamId) {
+  let totalKills = 0;
   participantsArray.forEach((oneParticipant) => {
     if (oneParticipant.teamId === scoreTeamId) {
-      Kills += oneParticipant.stats.kills;
-      Deaths += oneParticipant.stats.deaths;
-      Assists += oneParticipant.stats.assists;
+      totalKills += oneParticipant.stats.kills;
     }
   });
+  return totalKills;
+}
 
-  return Kills + " / " + Deaths + " / " + Assists;
+export function getTotalDeaths(participantsArray, scoreTeamId) {
+  let totalDeaths = 0;
+  participantsArray.forEach((oneParticipant) => {
+    if (oneParticipant.teamId === scoreTeamId) {
+      totalDeaths += oneParticipant.stats.deaths;
+    }
+  });
+  return totalDeaths;
+}
+
+export function getTotalAssists(participantsArray, scoreTeamId) {
+  let totalAssists = 0;
+  participantsArray.forEach((oneParticipant) => {
+    if (oneParticipant.teamId === scoreTeamId) {
+      totalAssists += oneParticipant.stats.assists;
+    }
+  });
+  return totalAssists;
 }
 
 export function winOrLose(team) {
@@ -36,4 +50,8 @@ export function winOrLose(team) {
   ) : (
     <span className="defeat-text">DEFEAT</span>
   );
+}
+
+export function KPCalculator(totalTeamKills, playerKills, playerAssists) {
+  return Math.floor(((playerKills + playerAssists) / totalTeamKills) * 100);
 }

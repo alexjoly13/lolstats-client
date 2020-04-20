@@ -221,7 +221,7 @@ class SummonerResume extends Component {
                             (oneItem, index) => {
                               return (
                                 <div className="col-4 mb-1" key={index}>
-                                  {itemImgGetter(oneItem)}
+                                  {itemImgGetter(oneItem, "item-icon")}
                                 </div>
                               );
                             }
