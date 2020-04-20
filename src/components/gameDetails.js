@@ -5,6 +5,7 @@ import {
   getTeamsSide,
 } from "../helpers/game-infos-helper";
 import { getTeamStats, winOrLose } from "../helpers/stats-helper";
+import { champImg } from "../helpers/images-helper.js";
 import "./gameDetails.css";
 
 class GameDetails extends Component {
@@ -55,18 +56,37 @@ class GameDetails extends Component {
             </div>
             <div className="row">
               <div className="col-2">
-                {getTeamsSide(
-                  match.participants,
-
-                  100
-                )}
+                {match.teams[0].teamMembers.map((onePlayer) => {
+                  return (
+                    <div className="row">
+                      <div className="col-12">
+                        <img
+                          src={champImg(onePlayer.championId)}
+                          className="matchdetails-champ-icon"
+                        />
+                        <span>{onePlayer.summonerName}</span>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
+              <div className="col-8"></div>
               <div className="col-2">
-                {getTeamsSide(
-                  match.participants,
-
-                  200
-                )}
+                {match.teams[1].teamMembers.map((onePlayer) => {
+                  return (
+                    <div className="row">
+                      <div className="col-12">
+                        <div className="d-flex justify-content-end">
+                          <span>{onePlayer.summonerName}</span>
+                          <img
+                            src={champImg(onePlayer.championId)}
+                            className="matchdetails-champ-icon"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>
