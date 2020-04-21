@@ -1,12 +1,8 @@
 import React, { Component } from "react";
-import {
-  getGameDuration,
-  getGameQueue,
-  getTeamsSide,
-} from "../helpers/game-infos-helper";
+import GlobalCharts from "./globalGameCharts";
+import { getGameDuration, getGameQueue } from "../helpers/game-infos-helper";
 import {
   winOrLose,
-  kdaCalculator,
   getTotalKills,
   getTotalDeaths,
   getTotalAssists,
@@ -278,6 +274,9 @@ class GameDetails extends Component {
             </div>
           </div>
         </section>
+        <div>
+          <GlobalCharts gameInfos={match} />
+        </div>
       </section>
     );
   }
