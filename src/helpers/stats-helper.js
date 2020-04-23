@@ -1,5 +1,9 @@
 import React from "react";
 
+export function getTotalGames(wins, losses) {
+  return wins + losses + " Games";
+}
+
 export function winrateCalculator(wins, loss) {
   return Math.floor((wins / (wins + loss)) * 100) + "%";
 }

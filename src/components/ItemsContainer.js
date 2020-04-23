@@ -11,8 +11,6 @@ class ItemsContainer extends Component {
     };
   }
 
-  componentDidMount() {}
-
   render() {
     const items = this.state.statsSection;
     return (
