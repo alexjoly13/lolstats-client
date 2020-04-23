@@ -107,8 +107,8 @@ div.game-resume > * {
 }
 
 .empty-item-block {
-  width: 27.33px;
-  height: 27.33px;
+  width: 25px;
+  height: 25px;
   background-color: grey;
   border-radius: 3px;
 }

@@ -84,8 +84,6 @@ class GlobalCharts extends Component {
                     style={{
                       maxWidth: "23px",
                       maxLength: "23px",
-                      minWidth: "15px",
-                      minWidth: "15px",
                       marginRight: "10px",
                     }}
                     alt="Some champ"
@@ -100,8 +98,6 @@ class GlobalCharts extends Component {
                     style={{
                       maxWidth: "23px",
                       maxLength: "23px",
-                      minWidth: "15px",
-                      minWidth: "15px",
                       marginRight: "10px",
                     }}
                     alt="Some champ"

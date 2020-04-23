@@ -8,8 +8,9 @@ import {
   getTotalAssists,
   KPCalculator,
 } from "../helpers/stats-helper";
-import { champImg, itemImgGetter } from "../helpers/images-helper.js";
+import { champImg } from "../helpers/images-helper.js";
 import "./gameDetails.css";
+import ItemsContainer from "./ItemsContainer";
 
 class GameDetails extends Component {
   constructor(props) {
@@ -81,6 +82,8 @@ class GameDetails extends Component {
                                 <img
                                   src={champImg(onePlayer.championId)}
                                   className="matchdetails-champ-icon mr-1"
+                                  alt="champion icon"
+                                  key={onePlayer.summonerName}
                                 />
                                 <span>{onePlayer.summonerName}</span>
                               </div>
@@ -110,58 +113,8 @@ class GameDetails extends Component {
                                   </div>
                                 </div>
                               </div>
-                              <div className="col-5 d-flex align-items-center">
-                                <div className="d-inline-block items-container">
-                                  <div className="item-display-row mb-1">
-                                    <div className="item-holder d-inline-flex mr-2">
-                                      {itemImgGetter(
-                                        onePlayer.stats.item0,
-                                        "item-details-icon"
-                                      )}
-                                    </div>
-                                    <div className="item-holder d-inline-flex mr-2">
-                                      {itemImgGetter(
-                                        onePlayer.stats.item1,
-                                        "item-details-icon"
-                                      )}
-                                    </div>
-                                    <div className="item-holder d-inline-flex">
-                                      {itemImgGetter(
-                                        onePlayer.stats.item2,
-                                        "item-details-icon"
-                                      )}
-                                    </div>
-                                  </div>
-                                  <div className="item-display-row">
-                                    <div className="item-holder d-inline-flex mr-2">
-                                      {itemImgGetter(
-                                        onePlayer.stats.item3,
-                                        "item-details-icon"
-                                      )}
-                                    </div>
-                                    <div className="item-holder d-inline-flex mr-2">
-                                      {itemImgGetter(
-                                        onePlayer.stats.item4,
-                                        "item-details-icon"
-                                      )}
-                                    </div>
-                                    <div className="item-holder d-inline-flex">
-                                      {itemImgGetter(
-                                        onePlayer.stats.item5,
-                                        "item-details-icon"
-                                      )}
-                                    </div>
-                                  </div>
-                                </div>
-
-                                <div className="d-inline-block">
-                                  <div className="item-holder">
-                                    {itemImgGetter(
-                                      onePlayer.stats.item6,
-                                      "item-details-icon"
-                                    )}
-                                  </div>
-                                </div>
+                              <div className="col-5 d-flex  justify-content-center align-items-center">
+                                <ItemsContainer itemsData={onePlayer.stats} />
                               </div>
                             </div>
                           );
@@ -169,61 +122,11 @@ class GameDetails extends Component {
                       </div>
                     ) : (
                       <div className="col-6">
-                        {oneTeam.teamMembers.map((onePlayer) => {
+                        {oneTeam.teamMembers.map((onePlayer, index) => {
                           return (
                             <div className="row mb-2">
-                              <div className="col-5 d-flex align-items-center">
-                                <div className="d-inline-block items-container">
-                                  <div className="item-display-row mb-1">
-                                    <div className="item-holder d-inline-flex mr-2">
-                                      {itemImgGetter(
-                                        onePlayer.stats.item0,
-                                        "item-details-icon"
-                                      )}
-                                    </div>
-                                    <div className="item-holder d-inline-flex mr-2">
-                                      {itemImgGetter(
-                                        onePlayer.stats.item1,
-                                        "item-details-icon"
-                                      )}
-                                    </div>
-                                    <div className="item-holder d-inline-flex">
-                                      {itemImgGetter(
-                                        onePlayer.stats.item2,
-                                        "item-details-icon"
-                                      )}
-                                    </div>
-                                  </div>
-                                  <div className="item-display-row">
-                                    <div className="item-holder d-inline-flex mr-2">
-                                      {itemImgGetter(
-                                        onePlayer.stats.item3,
-                                        "item-details-icon"
-                                      )}
-                                    </div>
-                                    <div className="item-holder d-inline-flex mr-2">
-                                      {itemImgGetter(
-                                        onePlayer.stats.item4,
-                                        "item-details-icon"
-                                      )}
-                                    </div>
-                                    <div className="item-holder d-inline-flex">
-                                      {itemImgGetter(
-                                        onePlayer.stats.item5,
-                                        "item-details-icon"
-                                      )}
-                                    </div>
-                                  </div>
-                                </div>
-
-                                <div className="d-inline-block">
-                                  <div className="item-holder">
-                                    {itemImgGetter(
-                                      onePlayer.stats.item6,
-                                      "item-details-icon"
-                                    )}
-                                  </div>
-                                </div>
+                              <div className="col-5 d-flex justify-content-center align-items-center">
+                                <ItemsContainer itemsData={onePlayer.stats} />
                               </div>
                               <div className="col-3 d-flex justify-content-center">
                                 <div>
@@ -260,6 +163,8 @@ class GameDetails extends Component {
                                   <img
                                     src={champImg(onePlayer.championId)}
                                     className="matchdetails-champ-icon ml-1"
+                                    alt="champion icon"
+                                    key={onePlayer.summonerName}
                                   />
                                 </div>
                               </div>

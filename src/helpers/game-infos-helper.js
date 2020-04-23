@@ -51,6 +51,7 @@ export function getTeamsSide(participantsArray, teamsId) {
             <img
               src={champImg(onePlayer.championId)}
               className="matchdetails-champ-icon"
+              alt="champion icon"
             />
             <span>{onePlayer.summonerName}</span>
           </div>
@@ -66,6 +67,7 @@ export function getTeamsSide(participantsArray, teamsId) {
             <img
               src={champImg(onePlayer.championId)}
               className="matchdetails-champ-icon"
+              alt="champion icon"
             />
           </div>
         );

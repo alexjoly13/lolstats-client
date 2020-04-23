@@ -2,17 +2,23 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronCircleRight } from "@fortawesome/free-solid-svg-icons";
-import { rankImgProvider } from "../helpers/images-helper";
-import { profileIconProvider } from "../helpers/images-helper";
-import { champImg } from "../helpers/images-helper";
-import { summonerSpellShower } from "../helpers/images-helper";
-import { itemImgGetter } from "../helpers/images-helper";
-import { gameCreatedAt } from "../helpers/game-infos-helper";
-import { getGameDuration } from "../helpers/game-infos-helper";
-import { getGameQueue } from "../helpers/game-infos-helper";
-import { winrateCalculator } from "../helpers/stats-helper";
-import { kdaCalculator } from "../helpers/stats-helper";
+
+import {
+  rankImgProvider,
+  profileIconProvider,
+  champImg,
+  summonerSpellShower,
+} from "../helpers/images-helper";
+import {
+  gameCreatedAt,
+  getGameDuration,
+  getGameQueue,
+} from "../helpers/game-infos-helper";
+import { winrateCalculator, kdaCalculator } from "../helpers/stats-helper";
+
 import LastGamesStatistics from "./lastGamesStats";
+import ItemsContainer from "./ItemsContainer";
+
 import "./summonerResume.css";
 
 class SummonerResume extends Component {
@@ -26,14 +32,6 @@ class SummonerResume extends Component {
       summStats: this.props.location.state.summsInfo.lastGamesStats,
     };
   }
-
-  // typeOfQueue(queueId) {}
-
-  // killParticipationCalculator(kills, assists, totalTeamKills) {
-  //   return (
-  //     Math.floor((kills + assists) / totalTeamKills) + "% Kill Participation"
-  //   );
-  // }
 
   render() {
     const player = this.state.summDetails;
@@ -214,21 +212,13 @@ class SummonerResume extends Component {
                         </div>
                       </div>
                     </div>
-                    <div className="col-2 player-items">
-                      <div className="container h-100">
-                        <div className="row h-100 align-content-center">
-                          {oneGame.summonerGameDetails.playerItems.map(
-                            (oneItem, index) => {
-                              return (
-                                <div className="col-4 mb-1" key={index}>
-                                  {itemImgGetter(oneItem, "item-icon")}
-                                </div>
-                              );
-                            }
-                          )}
-                        </div>
-                      </div>
+
+                    <div className="col-2 d-flex  justify-content-center align-items-center">
+                      <ItemsContainer
+                        itemsData={oneGame.summonerGameDetails.stats}
+                      />
                     </div>
+
                     <div className="col-5">
                       <div className="container">
                         <div className="row participants-identities">
