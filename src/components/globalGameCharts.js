@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { VictoryBar, VictoryChart, VictoryAxis, VictoryLabel } from "victory";
+import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme } from "victory";
 import { champImg } from "../helpers/images-helper";
 import "./globalGameCharts.css";
 
@@ -121,25 +121,15 @@ class GlobalCharts extends Component {
           <div className="col-6">
             <h3 className="m-0">Damage Dealt</h3>
             <div className="damage-graph-container">
-              <VictoryChart
-                // domainPadding will add space to each side of VictoryBar to
-                // prevent it from overlapping the axis
-                domainPadding={20}
-              >
-                <VictoryAxis
-                  // tickValues specifies both the number of ticks and where
-                  // they are placed on the axis
-                  tickLabelComponent={<ImgLabel />}
-                />
-                <VictoryAxis
-                  dependentAxis
-                  // tickFormat specifies how ticks should be displayed
-                  tickFormat={(x) => `${x / 1000}k`}
-                />
+              <VictoryChart domainPadding={20} theme={VictoryTheme.grayscale}>
+                <VictoryAxis tickLabelComponent={<ImgLabel />} />
+                <VictoryAxis dependentAxis tickFormat={(x) => `${x / 1000}k`} />
                 <VictoryBar
                   style={{
                     data: {
                       fill: ({ datum }) => datum.fill,
+                      fillOpacity: 0.5,
+                      strokeWidth: 1,
                     },
                   }}
                   data={data}
