@@ -30,6 +30,7 @@ class ChampionsList extends Component {
               <Link
                 to={`/champions/${oneChampion.id}`}
                 className="col text-decoration-none"
+                key={oneChampion.id}
               >
                 <div className="" key={index}>
                   <img

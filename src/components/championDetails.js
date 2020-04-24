@@ -55,9 +55,9 @@ class ChampionDetails extends Component {
                         <h3>{oneInfo.name}</h3>
                       </div>
                       <div>
-                        {oneInfo.tags.map((oneTag) => {
+                        {oneInfo.tags.map((oneTag, index) => {
                           return (
-                            <div>
+                            <div key={index}>
                               <span>{oneTag}</span>
                             </div>
                           );
