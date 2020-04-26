@@ -13,16 +13,6 @@ class ChampionDetails extends Component {
     };
   }
 
-  // frame(patch, key) {
-  //   return (frameStyle = {
-  //     width: "75%",
-  //     height: "300px",
-  //     color: "white",
-  //     backgroundImage: `url(https://cdn.communitydragon.org/10.7.1/champion/${key}/splash-art/centered)`,
-  //     backgroundPositionY: "-100px",
-  //   });
-  // }
-
   componentDidMount() {
     const champName = this.state.championName;
     getChampionDetails(champName).then((response) => {
