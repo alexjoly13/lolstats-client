@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import DoughnutChart from "./doughnutChart";
+import { kdaCalculator } from "../helpers/stats-helper";
 
 class LastGamesStatistics extends Component {
   constructor(props) {
@@ -17,18 +18,33 @@ class LastGamesStatistics extends Component {
     };
   }
 
-  // getAverageKDA(lastGamesArray, searchedSummonerName) {
-  //   let globalKills = 0;
-  //   let globalDeaths = 0;
-  //   let globalAssists = 0;
-  //   lastGamesArray.map((oneGame, i) => {
-  //     console.log(oneGame.participants[i]);
-  //     return oneGame.participants[i].summonerName === searchedSummonerName
-  //       ? (globalKills += oneGame.participants[i].stats.kills)
-  //       : (globalKills += 0);
-  //   });
-  //   console.log(globalKills);
-  // }
+  getAverageKDA(lastGamesArray, searchedSummonerName) {
+    let globalKills = 0;
+    let globalDeaths = 0;
+    let globalAssists = 0;
+    lastGamesArray.map((oneGame) => {
+      oneGame.participants.map((oneParticipant) => {
+        return oneParticipant.summonerName === searchedSummonerName
+          ? ((globalKills += oneParticipant.stats.kills),
+            (globalDeaths += oneParticipant.stats.deaths),
+            (globalAssists += oneParticipant.stats.assists))
+          : ((globalKills += 0), (globalDeaths += 0), (globalAssists += 0));
+      });
+    });
+    const killAverage = globalKills / 10;
+    const deathAverage = globalDeaths / 10;
+    const assistAverage = globalAssists / 10;
+    return (
+      <div>
+        <span>
+          {killAverage} / {deathAverage} / {assistAverage}
+        </span>
+        <div>
+          <span>{kdaCalculator(killAverage, assistAverage, deathAverage)}</span>
+        </div>
+      </div>
+    );
+  }
 
   getWinLossRatio(lastGamesArray) {
     let w = 0;
@@ -52,6 +68,7 @@ class LastGamesStatistics extends Component {
 
   componentDidMount() {
     const lastGames = this.state.lastGames;
+    const name = this.state.summonerName;
     this.getWinLossRatio(lastGames);
   }
 
@@ -59,7 +76,6 @@ class LastGamesStatistics extends Component {
     const playerName = this.state.summonerName;
     const games = this.state.lastGames;
     const stats = this.state.stats;
-    console.log(this.state);
 
     return this.state.statsLoaded ? (
       <section className="last-games-stats">
@@ -73,6 +89,9 @@ class LastGamesStatistics extends Component {
                   <span>{stats.totalGames} Games</span>
                 </div>
                 <DoughnutChart statsInfo={stats} />
+              </div>
+              <div className="col-6">
+                <div>{this.getAverageKDA(games, playerName)}</div>
               </div>
             </div>
           </div>
