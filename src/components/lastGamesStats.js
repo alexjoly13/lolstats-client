@@ -148,7 +148,12 @@ class LastGamesStatistics extends Component {
                         />
                         <p>{oneChamp.championPlayedName}</p>
                         <p>
-                          ({oneChamp.wins}V {oneChamp.defeats}L)
+                          {Math.floor(
+                            (oneChamp.wins /
+                              (oneChamp.wins + oneChamp.defeats)) *
+                              100
+                          )}{" "}
+                          % ({oneChamp.wins}V {oneChamp.defeats}L)
                         </p>
                       </div>
                     );
