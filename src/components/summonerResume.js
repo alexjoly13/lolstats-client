@@ -102,7 +102,10 @@ class SummonerResume extends Component {
           </div>
         </section>
 
-        <LastGamesStatistics gamesInfo={this.state.summStats} />
+        <LastGamesStatistics
+          gamesArray={games}
+          playerName={this.state.summonerName}
+        />
 
         <section className="games-list">
           <div className="container p-0">
