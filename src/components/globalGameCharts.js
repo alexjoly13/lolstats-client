@@ -15,52 +15,62 @@ class GlobalCharts extends Component {
     const data = [
       {
         quarter: 1,
-        damage: matchStats.teams[0].teamMembers[0].stats.totalDamageDealt,
+        damage:
+          matchStats.teams[0].teamMembers[0].stats.totalDamageDealtToChampions,
         fill: "blue",
       },
       {
         quarter: 2,
-        damage: matchStats.teams[0].teamMembers[1].stats.totalDamageDealt,
+        damage:
+          matchStats.teams[0].teamMembers[1].stats.totalDamageDealtToChampions,
         fill: "blue",
       },
       {
         quarter: 3,
-        damage: matchStats.teams[0].teamMembers[2].stats.totalDamageDealt,
+        damage:
+          matchStats.teams[0].teamMembers[2].stats.totalDamageDealtToChampions,
         fill: "blue",
       },
       {
         quarter: 4,
-        damage: matchStats.teams[0].teamMembers[3].stats.totalDamageDealt,
+        damage:
+          matchStats.teams[0].teamMembers[3].stats.totalDamageDealtToChampions,
         fill: "blue",
       },
       {
         quarter: 5,
-        damage: matchStats.teams[0].teamMembers[4].stats.totalDamageDealt,
+        damage:
+          matchStats.teams[0].teamMembers[4].stats.totalDamageDealtToChampions,
         fill: "blue",
       },
       {
         quarter: 6,
-        damage: matchStats.teams[1].teamMembers[0].stats.totalDamageDealt,
+        damage:
+          matchStats.teams[1].teamMembers[0].stats.totalDamageDealtToChampions,
         fill: "red",
       },
       {
         quarter: 7,
-        damage: matchStats.teams[1].teamMembers[1].stats.totalDamageDealt,
+        damage:
+          matchStats.teams[1].teamMembers[1].stats.totalDamageDealtToChampions,
         fill: "red",
       },
       {
         quarter: 8,
-        damage: matchStats.teams[1].teamMembers[2].stats.totalDamageDealt,
+        damage:
+          matchStats.teams[1].teamMembers[2].stats.totalDamageDealtToChampions,
         fill: "red",
       },
       {
         quarter: 9,
-        damage: matchStats.teams[1].teamMembers[3].stats.totalDamageDealt,
+        damage:
+          matchStats.teams[1].teamMembers[3].stats.totalDamageDealtToChampions,
         fill: "red",
       },
       {
         quarter: 10,
-        damage: matchStats.teams[1].teamMembers[4].stats.totalDamageDealt,
+        damage:
+          matchStats.teams[1].teamMembers[4].stats.totalDamageDealtToChampions,
         fill: "red",
       },
     ];
