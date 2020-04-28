@@ -1,4 +1,9 @@
+.summoner-resume {
+  margin: 1rem 3rem 2rem 3rem;
+}
+
 .summId-bg {
+  height: 300px;
   background-color: #e1e2e2;
 }
 

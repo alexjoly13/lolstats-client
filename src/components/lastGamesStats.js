@@ -171,7 +171,7 @@ class LastGamesStatistics extends Component {
                         <div>
                           {winrateCalculator(oneChamp.wins, oneChamp.defeats)}{" "}
                           <span className="count-details">
-                            ({oneChamp.wins}V {oneChamp.defeats}L)
+                            ({oneChamp.wins}W {oneChamp.defeats}D)
                           </span>
                           <span className="ml-3">
                             {kdaCalculator(

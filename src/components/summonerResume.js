@@ -29,7 +29,6 @@ class SummonerResume extends Component {
       summonerName: this.props.location.state.summsInfo.summoner.name,
       summDetails: [this.props.location.state.summsInfo.summoner],
       summMatches: [this.props.location.state.summsInfo.lastGames],
-      summStats: this.props.location.state.summsInfo.lastGamesStats,
     };
   }
 
@@ -38,11 +37,10 @@ class SummonerResume extends Component {
     const games = this.state.summMatches[0];
     const formattedRank =
       player[0].ranks.tier + player[0].ranks.rank.toString();
-    console.log(formattedRank);
     return (
       <section className="mb-5">
-        <section className="summoner-resume m-5">
-          <div className="container summId-bg">
+        <section className="summoner-resume">
+          <div className="container d-flex summId-bg">
             {player.map((oneSummoner) => {
               return (
                 <div
