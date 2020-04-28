@@ -146,7 +146,7 @@ class GameDetails extends Component {
                                         {KPCalculator(
                                           getTotalKills(
                                             match.participants,
-                                            100
+                                            200
                                           ),
                                           onePlayer.stats.kills,
                                           onePlayer.stats.assists
