@@ -28,6 +28,10 @@
   width: 100%;
 }
 
+.specific-champ-numbers-container {
+  min-width: 191px;
+}
+
 .count-details {
   font-size: 13px;
 }

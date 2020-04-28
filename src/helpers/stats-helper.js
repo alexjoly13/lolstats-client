@@ -63,3 +63,40 @@ export function winOrLose(team) {
 export function KPCalculator(totalTeamKills, playerKills, playerAssists) {
   return Math.floor(((playerKills + playerAssists) / totalTeamKills) * 100);
 }
+
+export function getAverageKDA(lastGamesArray, searchedSummonerName) {
+  let globalKills = 0;
+  let globalDeaths = 0;
+  let globalAssists = 0;
+  lastGamesArray.map((oneGame) => {
+    oneGame.participants.map((oneParticipant) => {
+      return oneParticipant.summonerName === searchedSummonerName
+        ? ((globalKills += oneParticipant.stats.kills),
+          (globalDeaths += oneParticipant.stats.deaths),
+          (globalAssists += oneParticipant.stats.assists))
+        : ((globalKills += 0), (globalDeaths += 0), (globalAssists += 0));
+    });
+  });
+  const killAverage = globalKills / 10;
+  const deathAverage = globalDeaths / 10;
+  const assistAverage = globalAssists / 10;
+  return (
+    <div>
+      <div>
+        <span className="kills-text-color font-weight-bold">{killAverage}</span>{" "}
+        <span> / </span>
+        <span className="deaths-text-color font-weight-bold">
+          {deathAverage}
+        </span>{" "}
+        <span> / </span>
+        <span className="assists-text-color font-weight-bold">
+          {assistAverage}
+        </span>
+      </div>
+
+      <div>
+        <span>{kdaCalculator(killAverage, assistAverage, deathAverage)}</span>
+      </div>
+    </div>
+  );
+}

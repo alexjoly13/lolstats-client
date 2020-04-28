@@ -107,7 +107,7 @@ export function itemImgGetter(itemId) {
 export function getFrameStyle(key) {
   let frameStyle;
   return (frameStyle = {
-    width: "75%",
+    width: "100%",
     height: "300px",
     color: "white",
     backgroundImage: `url(https://cdn.communitydragon.org/${version}/champion/${key}/splash-art/centered)`,

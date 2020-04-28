@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import DoughnutChart from "./doughnutChart";
-import { kdaCalculator, winrateCalculator } from "../helpers/stats-helper";
-import { champImg } from "../helpers/images-helper";
+import {
+  kdaCalculator,
+  winrateCalculator,
+  getAverageKDA,
+} from "../helpers/stats-helper";
+import { champImg, rankImgProvider } from "../helpers/images-helper";
 
 import "./lastGamesStats.css";
 
@@ -9,134 +13,65 @@ class LastGamesStatistics extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      summonerID: this.props.summonerInfos,
       lastGames: this.props.gamesArray,
       summonerName: this.props.playerName,
-      stats: {
-        wins: 0,
-        defeats: 0,
-        totalGames: this.props.gamesArray.length,
-        winrate: 0,
-      },
-      champsPlayed: [],
+      stats: this.props.lastGamesStats,
+      champsPlayed: this.props.championsPlayedArray,
       statsLoaded: false,
     };
   }
 
-  getAverageKDA(lastGamesArray, searchedSummonerName) {
-    let globalKills = 0;
-    let globalDeaths = 0;
-    let globalAssists = 0;
-    lastGamesArray.map((oneGame) => {
-      oneGame.participants.map((oneParticipant) => {
-        return oneParticipant.summonerName === searchedSummonerName
-          ? ((globalKills += oneParticipant.stats.kills),
-            (globalDeaths += oneParticipant.stats.deaths),
-            (globalAssists += oneParticipant.stats.assists))
-          : ((globalKills += 0), (globalDeaths += 0), (globalAssists += 0));
-      });
-    });
-    const killAverage = globalKills / 10;
-    const deathAverage = globalDeaths / 10;
-    const assistAverage = globalAssists / 10;
-    return (
-      <div>
-        <div>
-          <span className="kills-text-color font-weight-bold">
-            {killAverage}
-          </span>{" "}
-          <span> / </span>
-          <span className="deaths-text-color font-weight-bold">
-            {deathAverage}
-          </span>{" "}
-          <span> / </span>
-          <span className="assists-text-color font-weight-bold">
-            {assistAverage}
-          </span>
-        </div>
-
-        <div>
-          <span>{kdaCalculator(killAverage, assistAverage, deathAverage)}</span>
-        </div>
-      </div>
-    );
-  }
-
-  getChampionsCount(lastGamesArray, searchedSummonerName) {
-    let playerGames = [];
-    lastGamesArray.map((oneGame) => {
-      oneGame.participants.map((oneParticipant) => {
-        return oneParticipant.summonerName === searchedSummonerName
-          ? playerGames.push(oneParticipant)
-          : false;
-      });
-    });
-    playerGames = Object.values(
-      playerGames.reduce((r, { championId, championPlayedName, stats }) => {
-        r[championId] = r[championId] || {
-          championId,
-          championPlayedName,
-          timesPlayed: 0,
-          wins: 0,
-          defeats: 0,
-          kills: 0,
-          deaths: 0,
-          assists: 0,
-        };
-        r[championId].timesPlayed++;
-        r[championId].kills += stats.kills;
-        r[championId].deaths += stats.deaths;
-        r[championId].assists += stats.assists;
-        stats.win === true ? r[championId].wins++ : r[championId].defeats++;
-        return r;
-      }, {})
-    );
-    const sorted = playerGames.sort((a, b) => b.timesPlayed - a.timesPlayed);
-
-    sorted.length > 3
-      ? this.setState({ champsPlayed: sorted.slice(0, 3) })
-      : this.setState({ champsPlayed: sorted });
-  }
-
-  getWinLossRatio(lastGamesArray) {
-    let w = 0;
-    let d = 0;
-    let wR = 0;
-    lastGamesArray.map((oneGame) => {
-      oneGame.summonerGameDetails.stats.win === true ? (w += 1) : (d += 1);
-
-      wR = Math.floor((w / (w + d)) * 100);
-    });
-    this.setState({
-      stats: {
-        ...this.state.stats,
-        wins: w,
-        defeats: d,
-        winrate: wR,
-      },
-      statsLoaded: true,
-    });
-  }
-
-  componentDidMount() {
-    const lastGames = this.state.lastGames;
-    const leNom = this.state.summonerName;
-    this.getWinLossRatio(lastGames);
-    this.getChampionsCount(lastGames, leNom);
-  }
-
   render() {
+    const summoner = this.state.summonerID;
     const playerName = this.state.summonerName;
     const games = this.state.lastGames;
     const stats = this.state.stats;
     const championsPool = this.state.champsPlayed;
+    const formattedRank = summoner.ranks.tier + summoner.ranks.rank.toString();
+    console.log("CHILD STATE", this.state);
 
-    console.log("Le State :", this.state);
-
-    return this.state.statsLoaded ? (
+    return (
       <section className="last-games-stats">
         <div>
           <div className="container">
             <div className="row">
+              <div className="col-4">
+                {summoner.summonerLevel >= 30 ? (
+                  <div className="row">
+                    <div className="col-6">
+                      <img
+                        src={rankImgProvider(formattedRank)}
+                        className="rank-logo"
+                        alt="rank-icon"
+                      />
+                    </div>
+
+                    <div className="col-6">
+                      <p>
+                        {summoner.ranks.tier} {summoner.ranks.rank}
+                      </p>
+                      <p>{summoner.ranks.leaguePoints} LP</p>
+                      <p>
+                        {summoner.ranks.wins} Wins / {summoner.ranks.losses}{" "}
+                        Losses
+                      </p>
+                      <p>
+                        {winrateCalculator(
+                          summoner.ranks.wins,
+                          summoner.ranks.losses
+                        )}{" "}
+                        Winrate
+                      </p>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="d-flex justify-content-center">
+                    <span>Unranked</span>
+                  </div>
+                )}
+              </div>
+
               <div className="col-4">
                 <div className="total-game-recap d-flex position-absolute">
                   <span className="mr-1">{stats.wins}W</span>
@@ -145,12 +80,8 @@ class LastGamesStatistics extends Component {
                 </div>
                 <DoughnutChart statsInfo={stats} />
                 <div className="position-absolute kda-average-absolute">
-                  {this.getAverageKDA(games, playerName)}
+                  {getAverageKDA(games, playerName)}
                 </div>
-              </div>
-
-              <div className="col-4">
-                <p>Hello Friend</p>
               </div>
 
               <div className="col-4">
@@ -164,7 +95,7 @@ class LastGamesStatistics extends Component {
                           alt="played-champ-icon"
                         />
                       </div>
-                      <div className="d-inline-block ml-2">
+                      <div className="d-inline-block ml-2 specific-champ-numbers-container">
                         <div>
                           <span>{oneChamp.championPlayedName}</span>
                         </div>
@@ -191,23 +122,24 @@ class LastGamesStatistics extends Component {
           </div>
         </div>
       </section>
-    ) : (
-      <section className="last-games-stats">
-        <div>
-          <div className="container">
-            <div className="row">
-              <div className="col-6">
-                <div className="d-flex">
-                  <span className="mr-1">{stats.wins}W</span>
-                  <span className="mr-1">{stats.defeats}D</span>
-                  <span>{stats.totalGames} Games</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
     );
+    // ) : (
+    //   <section className="last-games-stats">
+    //     <div>
+    //       <div className="container">
+    //         <div className="row">
+    //           <div className="col-6">
+    //             <div className="d-flex">
+    //               <span className="mr-1">{stats.wins}W</span>
+    //               <span className="mr-1">{stats.defeats}D</span>
+    //               <span>{stats.totalGames} Games</span>
+    //             </div>
+    //           </div>
+    //         </div>
+    //       </div>
+    //     </div>
+    //   </section>
+    // );
   }
 }
 
