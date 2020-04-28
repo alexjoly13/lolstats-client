@@ -16,7 +16,7 @@ class DoughnutChart extends Component {
     const options = {
       animationEnabled: true,
       width: 100,
-      height: 180,
+      height: 140,
       subtitles: [
         {
           text: stats.winrate + "%",
@@ -37,7 +37,7 @@ class DoughnutChart extends Component {
     };
 
     return (
-      <div className="win-loss-chart">
+      <div className="win-loss-chart ml-2 position-relative">
         <CanvasJSChart
           options={options}
           /* onRef={ref => this.chart = ref} */

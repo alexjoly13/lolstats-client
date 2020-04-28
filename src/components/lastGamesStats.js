@@ -3,6 +3,8 @@ import DoughnutChart from "./doughnutChart";
 import { kdaCalculator } from "../helpers/stats-helper";
 import { champImg } from "../helpers/images-helper";
 
+import "./lastGamesStats.css";
+
 class LastGamesStatistics extends Component {
   constructor(props) {
     super(props);
@@ -38,9 +40,20 @@ class LastGamesStatistics extends Component {
     const assistAverage = globalAssists / 10;
     return (
       <div>
-        <span>
-          {killAverage} / {deathAverage} / {assistAverage}
-        </span>
+        <div>
+          <span className="kills-text-color font-weight-bold">
+            {killAverage}
+          </span>{" "}
+          <span> / </span>
+          <span className="deaths-text-color font-weight-bold">
+            {deathAverage}
+          </span>{" "}
+          <span> / </span>
+          <span className="assists-text-color font-weight-bold">
+            {assistAverage}
+          </span>
+        </div>
+
         <div>
           <span>{kdaCalculator(killAverage, assistAverage, deathAverage)}</span>
         </div>
@@ -125,17 +138,21 @@ class LastGamesStatistics extends Component {
           <div className="container">
             <div className="row">
               <div className="col-4">
-                <div className="d-flex">
+                <div className="total-game-recap d-flex position-absolute">
                   <span className="mr-1">{stats.wins}W</span>
                   <span className="mr-1">{stats.defeats}D</span>
                   <span>{stats.totalGames} Games</span>
                 </div>
                 <DoughnutChart statsInfo={stats} />
-                <div>{this.getAverageKDA(games, playerName)}</div>
+                <div className="position-absolute kda-average-absolute">
+                  {this.getAverageKDA(games, playerName)}
+                </div>
               </div>
+
               <div className="col-4">
                 <p>Hello Friend</p>
               </div>
+
               <div className="col-4">
                 <div>
                   {championsPool.map((oneChamp) => {
@@ -154,6 +171,13 @@ class LastGamesStatistics extends Component {
                               100
                           )}{" "}
                           % ({oneChamp.wins}V {oneChamp.defeats}L)
+                        </p>
+                        <p>
+                          {kdaCalculator(
+                            oneChamp.kills,
+                            oneChamp.assists,
+                            oneChamp.deaths
+                          )}
                         </p>
                       </div>
                     );

@@ -78,7 +78,7 @@ class GameDetails extends Component {
                         {oneTeam.teamMembers.map((onePlayer) => {
                           return (
                             <div className="row mb-2">
-                              <div className="col-4">
+                              <div className="col-4 d-flex align-self-center">
                                 <img
                                   src={champImg(onePlayer.championId)}
                                   className="matchdetails-champ-icon mr-1"
@@ -157,7 +157,7 @@ class GameDetails extends Component {
                                   </div>
                                 </div>
                               </div>
-                              <div className="col-4">
+                              <div className="col-4 d-flex align-self-center">
                                 <div className="d-flex justify-content-end">
                                   <span>{onePlayer.summonerName}</span>
                                   <img

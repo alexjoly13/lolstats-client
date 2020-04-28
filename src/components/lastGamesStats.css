@@ -1,0 +1,21 @@
+.total-game-recap {
+  z-index: 2;
+  top: -7px;
+}
+
+.kda-average-absolute {
+  top: 45px;
+  left: 135px;
+}
+
+.kills-text-color {
+  color: #12d678;
+}
+
+.deaths-text-color {
+  color: red;
+}
+
+.assists-text-color {
+  color: orange;
+}
