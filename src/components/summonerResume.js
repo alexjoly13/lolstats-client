@@ -36,6 +36,9 @@ class SummonerResume extends Component {
   render() {
     const player = this.state.summDetails;
     const games = this.state.summMatches[0];
+    const formattedRank =
+      player[0].ranks.tier + player[0].ranks.rank.toString();
+    console.log(formattedRank);
     return (
       <section className="mb-5">
         <section className="summoner-resume m-5">
@@ -66,7 +69,7 @@ class SummonerResume extends Component {
                       <div className="row">
                         <div className="col-6 align-self-center">
                           <img
-                            src={rankImgProvider(oneSummoner.ranks.tier)}
+                            src={rankImgProvider(formattedRank)}
                             className="rank-logo"
                             alt="rank-icon"
                           />

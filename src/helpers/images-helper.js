@@ -6,24 +6,60 @@ const version = Cookies.get("version");
 
 export function rankImgProvider(rankedTier) {
   switch (rankedTier) {
-    case "IRON":
-      return "/images/ranked-emblems/Emblem_Iron.png";
-    case "BRONZE":
-      return "/images/ranked-emblems/Emblem_Bronze.png";
-    case "SILVER":
-      return "/images/ranked-emblems/Emblem_Silver.png";
-    case "GOLD":
-      return "/images/ranked-emblems/Emblem_Gold.png";
-    case "PLATINUM":
-      return "/images/ranked-emblems/Emblem_Platinum.png";
-    case "DIAMOND":
-      return "/images/ranked-emblems/Emblem_Diamond.png";
-    case "MASTER":
-      return "/images/ranked-emblems/Emblem_Master.png";
-    case "GRANDMASTER":
-      return "/images/ranked-emblems/Emblem_Grandmaster.png";
-    case "CHALLENGER":
-      return "/images/ranked-emblems/Emblem_Challenger.png";
+    case "IRONIV":
+      return "/images/ranked-emblems/Iron_4.png";
+    case "IRONIII":
+      return "/images/ranked-emblems/Iron_3.png";
+    case "IRONII":
+      return "/images/ranked-emblems/Iron_2.png";
+    case "IRONI":
+      return "/images/ranked-emblems/Iron_1.png";
+    case "BRONZEIV":
+      return "/images/ranked-emblems/Bronze_4.png";
+    case "BRONZEIII":
+      return "/images/ranked-emblems/Bronze_3.png";
+    case "BRONZEII":
+      return "/images/ranked-emblems/Bronze_2.png";
+    case "BRONZEI":
+      return "/images/ranked-emblems/Bronze_1.png";
+    case "SILVERIV":
+      return "/images/ranked-emblems/Silver_4.png";
+    case "SILVERIII":
+      return "/images/ranked-emblems/Silver_3.png";
+    case "SILVERII":
+      return "/images/ranked-emblems/Silver_2.png";
+    case "SILVERI":
+      return "/images/ranked-emblems/Silver_1.png";
+    case "GOLDIV":
+      return "/images/ranked-emblems/Gold_4.png";
+    case "GOLDIII":
+      return "/images/ranked-emblems/Gold_3.png";
+    case "GOLDII":
+      return "/images/ranked-emblems/Gold_2.png";
+    case "GOLDI":
+      return "/images/ranked-emblems/Gold_1.png";
+    case "PLATINUMIV":
+      return "/images/ranked-emblems/Platinum_4.png";
+    case "PLATINUMIII":
+      return "/images/ranked-emblems/Platinum_3.png";
+    case "PLATINUMII":
+      return "/images/ranked-emblems/Platinum_2.png";
+    case "PLATINUMI":
+      return "/images/ranked-emblems/Platinum_1.png";
+    case "DIAMONDIV":
+      return "/images/ranked-emblems/Diamond_4.png";
+    case "DIAMONDIII":
+      return "/images/ranked-emblems/Diamond_3.png";
+    case "DIAMONDII":
+      return "/images/ranked-emblems/Diamond_2.png";
+    case "DIAMONDI":
+      return "/images/ranked-emblems/Diamond_1.png";
+    case "MASTERI":
+      return "/images/ranked-emblems/Master.png";
+    case "GRANDMASTERI":
+      return "/images/ranked-emblems/Grandmaster.png";
+    case "CHALLENGERI":
+      return "/images/ranked-emblems/Challenger.png";
     default:
       console.log("Sorry something went wrong");
   }
@@ -46,9 +82,9 @@ export function summonerSpellShower(pickedSpell) {
   let address;
   spells.map((oneSpell) => {
     if (parseInt(oneSpell.key) === pickedSpell) {
-      address =
+      return (address =
         `http://ddragon.leagueoflegends.com/cdn/${version}/img/spell/` +
-        oneSpell.image.full;
+        oneSpell.image.full);
     }
   });
   return address;
