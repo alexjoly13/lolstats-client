@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import DoughnutChart from "./doughnutChart";
-import { kdaCalculator } from "../helpers/stats-helper";
+import { kdaCalculator, winrateCalculator } from "../helpers/stats-helper";
 import { champImg } from "../helpers/images-helper";
 
 import "./lastGamesStats.css";
@@ -154,36 +154,38 @@ class LastGamesStatistics extends Component {
               </div>
 
               <div className="col-4">
-                <div>
-                  {championsPool.map((oneChamp) => {
-                    return (
-                      <div className="row">
+                {championsPool.map((oneChamp) => {
+                  return (
+                    <div className="champ-agreg-resume d-flex mb-1 justify-content-center">
+                      <div className="d-inline-flex lastGameStats-champ-icon-container">
                         <img
-                          className="inGame-champs-img"
+                          className="lastGameStats-champ-icon"
                           src={champImg(oneChamp.championId)}
                           alt="played-champ-icon"
                         />
-                        <p>{oneChamp.championPlayedName}</p>
-                        <p>
-                          {Math.floor(
-                            (oneChamp.wins /
-                              (oneChamp.wins + oneChamp.defeats)) *
-                              100
-                          )}{" "}
-                          % ({oneChamp.wins}V {oneChamp.defeats}L)
-                        </p>
-                        <p>
-                          {kdaCalculator(
-                            oneChamp.kills,
-                            oneChamp.assists,
-                            oneChamp.deaths
-                          )}
-                        </p>
                       </div>
-                    );
-                  })}
-                  <span></span>
-                </div>
+                      <div className="d-inline-block ml-2">
+                        <div>
+                          <span>{oneChamp.championPlayedName}</span>
+                        </div>
+                        <div>
+                          {winrateCalculator(oneChamp.wins, oneChamp.defeats)}{" "}
+                          <span className="count-details">
+                            ({oneChamp.wins}V {oneChamp.defeats}L)
+                          </span>
+                          <span className="ml-3">
+                            {kdaCalculator(
+                              oneChamp.kills,
+                              oneChamp.assists,
+                              oneChamp.deaths
+                            )}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+                <span></span>
               </div>
             </div>
           </div>

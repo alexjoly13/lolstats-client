@@ -67,7 +67,7 @@ class SummonerResume extends Component {
                   <div className="col-4 align-self-center">
                     {oneSummoner.summonerLevel >= 30 ? (
                       <div className="row">
-                        <div className="col-6 align-self-center">
+                        <div className="col-6">
                           <img
                             src={rankImgProvider(formattedRank)}
                             className="rank-logo"

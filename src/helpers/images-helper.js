@@ -104,8 +104,6 @@ export function itemImgGetter(itemId) {
   }
 }
 
-// CHAMPION DETAILS
-
 export function getFrameStyle(key) {
   let frameStyle;
   return (frameStyle = {

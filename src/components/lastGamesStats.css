@@ -19,3 +19,15 @@
 .assists-text-color {
   color: orange;
 }
+
+.lastGameStats-champ-icon-container {
+  width: 14%;
+}
+
+.lastGameStats-champ-icon {
+  width: 100%;
+}
+
+.count-details {
+  font-size: 13px;
+}
