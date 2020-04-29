@@ -11,6 +11,7 @@ import GameDetails from "./components/gameDetails";
 import Footer from "./components/footer";
 import { checkLastVersion } from "./api";
 import EsportHomepage from "./components/ESportHomePage";
+import LeagueHomePage from "./components/LeagueHomePage";
 
 let versionCookie = Cookies.get("version");
 
@@ -53,6 +54,7 @@ class App extends Component {
               component={GameDetails}
             />
             <Route exact path="/esport" component={EsportHomepage} />
+            <Route path="/esport/:leagueName" component={LeagueHomePage} />
           </Switch>
         </div>
         <Footer />

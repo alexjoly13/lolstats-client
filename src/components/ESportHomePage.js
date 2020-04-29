@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import "./ESportHomePage.css";
 import { getLeaguesList } from "../api";
 import { getLeagueLocation } from "../helpers/esport-helper";
@@ -8,6 +9,7 @@ class EsportHomepage extends Component {
     super(props);
     this.state = {
       leagues: [],
+      matches: [],
     };
   }
 
@@ -15,15 +17,17 @@ class EsportHomepage extends Component {
     getLeaguesList()
       .then((result) => {
         this.setState({
-          leagues: result.data,
+          leagues: result.data.leaguesList,
+          matches: result.data.matchList,
         });
-        console.log(this.state.leagues);
       })
       .catch((err) => console.log(err));
   }
 
   render() {
     const leagues = this.state.leagues;
+    const eSportMatches = this.state.matches;
+    console.log(this.state);
     return (
       <section>
         <div className="container">
@@ -31,17 +35,30 @@ class EsportHomepage extends Component {
             {leagues.map((oneLeague) => {
               return (
                 <div className="col-3">
-                  <div>
-                    <img
-                      className="league-logo"
-                      src={oneLeague.image_url}
-                      alt={oneLeague.name}
-                    ></img>
-                    <p>
-                      <strong>{oneLeague.name}</strong>{" "}
-                      {getLeagueLocation(oneLeague.id)}
-                    </p>
-                  </div>
+                  <Link to={`esport/${oneLeague.name.toLowerCase()}`}>
+                    <div>
+                      <img
+                        className="league-logo"
+                        src={oneLeague.image_url}
+                        alt={oneLeague.name}
+                      ></img>
+                      <p>
+                        <strong>{oneLeague.name}</strong>{" "}
+                        {getLeagueLocation(oneLeague.id)}
+                      </p>
+                    </div>
+                  </Link>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+        <div className="container">
+          <div className="row">
+            {eSportMatches[0].map((oneGame) => {
+              return (
+                <div>
+                  <span>{oneGame.name}</span>
                 </div>
               );
             })}

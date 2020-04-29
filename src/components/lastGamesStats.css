@@ -1,5 +1,21 @@
+.last-games-stats {
+  margin-bottom: 2rem;
+}
+
 .last-games-recap {
   font-size: 13px;
+}
+
+.rank-icon-container {
+  width: 25%;
+}
+
+.rank-logo {
+  width: 100%;
+}
+
+.rank-displayer {
+  font-size: 22px;
 }
 
 .kills-text-color {
@@ -28,4 +44,8 @@
 
 .count-details {
   font-size: 13px;
+}
+
+.stats-separator {
+  border-right: inset;
 }

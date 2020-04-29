@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronCircleRight } from "@fortawesome/free-solid-svg-icons";
 
 import {
-  rankImgProvider,
   profileIconProvider,
   champImg,
   summonerSpellShower,
@@ -15,7 +14,7 @@ import {
   getGameDuration,
   getGameQueue,
 } from "../helpers/game-infos-helper";
-import { winrateCalculator, kdaCalculator } from "../helpers/stats-helper";
+import { kdaCalculator } from "../helpers/stats-helper";
 
 import LastGamesStatistics from "./lastGamesStats";
 import ItemsContainer from "./ItemsContainer";
@@ -291,25 +290,24 @@ class SummonerResume extends Component {
                         </div>
                       </div>
                     </div>
-                    <div className="col-1 align-self-center">
-                      <div className="d-flex justify-content-center">
-                        <div>
-                          <Link
-                            to={{
-                              pathname: `/summoner/${this.state.summonerName}/${oneGame.gameId}`,
-                              state: {
-                                specificGameDetails: oneGame,
-                              },
-                            }}
-                          >
+                    <div className="col-1 d-flex">
+                      <div className="d-flex align-items-center">
+                        <Link
+                          to={{
+                            pathname: `/summoner/${this.state.summonerName}/${oneGame.gameId}`,
+                            state: {
+                              specificGameDetails: oneGame,
+                            },
+                          }}
+                        >
+                          <div className="d-flex justify-content-center">
                             <FontAwesomeIcon
                               icon={faChevronCircleRight}
                               size="2x"
                               color="#495057"
                             />
-                            <p className="see-more-link">Match Details</p>
-                          </Link>
-                        </div>
+                          </div>
+                        </Link>
                       </div>
                     </div>
                   </div>

@@ -15,7 +15,7 @@ class DoughnutChart extends Component {
     const stats = this.state.gameStats;
     const options = {
       animationEnabled: true,
-      width: 100,
+      width: 120,
       height: 140,
       subtitles: [
         {

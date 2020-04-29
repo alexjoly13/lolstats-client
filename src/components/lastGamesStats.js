@@ -36,10 +36,10 @@ class LastGamesStatistics extends Component {
         <div>
           <div className="container">
             <div className="row">
-              <div className="col-4">
+              <div className="col-4 d-flex align-items-center stats-separator">
                 {summoner.summonerLevel >= 30 ? (
-                  <div className="row">
-                    <div className="col-6">
+                  <div className="d-flex justify-content-center">
+                    <div className="rank-icon-container">
                       <img
                         src={rankImgProvider(formattedRank)}
                         className="rank-logo"
@@ -47,22 +47,35 @@ class LastGamesStatistics extends Component {
                       />
                     </div>
 
-                    <div className="col-6">
-                      <p>
-                        {summoner.ranks.tier} {summoner.ranks.rank}
-                      </p>
-                      <p>{summoner.ranks.leaguePoints} LP</p>
-                      <p>
-                        {summoner.ranks.wins} Wins / {summoner.ranks.losses}{" "}
+                    <div className="ml-3">
+                      <div>
+                        <span className="rank-displayer font-weight-bold">
+                          {summoner.ranks.tier} {summoner.ranks.rank}
+                        </span>
+                      </div>
+                      <div>
+                        <span>{summoner.ranks.leaguePoints} League Points</span>
+                      </div>
+                      <div>
+                        <span className="kills-text-color">
+                          {summoner.ranks.wins}{" "}
+                        </span>{" "}
+                        Wins /
+                        <span className="deaths-text-color">
+                          {" "}
+                          {summoner.ranks.losses}{" "}
+                        </span>
                         Losses
-                      </p>
-                      <p>
-                        {winrateCalculator(
-                          summoner.ranks.wins,
-                          summoner.ranks.losses
-                        )}{" "}
-                        Winrate
-                      </p>
+                      </div>
+                      <div>
+                        <span>
+                          {winrateCalculator(
+                            summoner.ranks.wins,
+                            summoner.ranks.losses
+                          )}{" "}
+                          Winrate
+                        </span>
+                      </div>
                     </div>
                   </div>
                 ) : (
@@ -72,7 +85,7 @@ class LastGamesStatistics extends Component {
                 )}
               </div>
 
-              <div className="col-4 d-flex justify-content-center align-items-center">
+              <div className="col-4 d-flex justify-content-center align-items-center stats-separator">
                 <DoughnutChart statsInfo={stats} />
                 <div className="ml-2">
                   {" "}
