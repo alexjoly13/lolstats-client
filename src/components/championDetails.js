@@ -3,6 +3,8 @@ import { getChampionDetails } from "../api";
 import { champIconProvider } from "../helpers/images-helper";
 import { getFrameStyle } from "../helpers/images-helper";
 
+import "./championDetails.css";
+
 class ChampionDetails extends Component {
   constructor(props) {
     super(props);
@@ -30,28 +32,30 @@ class ChampionDetails extends Component {
       <section className="champion-detailed-infos d-flex justify-content-center mt-4">
         {champInfos.map((oneInfo) => {
           return (
-            <div style={getFrameStyle(oneInfo.id)}>
-              <div className="h-100 d-flex align-items-center">
-                <div className="container">
-                  <div className="row">
-                    <div className="col-2">
-                      <img
-                        src={champIconProvider(oneInfo.image.full)}
-                        alt={oneInfo.name}
-                      />
-                    </div>
-                    <div className="col-3 align-self-center">
-                      <div>
-                        <h3>{oneInfo.name}</h3>
+            <div className="container">
+              <div style={getFrameStyle(oneInfo.id)}>
+                <div className="h-100 d-flex align-items-center">
+                  <div className="container">
+                    <div className="row">
+                      <div className="col-2">
+                        <img
+                          src={champIconProvider(oneInfo.image.full)}
+                          alt={oneInfo.name}
+                        />
                       </div>
-                      <div>
-                        {oneInfo.tags.map((oneTag, index) => {
-                          return (
-                            <div key={index}>
-                              <span>{oneTag}</span>
-                            </div>
-                          );
-                        })}
+                      <div className="col-3 align-self-center">
+                        <div>
+                          <h3>{oneInfo.name}</h3>
+                        </div>
+                        <div>
+                          {oneInfo.tags.map((oneTag, index) => {
+                            return (
+                              <div key={index}>
+                                <span>{oneTag}</span>
+                              </div>
+                            );
+                          })}
+                        </div>
                       </div>
                     </div>
                   </div>
