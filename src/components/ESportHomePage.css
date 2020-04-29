@@ -2,3 +2,52 @@
   width: 60%;
   height: 153px;
 }
+
+.match-infos {
+  min-height: 100px;
+  background-color: #80908f45;
+  border-bottom: solid 2px white;
+}
+
+.league-logo-match-container {
+  width: 7%;
+  border-right: solid 2px white;
+}
+
+.match-league-logo {
+  width: 90%;
+}
+
+.team-infos-container {
+  width: 90%;
+}
+
+.displayed-match-infos {
+  width: 40%;
+}
+
+.in-match-team-logo-container {
+  width: 16%;
+}
+
+.in-match-team-logo {
+  width: 100%;
+}
+
+.team-acronym {
+  font-size: 30px;
+}
+
+.versus-mention {
+  font-size: 13px;
+}
+
+.game-schedule {
+  width: 7%;
+}
+
+.game-time-indicator {
+  min-height: 70%;
+  font-size: 22px;
+  border-left: solid 2px white;
+}
