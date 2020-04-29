@@ -72,14 +72,15 @@ class LastGamesStatistics extends Component {
                 )}
               </div>
 
-              <div className="col-4">
-                <div className="total-game-recap d-flex position-absolute">
-                  <span className="mr-1">{stats.wins}W</span>
-                  <span className="mr-1">{stats.defeats}D</span>
-                  <span>{stats.totalGames} Games</span>
-                </div>
+              <div className="col-4 d-flex justify-content-center align-items-center">
                 <DoughnutChart statsInfo={stats} />
-                <div className="position-absolute kda-average-absolute">
+                <div className="ml-2">
+                  {" "}
+                  <div className="last-games-recap">
+                    <span className="mr-1">{stats.wins}W</span>
+                    <span className="mr-1">{stats.defeats}D</span>
+                    <span>{stats.totalGames} Games</span>
+                  </div>
                   {getAverageKDA(games, playerName)}
                 </div>
               </div>

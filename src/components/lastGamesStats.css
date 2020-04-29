@@ -1,11 +1,5 @@
-.total-game-recap {
-  z-index: 2;
-  top: -7px;
-}
-
-.kda-average-absolute {
-  top: 45px;
-  left: 135px;
+.last-games-recap {
+  font-size: 13px;
 }
 
 .kills-text-color {
