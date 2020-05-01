@@ -1,3 +1,12 @@
+.esport-banner {
+  width: 100%;
+  height: 300px;
+  color: white;
+  background-image: url("../assets/images/esports/test.jpg");
+  background-position-y: -88px;
+  background-size: cover;
+}
+
 .league-logo {
   width: 60%;
   height: 153px;

@@ -32,6 +32,12 @@ class EsportHomepage extends Component {
     console.log(this.state);
     return this.state.dataLoaded ? (
       <section>
+        <div className="esport-intro mt-4">
+          <div className="container">
+            <div className="esport-banner"></div>
+          </div>
+        </div>
+
         <div className="container">
           <div className="row">
             {leagues.map((oneLeague) => {
