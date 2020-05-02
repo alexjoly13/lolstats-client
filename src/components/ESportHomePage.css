@@ -8,11 +8,11 @@
 }
 
 .events {
-  width: 60%;
+  width: 80%;
 }
 
-.webkit-event-container {
-  max-height: 80vh;
+.event-container {
+  max-height: 60vh;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -20,22 +20,23 @@
 }
 
 .match-row {
-  min-width: 100%;
+  max-width: 100%;
 }
 
 .match-infos {
+  width: 97%;
   min-height: 100px;
   background-color: #80908f45;
   border-bottom: solid 2px white;
 }
 
 .league-logo-match-container {
-  width: 7%;
+  width: 9%;
   border-right: solid 2px white;
 }
 
 .match-league-logo {
-  width: 90%;
+  width: 60%;
 }
 
 .team-infos-container {
@@ -73,7 +74,17 @@
 }
 
 .sidebar-filters {
-  width: 30%;
+  width: 20%;
+}
+
+.league-filter-button {
+  min-width: 100%;
+}
+
+.league-filter-button-active {
+  min-height: 75px;
+  min-width: 100%;
+  background-color: aquamarine;
 }
 
 .league-filter-item {
