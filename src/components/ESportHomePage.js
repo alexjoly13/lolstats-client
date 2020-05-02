@@ -42,9 +42,46 @@ class EsportHomepage extends Component {
     }
   }
 
+  isMatchLive(gameToCheck) {
+    const actualDate = new Date();
+
+    if (
+      new Date(gameToCheck.begin_at) < actualDate &&
+      gameToCheck.end_at === null
+    ) {
+      return <span>LIVE</span>;
+    }
+  }
+
+  scrollToTodaysGame(matchArray) {
+    const date = new Date("2020-04-05T12:00:00Z");
+    let gameToScrollTo;
+
+    const sorted = matchArray.sort((a, b) => {
+      return (
+        date - new Date(b.scheduled_at) - (date - new Date(a.scheduled_at))
+      );
+    });
+
+    const mostRecentGame = this.state.matches.length - 1;
+
+    console.log(mostRecentGame);
+
+    if (mostRecentGame > 1) {
+      gameToScrollTo = document.getElementById(matchArray[mostRecentGame].id);
+
+      gameToScrollTo.scrollIntoView({
+        behavior: "auto",
+        block: "start",
+      });
+    } else {
+      return;
+    }
+  }
+
   componentDidMount() {
     getLeaguesList()
-      .then((result) => {
+      .then(async (result) => {
         let LCS,
           LEC,
           LCK,
@@ -66,7 +103,7 @@ class EsportHomepage extends Component {
           });
         });
         const sorted = tempArray.sort(
-          (a, b) => new Date(b.begin_at) - new Date(a.begin_at)
+          (a, b) => new Date(a.begin_at) - new Date(b.begin_at)
         );
         this.setState({
           leagues: result.data.leaguesList,
@@ -80,13 +117,16 @@ class EsportHomepage extends Component {
           matches: sorted,
           dataLoaded: true,
         });
+
+        const matches = this.state.matches;
+
+        await this.scrollToTodaysGame(matches);
       })
       .catch((err) => console.log(err));
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.filters !== this.state.filters) {
-      const matchArray = this.state.matches;
       const particularMatches = [];
 
       const filtersState = this.state.filters;
@@ -97,35 +137,20 @@ class EsportHomepage extends Component {
       });
 
       active.forEach((oneActiveFilter) => {
-        // particularMatches.push(this.state.matchesByLeague[oneActiveFilter]);
         this.state.matchesByLeague[oneActiveFilter].forEach((oneGame) => {
           particularMatches.push(oneGame);
         });
       });
 
       const sortedFilteredMatches = particularMatches.sort(
-        (a, b) => new Date(b.begin_at) - new Date(a.begin_at)
+        (a, b) => new Date(a.begin_at) - new Date(b.begin_at)
       );
 
-      // const newArray = matchArray.filter((element) => {
-      //   return element.league.name !== "LCS";
-      // });
-
-      // const fullMatches = newArray
-      //   .concat(particularMatches)
-      //   .sort((a, b) => new Date(b.begin_at) - new Date(a.begin_at));
-
-      // console.log(particularMatches);
-
-      // this.state.filters.LCS === true
-      //   ? this.setState({
-      //       matches: fullMatches,
-      //     })
-      //   : this.setState({ matches: newArray });
       this.setState({
         matches: sortedFilteredMatches,
       });
     }
+    this.scrollToTodaysGame(this.state.matches);
   }
 
   render() {
@@ -134,20 +159,21 @@ class EsportHomepage extends Component {
     const filters = this.state.filters;
     return this.state.dataLoaded ? (
       <section>
-        <div className="esport-intro mt-4 mb-3">
-          <div className="container">
-            <div className="esport-banner"></div>
-          </div>
+        <div className="esport-intro mt-4 mb-3 d-flex justify-content-center">
+          <div className="esport-banner"></div>
         </div>
 
-        <div className="d-flex justify-content-around">
+        <div className="d-flex justify-content-center mb-4">
           <div className="events d-inline-flex">
             <div className="container">
               <div className="row">
-                <div className="event-container">
+                <div id="events" className="event-container">
                   {matchList.map((oneMatch, i) => {
                     return (
-                      <div className="row match-row d-flex justify-content-center">
+                      <div
+                        id={oneMatch.id}
+                        className="row match-row d-flex justify-content-center"
+                      >
                         {matchList[i].scheduled_at.slice(0, 10) ===
                         matchList[i].scheduled_at.slice(0, 10) ? (
                           <span>{oneMatch.scheduled_at.slice(0, 10)}</span>
@@ -161,8 +187,9 @@ class EsportHomepage extends Component {
                               className="match-league-logo"
                             />
                           </div>
+                          <div>{this.isMatchLive(oneMatch)}</div>
                           <div className="team-infos-container d-flex justify-content-center">
-                            <div className="displayed-match-infos d-flex align-items-center justify-content-around">
+                            <div className="displayed-match-infos d-flex align-items-center">
                               <div className="in-match-team-logo-container">
                                 <img
                                   src={oneMatch.opponents[0].opponent.image_url}
@@ -170,7 +197,7 @@ class EsportHomepage extends Component {
                                 />
                               </div>
                               <span className="team-acronym font-weight-bold">
-                                {oneMatch.opponents[0].opponent.acronym}
+                                {oneMatch.opponents[0].opponent.name}
                               </span>{" "}
                               <span className="team-1-score">
                                 {oneMatch.results[0].score}
@@ -180,7 +207,7 @@ class EsportHomepage extends Component {
                                 {oneMatch.results[1].score}
                               </span>
                               <span className="team-acronym font-weight-bold">
-                                {oneMatch.opponents[1].opponent.acronym}
+                                {oneMatch.opponents[1].opponent.name}
                               </span>
                               <div className="in-match-team-logo-container">
                                 <img
@@ -208,12 +235,13 @@ class EsportHomepage extends Component {
             <div>
               {leagues.map((oneLeague) => {
                 return (
-                  <div className="league-filter-item d-flex align-items-center">
+                  <div className="league-filter-item mb-2 h-100 d-flex align-items-center">
                     {filters[oneLeague.name] ? (
                       <button
-                        className="league-filter-button-active"
+                        className="league-filter-button button-active"
                         onClick={() => this.handleClick(oneLeague.name)}
                       >
+                        <div className="active-mark"></div>
                         <div>
                           <img
                             className="league-logo"
