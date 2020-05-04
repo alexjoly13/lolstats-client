@@ -16,6 +16,7 @@ class EsportHomepage extends Component {
         LEC: true,
         LCK: true,
         LPL: true,
+        "European Masters": true,
       },
     };
     this.handleClick = this.handleClick.bind(this);
@@ -38,6 +39,13 @@ class EsportHomepage extends Component {
       case "LPL":
         return this.setState((state) => ({
           filters: { ...state.filters, LPL: !state.filters.LPL },
+        }));
+      case "European Masters":
+        return this.setState((state) => ({
+          filters: {
+            ...state.filters,
+            "European Masters": !state.filters["European Masters"],
+          },
         }));
     }
   }
@@ -65,8 +73,6 @@ class EsportHomepage extends Component {
 
     const mostRecentGame = this.state.matches.length - 1;
 
-    console.log(mostRecentGame);
-
     if (mostRecentGame > 1) {
       gameToScrollTo = document.getElementById(matchArray[mostRecentGame].id);
 
@@ -85,7 +91,8 @@ class EsportHomepage extends Component {
         let LCS,
           LEC,
           LCK,
-          LPL = [];
+          LPL,
+          EM = [];
 
         const tempArray = [];
         result.data.matchList.forEach((element) => {
@@ -97,6 +104,8 @@ class EsportHomepage extends Component {
               LEC = element;
             } else if (el.league.name === "LCK") {
               LCK = element;
+            } else if (el.league.name === "European Masters") {
+              EM = element;
             } else {
               LPL = element;
             }
@@ -113,6 +122,7 @@ class EsportHomepage extends Component {
             LEC: LEC,
             LCK: LCK,
             LPL: LPL,
+            "European Masters": EM,
           },
           matches: sorted,
           dataLoaded: true,
@@ -142,13 +152,11 @@ class EsportHomepage extends Component {
         });
       });
 
-      const sortedFilteredMatches = particularMatches.sort(
+      const sorted = particularMatches.sort(
         (a, b) => new Date(a.begin_at) - new Date(b.begin_at)
       );
 
-      this.setState({
-        matches: sortedFilteredMatches,
-      });
+      this.setState({ matches: sorted });
     }
     this.scrollToTodaysGame(this.state.matches);
   }
@@ -157,6 +165,7 @@ class EsportHomepage extends Component {
     const leagues = this.state.leagues;
     const matchList = this.state.matches;
     const filters = this.state.filters;
+    console.log(leagues);
     return this.state.dataLoaded ? (
       <section>
         <div className="esport-intro mt-4 mb-3 d-flex justify-content-center">
@@ -174,12 +183,8 @@ class EsportHomepage extends Component {
                         id={oneMatch.id}
                         className="row match-row d-flex justify-content-center"
                       >
-                        {matchList[i].scheduled_at.slice(0, 10) ===
-                        matchList[i].scheduled_at.slice(0, 10) ? (
-                          <span>{oneMatch.scheduled_at.slice(0, 10)}</span>
-                        ) : (
-                          <span></span>
-                        )}
+                        <span>{oneMatch.scheduled_at.slice(0, 10)}</span>
+
                         <div className="match-infos d-flex align-items-center">
                           <div className="league-logo-match-container d-flex align-items-center justify-content-center">
                             <img
@@ -189,33 +194,58 @@ class EsportHomepage extends Component {
                           </div>
                           <div>{this.isMatchLive(oneMatch)}</div>
                           <div className="team-infos-container d-flex justify-content-center">
-                            <div className="displayed-match-infos d-flex align-items-center">
-                              <div className="in-match-team-logo-container">
-                                <img
-                                  src={oneMatch.opponents[0].opponent.image_url}
-                                  className="in-match-team-logo"
-                                />
+                            {oneMatch.opponents.length > 0 ? (
+                              <div className="displayed-match-infos d-flex align-items-center">
+                                <div className="in-match-team-logo-container">
+                                  <img
+                                    src={
+                                      oneMatch.opponents[0].opponent.image_url
+                                    }
+                                    className="in-match-team-logo"
+                                  />
+                                </div>
+                                <span className="team-acronym font-weight-bold">
+                                  {oneMatch.opponents[0].opponent.name}
+                                </span>{" "}
+                                {new Date(oneMatch.begin_at) < new Date() &&
+                                oneMatch.status !== "not_started" ? (
+                                  <div>
+                                    <span className="team-1-score">
+                                      {oneMatch.results[0].score}
+                                    </span>
+                                    <span className="versus-mention"> VS </span>
+                                    <span className="team-2-score">
+                                      {oneMatch.results[1].score}
+                                    </span>
+                                  </div>
+                                ) : (
+                                  <div>
+                                    <span className="versus-mention"> VS </span>
+                                  </div>
+                                )}
+                                <span className="team-acronym font-weight-bold">
+                                  {oneMatch.opponents[1].opponent.name}
+                                </span>
+                                <div className="in-match-team-logo-container">
+                                  <img
+                                    src={
+                                      oneMatch.opponents[1].opponent.image_url
+                                    }
+                                    className="in-match-team-logo"
+                                  />
+                                </div>
                               </div>
-                              <span className="team-acronym font-weight-bold">
-                                {oneMatch.opponents[0].opponent.name}
-                              </span>{" "}
-                              <span className="team-1-score">
-                                {oneMatch.results[0].score}
-                              </span>
-                              <span className="versus-mention"> VS </span>
-                              <span className="team-2-score">
-                                {oneMatch.results[1].score}
-                              </span>
-                              <span className="team-acronym font-weight-bold">
-                                {oneMatch.opponents[1].opponent.name}
-                              </span>
-                              <div className="in-match-team-logo-container">
-                                <img
-                                  src={oneMatch.opponents[1].opponent.image_url}
-                                  className="in-match-team-logo"
-                                />
+                            ) : (
+                              <div className="displayed-match-infos d-flex align-items-center">
+                                <span className="team-acronym font-weight-bold">
+                                  TBD
+                                </span>{" "}
+                                <span className="versus-mention"> VS </span>
+                                <span className="team-acronym font-weight-bold">
+                                  TBD
+                                </span>
                               </div>
-                            </div>
+                            )}
                           </div>
                           <div className="game-schedule h-100 d-flex align-items-center justify-content-center">
                             <div className="game-time-indicator pl-2 d-flex align-items-center">
