@@ -1,8 +1,9 @@
 import React from "react";
-import Cookies from "js-cookie";
+// import Cookies from "js-cookie";
 import summSpells from "../data/summoner-spells.json";
 
-const version = Cookies.get("version");
+// const version = Cookies.get("version");
+const version = "10.8.1";
 
 export function rankImgProvider(rankedTier) {
   switch (rankedTier) {

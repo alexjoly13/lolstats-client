@@ -23,13 +23,13 @@ class App extends Component {
     };
   }
 
-  componentDidMount() {
-    if (versionCookie === undefined) {
-      checkLastVersion().then((response) => {
-        Cookies.set("version", response.data, { expires: 1 });
-      });
-    }
-  }
+  // componentDidMount() {
+  //   if (versionCookie === undefined) {
+  //     checkLastVersion().then((response) => {
+  //       Cookies.set("version", response.data, { expires: 1 });
+  //     });
+  //   }
+  // }
 
   render() {
     return (

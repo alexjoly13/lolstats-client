@@ -62,14 +62,9 @@ class EsportHomepage extends Component {
   }
 
   scrollToTodaysGame(matchArray) {
-    const date = new Date("2020-04-05T12:00:00Z");
-    let gameToScrollTo;
+    const date = new Date();
 
-    const sorted = matchArray.sort((a, b) => {
-      return (
-        date - new Date(b.scheduled_at) - (date - new Date(a.scheduled_at))
-      );
-    });
+    let gameToScrollTo;
 
     const mostRecentGame = this.state.matches.length - 1;
 
