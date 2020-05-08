@@ -21,6 +21,7 @@ class EventContainer extends Component {
 
   render() {
     const matchList = this.state.eventsList;
+    console.log(matchList);
 
     return (
       <div className="events d-inline-flex">
@@ -28,9 +29,19 @@ class EventContainer extends Component {
           <div className="row">
             <div id="events" className="event-container">
               {matchList.map((oneMatch, i) => {
+                // if (matchList[i + 1] !== undefined) {
+                //   if (
+                //     matchList[i].scheduled_at.slice(0, 10) !=
+                //     matchList[i + 1].scheduled_at.slice(0, 10)
+                //   ) {
+                //     return (
+                //       <span>{matchList[i].scheduled_at.slice(0, 10)}</span>
+                //     );
+                //   }
+                // }
+
                 return (
                   <div>
-                    <span>{oneMatch.scheduled_at.slice(0, 10)}</span>
                     <div
                       id={oneMatch.id}
                       className="row match-row d-flex justify-content-center"
@@ -43,7 +54,7 @@ class EventContainer extends Component {
                             alt=""
                           />
                         </div>
-                        <div className="live-mention-indicator">
+                        <div className="live-mention-indicator d-flex align-items-center justify-content-center">
                           {isMatchLive(oneMatch)}
                         </div>
                         <div className="team-infos-container d-flex justify-content-center">

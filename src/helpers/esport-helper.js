@@ -20,13 +20,12 @@ export function isMatchLive(gameToCheck) {
   const actualDate = new Date();
 
   if (
-    new Date(gameToCheck.begin_at) > actualDate &&
+    new Date(gameToCheck.begin_at) < actualDate &&
     gameToCheck.end_at === null
   ) {
     return (
-      <div className="d-flex justify-content-center">
-        <Blink color="red" text="•" fontSize="20"></Blink>
-        <span className="live-dot"></span>
+      <div className="d-flex justify-content-center align-items-center">
+        <Blink color="red" text="•" fontSize="40px"></Blink>
         <span>LIVE</span>
       </div>
     );
