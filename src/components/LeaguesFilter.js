@@ -38,7 +38,7 @@ class LeaguesFilter extends Component {
                     <div className="active-mark"></div>
                     <div>
                       <img
-                        className="league-logo"
+                        className="league-logo mr-2"
                         src={oneLeague.image_url}
                         alt={oneLeague.name}
                       ></img>
