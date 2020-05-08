@@ -21,7 +21,6 @@ class EventContainer extends Component {
 
   render() {
     const matchList = this.state.eventsList;
-    console.log(matchList);
 
     return (
       <div className="events d-inline-flex">
@@ -42,6 +41,7 @@ class EventContainer extends Component {
 
                 return (
                   <div>
+                    <span>{oneMatch.scheduled_at.slice(0, 10)}</span>
                     <div
                       id={oneMatch.id}
                       className="row match-row d-flex justify-content-center"

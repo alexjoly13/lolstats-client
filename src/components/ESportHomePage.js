@@ -149,18 +149,9 @@ class EsportHomepage extends Component {
             />
           </div>
         ) : (
-          <section>
-            <div className="container">
-              <div className="row">
-                <div>
-                  <Loader
-                    type="Oval"
-                    color="#80908f45"
-                    height={100}
-                    width={100}
-                  />
-                </div>
-              </div>
+          <section className="result-loading d-flex justify-content-center align-items-center">
+            <div className="loading-spinner">
+              <Loader type="Oval" color="#17a2b8" height={100} width={100} />
             </div>
           </section>
         )}

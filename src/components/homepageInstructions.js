@@ -40,6 +40,10 @@ class UsageInstructions extends Component {
               alt="stats-instructions"
             />
             <h4 className="mt-3 text-center">Pro Games Schedule</h4>{" "}
+            <p className="text-center">
+              Never ever miss a pro game again ! Check all the events planned in
+              the major leagues.
+            </p>
           </div>
         </div>
       </div>
