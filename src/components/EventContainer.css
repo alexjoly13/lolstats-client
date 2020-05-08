@@ -1,0 +1,116 @@
+.events {
+  width: 62%;
+}
+
+.event-container {
+  max-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  overflow-y: scroll;
+}
+
+div.event-container::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+div.event-container::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px white;
+  border-radius: 10px;
+}
+
+/* Handle */
+div.event-container::-webkit-scrollbar-thumb {
+  background: #80908f45;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+div.event-container::-webkit-scrollbar-thumb:hover {
+  background: #b30000;
+}
+
+.match-row {
+  max-width: 100%;
+}
+
+.match-infos {
+  width: 97%;
+  min-height: 100px;
+  background-color: #80908f45;
+  border-bottom: solid 2px white;
+}
+
+.league-logo-match-container {
+  width: 8%;
+  height: 70%;
+  border-right: solid 2px white;
+}
+
+.match-league-logo {
+  width: 60%;
+}
+
+.live-mention-indicator {
+  width: 5%;
+  height: 70%;
+  color: red;
+}
+
+.live-dot {
+  font-size: 30px;
+}
+
+.team-infos-container {
+  width: 79%;
+}
+
+.displayed-match-infos {
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.team-presentation {
+  width: 45%;
+}
+
+.in-match-team-logo-container {
+  width: 19%;
+}
+
+.in-match-team-logo {
+  width: 100%;
+}
+
+.team-acronym {
+  font-size: 16px;
+}
+
+.score-container {
+  width: 10%;
+  height: 100%;
+}
+
+.score-container-column {
+  width: 33.33%;
+}
+
+.team-score {
+  font-size: 30px;
+}
+
+.versus-mention {
+  font-size: 13px;
+}
+
+.game-schedule {
+  width: 8%;
+  height: 70%;
+  border-left: solid 2px white;
+}
+
+.game-time-indicator {
+  min-height: 100%;
+  font-size: 22px;
+}

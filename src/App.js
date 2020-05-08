@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Switch, Route } from "react-router-dom";
 import Cookies from "js-cookie";
-import "./App.css";
 import NavigationBar from "./components/navigationBar";
 import SearchContainer from "./components/searchContainer";
 import ChampionsList from "./components/championsList";
@@ -12,6 +11,8 @@ import Footer from "./components/footer";
 import { checkLastVersion } from "./api";
 import EsportHomepage from "./components/ESportHomePage";
 import LeagueHomePage from "./components/LeagueHomePage";
+import "./App.css";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 let versionCookie = Cookies.get("version");
 

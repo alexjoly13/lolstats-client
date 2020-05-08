@@ -1,4 +1,5 @@
-import React from "react";
+import React, { Component } from "react";
+import Blink from "react-blink-text";
 
 export function getLeagueLocation(id) {
   switch (id) {
@@ -12,5 +13,22 @@ export function getLeagueLocation(id) {
       return <span> (Korea)</span>;
     default:
       return <span></span>;
+  }
+}
+
+export function isMatchLive(gameToCheck) {
+  const actualDate = new Date();
+
+  if (
+    new Date(gameToCheck.begin_at) > actualDate &&
+    gameToCheck.end_at === null
+  ) {
+    return (
+      <div className="d-flex justify-content-center">
+        <Blink color="red" text="•" fontSize="20"></Blink>
+        <span className="live-dot"></span>
+        <span>LIVE</span>
+      </div>
+    );
   }
 }
