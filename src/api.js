@@ -21,8 +21,10 @@ export function checkLastVersion(versionToTest) {
   return backendApi.get("/version", versionToTest).catch(errorHandler);
 }
 
-export function postSummonerName(SummonerName) {
-  return backendApi.post("/summoner", SummonerName).catch(errorHandler);
+export function postSummonerName(SummonerName, serverValue) {
+  return backendApi
+    .post(`/summoner/${serverValue}`, SummonerName, serverValue)
+    .catch(errorHandler);
 }
 
 export function getChampionsList(championList) {

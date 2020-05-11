@@ -17,6 +17,8 @@ class DoughnutChart extends Component {
       animationEnabled: true,
       width: 120,
       height: 140,
+      backgroundColor: "transparent",
+      color: "white",
       subtitles: [
         {
           text: stats.winrate + "%",
@@ -29,7 +31,7 @@ class DoughnutChart extends Component {
         {
           type: "doughnut",
           dataPoints: [
-            { name: "Wins", y: stats.wins },
+            { name: "Wins", y: stats.wins, color: "#12d678" },
             { name: "Losses", y: stats.defeats },
           ],
         },
