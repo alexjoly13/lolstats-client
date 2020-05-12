@@ -45,7 +45,7 @@ class SummonerResume extends Component {
   getChampionsCount(lastGamesArray, searchedSummonerName) {
     let playerGames = [];
     lastGamesArray.map((oneGame) => {
-      oneGame.participants.map((oneParticipant) => {
+      return oneGame.participants.map((oneParticipant) => {
         return oneParticipant.summonerName === searchedSummonerName
           ? playerGames.push(oneParticipant)
           : false;

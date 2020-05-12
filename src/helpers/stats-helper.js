@@ -69,7 +69,7 @@ export function getAverageKDA(lastGamesArray, searchedSummonerName) {
   let globalDeaths = 0;
   let globalAssists = 0;
   lastGamesArray.map((oneGame) => {
-    oneGame.participants.map((oneParticipant) => {
+    return oneGame.participants.map((oneParticipant) => {
       return oneParticipant.summonerName === searchedSummonerName
         ? ((globalKills += oneParticipant.stats.kills),
           (globalDeaths += oneParticipant.stats.deaths),

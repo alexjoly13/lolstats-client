@@ -29,13 +29,8 @@ export function getGameDuration(time) {
 }
 
 export function getGameQueue(gameQueueId) {
-  let retour;
-  queueList.map((oneQueue) => {
-    if (oneQueue.queueId === gameQueueId) {
-      retour = oneQueue.description;
-    }
-  });
-  return retour;
+  return queueList.filter((oneQueue) => oneQueue.queueId === gameQueueId)[0]
+    .description;
 }
 
 export function getTeamsSide(participantsArray, teamsId) {

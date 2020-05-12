@@ -28,8 +28,10 @@ class LastGamesStatistics extends Component {
     const games = this.state.lastGames;
     const stats = this.state.stats;
     const championsPool = this.state.champsPlayed;
-    const formattedRank = summoner.ranks.tier + summoner.ranks.rank.toString();
-    console.log("CHILD STATE", this.state);
+    let formattedRank;
+    summoner.ranks
+      ? (formattedRank = summoner.ranks.tier + summoner.ranks.rank)
+      : (formattedRank = "");
 
     return (
       <section className="last-games-stats">
@@ -37,7 +39,7 @@ class LastGamesStatistics extends Component {
           <div className="container">
             <div className="row">
               <div className="col-4 d-flex align-items-center stats-separator">
-                {summoner.summonerLevel >= 30 ? (
+                {summoner.ranks ? (
                   <div className="d-flex justify-content-center">
                     <div className="rank-icon-container">
                       <img
@@ -79,8 +81,10 @@ class LastGamesStatistics extends Component {
                     </div>
                   </div>
                 ) : (
-                  <div className="d-flex justify-content-center">
-                    <span>Unranked</span>
+                  <div className="d-flex w-100 justify-content-center">
+                    <span className="font-weight-lighter">
+                      This player is currently unranked in season 10
+                    </span>
                   </div>
                 )}
               </div>
@@ -111,7 +115,9 @@ class LastGamesStatistics extends Component {
                       </div>
                       <div className="d-inline-block ml-2 specific-champ-numbers-container">
                         <div>
-                          <span>{oneChamp.championPlayedName}</span>
+                          <span className="font-weight-bold">
+                            {oneChamp.championPlayedName}
+                          </span>
                         </div>
                         <div>
                           {winrateCalculator(oneChamp.wins, oneChamp.defeats)}{" "}
@@ -137,23 +143,6 @@ class LastGamesStatistics extends Component {
         </div>
       </section>
     );
-    // ) : (
-    //   <section className="last-games-stats">
-    //     <div>
-    //       <div className="container">
-    //         <div className="row">
-    //           <div className="col-6">
-    //             <div className="d-flex">
-    //               <span className="mr-1">{stats.wins}W</span>
-    //               <span className="mr-1">{stats.defeats}D</span>
-    //               <span>{stats.totalGames} Games</span>
-    //             </div>
-    //           </div>
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </section>
-    // );
   }
 }
 
